@@ -1,0 +1,6 @@
+# Lib directory
+# This directory will contain utility functions and shared logic:
+# - types.ts (shared types)
+# - errors.ts (error handling)
+# - utils.ts (utility functions)
+# - prisma.ts (Prisma client)

@@ -1,0 +1,89 @@
+// Prisma schema for 8Blocks blog
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model BlogPost {
+  id        String   @id @default(cuid())
+  title     String
+  titleRu   String?
+  slug      String   @unique
+  excerpt   String?
+  excerptRu String?
+  content   String   @db.Text
+  contentRu String?  @db.Text
+  
+  featuredImage String?
+  
+  published Boolean  @default(false)
+  locale    String   @default("en")
+  
+  // Meta fields
+  views     Int      @default(0)
+  readTime  Int?     // in minutes
+  author    String   @default("8Blocks")
+  
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id])
+  
+  tags       Tag[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  publishedAt DateTime?
+  
+  @@index([slug])
+  @@index([published])
+  @@index([categoryId])
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String
+  nameRu      String?
+  slug        String     @unique
+  description String?
+  descriptionRu String?
+  
+  parentId    String?
+  parent      Category?  @relation("CategoryToCategory", fields: [parentId], references: [id], onDelete: Cascade)
+  children    Category[] @relation("CategoryToCategory")
+  
+  posts       BlogPost[]
+  
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  @@index([slug])
+  @@index([parentId])
+}
+
+model Tag {
+  id        String     @id @default(cuid())
+  name      String     @unique
+  nameRu    String?
+  slug      String     @unique
+  
+  posts     BlogPost[]
+  
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  
+  @@index([slug])
+}
+
+model ContactSubmission {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  message     String   @db.Text
+  submittedAt DateTime @default(now())
+  
+  @@index([submittedAt])
+}

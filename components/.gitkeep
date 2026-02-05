@@ -1,0 +1,7 @@
+# Components directory
+# This directory will contain all React components organized by type:
+# - layout/ (Header, Footer, Navigation)
+# - sections/ (HeroSection, ServicesSection, etc.)
+# - blog/ (BlogCard, CategoryFilter, etc.)
+# - ui/ (Button, Input, Tag, etc.)
+# - forms/ (ContactForm)

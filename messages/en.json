@@ -1,0 +1,107 @@
+{
+  "common": {
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "loading": "Loading...",
+    "error": "An error occurred"
+  },
+  "header": {
+    "home": "Home",
+    "blog": "Blog",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Newsletter",
+      "placeholder": "Email",
+      "subscribe": "Subscribe",
+      "subscribeText": "Subscribe to go a level deeper"
+    },
+    "navigation": {
+      "title": "Navigation",
+      "services": "Services",
+      "cases": "Cases",
+      "benefits": "Benefits",
+      "blog": "Blog"
+    },
+    "services": {
+      "title": "Services",
+      "strategicConsulting": "Strategic consulting",
+      "basicTokenomics": "Basic tokenomics",
+      "advancedTokenomics": "Advanced tokenomics",
+      "tokenomicsAudit": "Tokenomics audit"
+    },
+    "social": {
+      "title": "Follow us"
+    },
+    "copyright": "© 2026 8Blocks. All rights reserved.",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "homepage": {
+    "hero": {
+      "title": "8Blocks",
+      "subtitle": "Modern corporate website"
+    }
+  },
+  "home": {
+    "description": "Modern web development and blockchain solutions. Strategic consulting, tokenomics design, and technical expertise for Web3 projects."
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send message",
+      "success": "Message sent successfully!",
+      "error": "Failed to send message. Please try again."
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be less than 100 characters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
+      "messageRequired": "Message is required",
+      "messageMin": "Message must be at least 10 characters",
+      "messageMax": "Message must be less than 2000 characters"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "allPosts": "All Posts",
+    "noPosts": "No posts found",
+    "categories": "Categories",
+    "tags": "Tags",
+    "publishedOn": "Published on",
+    "readMore": "Read more",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "page": "Page",
+    "of": "of",
+    "postsInCategory": "Posts in",
+    "postsWithTag": "Posts tagged with",
+    "tryAgainLater": "Please try refreshing the page or come back later.",
+    "recentPosts": "Recent Posts"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go to Homepage",
+    "goBack": "Go Back",
+    "searchPlaceholder": "Search...",
+    "popularPages": "Popular Pages",
+    "home": "Home",
+    "blog": "Blog",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "We encountered an unexpected error. Please try again or contact support if the problem persists.",
+    "tryAgain": "Try Again",
+    "goHome": "Go to Homepage",
+    "errorDetails": "Error Details (Development Only):"
+  }
+}
