@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getBlogPosts, getParentCategories, getBlogPostsByParentCategory } from '@/lib/blog';
 import BlogCard from '@/components/cards/BlogCard';
 import CategoryDropdown from '@/components/blog/CategoryDropdown';
+import BlogPostsSlider from '@/components/blog/BlogPostsSlider';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { getUserFriendlyErrorMessage } from '@/lib/errors';
 import type { Locale } from '@/i18n/routing';
@@ -38,7 +39,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   try {
     // Fetch parent categories only
-    const categories = await getParentCategories();
+    const categories = await getParentCategories(locale);
 
     // Fetch all posts for hero
     const allPostsResponse = await getBlogPosts(locale, 1, 100);
@@ -83,7 +84,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-[1.875rem] mb-[1.875rem] lg:mb-[3.125rem]">
               {/* Title with count */}
               <div className="flex items-start gap-[0.625rem]">
-                <h1 className="font-['Berka'] font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white">
+                <h1 className="font-['Berka'] font-normal text-[1.875rem] lg:text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white">
                   8Blocks blog
                 </h1>
                 <span className="font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50">
@@ -92,9 +93,9 @@ export default async function BlogPage({ params }: BlogPageProps) {
               </div>
 
               {/* Category Filters - horizontal scroll on mobile, flex on desktop */}
-              <div className="-mx-[clamp(1.25rem,6.25vw,6.25rem)] px-[clamp(1.25rem,6.25vw,6.25rem)] lg:mx-0 lg:px-0">
+              <div className="-mx-[clamp(1.25rem,6.25vw,6.25rem)] px-[clamp(1.25rem,6.25vw,6.25rem)] lg:mx-0 lg:px-0 overflow-hidden">
                 <div className="flex items-center gap-[0.625rem] overflow-x-auto pb-2 scrollbar-hide lg:overflow-visible lg:pb-0">
-                  {categories.slice(0, 6).map((category) => (
+                  {categories.map((category) => (
                     <CategoryDropdown
                       key={category.id}
                       category={category}
@@ -107,7 +108,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
             {/* Hero Post - Big Card */}
             {heroPost && (
-              <div className="mb-[7.8125rem]">
+              <div className="mb-[6.5625rem] lg:mb-[7.8125rem]">
                 <BlogCard post={heroPost} variant="big" locale={locale as Locale} />
               </div>
             )}
@@ -117,56 +118,43 @@ export default async function BlogPage({ params }: BlogPageProps) {
         {/* Category Sections */}
         {Object.entries(postsByCategory).map(([slug, { category, posts }]) => {
           const bigPost = posts[0];
-          const smallPosts = posts.slice(1, 3); // Mobile: 2 cards, Desktop: will show 3
+          const smallPosts = posts.slice(1);
 
           return (
             <section
               key={slug}
-              className="w-full pb-[7.8125rem] px-[clamp(1.25rem,6.25vw,6.25rem)]"
+              className="w-full pb-[6.25rem] lg:pb-[7.8125rem] px-[clamp(1.25rem,6.25vw,6.25rem)]"
             >
               <div className="max-w-[77.5rem] mx-auto">
                 {/* Category Title */}
-                <h2 className="font-['Berka'] font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[3.125rem]">
+                <h2 className="font-['Berka'] font-normal text-[1.25rem] lg:text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.2] lg:leading-[1.1] text-white mb-[1.25rem] lg:mb-[3.125rem]">
                   {category.name}
                 </h2>
 
-                {/* Posts Grid */}
-                <div className="flex flex-col gap-[3.125rem] mb-[1.5625rem] lg:mb-[3.125rem]">
-                  {/* Big Card - Desktop only */}
+                {/* Posts */}
+                <div className="flex flex-col gap-[1.25rem] lg:gap-[3.125rem] mb-[1.875rem] lg:mb-[3.125rem]">
+                  {/* Big Card */}
                   {bigPost && (
-                    <div className="hidden lg:block">
-                      <BlogCard post={bigPost} variant="big" locale={locale as Locale} />
-                    </div>
+                    <BlogCard post={bigPost} variant="big" locale={locale as Locale} />
                   )}
 
-                  {/* Small Cards Row - Horizontal scroll on mobile, grid on desktop */}
+                  {/* Mobile: Swiper slider */}
                   {smallPosts.length > 0 && (
-                    <>
-                      {/* Mobile: Horizontal scroll */}
-                      <div className="lg:hidden flex gap-[1.25rem] overflow-x-auto pb-2 scrollbar-hide -mx-[clamp(1.25rem,6.25vw,6.25rem)] px-[clamp(1.25rem,6.25vw,6.25rem)]">
-                        {smallPosts.map((post) => (
-                          <div key={post.id} className="flex-shrink-0 w-[18rem]">
-                            <BlogCard
-                              post={post}
-                              variant="default"
-                              locale={locale as Locale}
-                            />
-                          </div>
-                        ))}
-                      </div>
+                    <BlogPostsSlider posts={smallPosts} locale={locale as Locale} />
+                  )}
 
-                      {/* Desktop: Grid */}
-                      <div className="hidden lg:grid lg:grid-cols-3 gap-[1.5625rem]">
-                        {smallPosts.map((post) => (
-                          <BlogCard
-                            key={post.id}
-                            post={post}
-                            variant="default"
-                            locale={locale as Locale}
-                          />
-                        ))}
-                      </div>
-                    </>
+                  {/* Desktop: 3-column grid */}
+                  {smallPosts.length > 0 && (
+                    <div className="hidden lg:grid lg:grid-cols-3 gap-[1.5625rem]">
+                      {smallPosts.slice(0, 3).map((post) => (
+                        <BlogCard
+                          key={post.id}
+                          post={post}
+                          variant="default"
+                          locale={locale as Locale}
+                        />
+                      ))}
+                    </div>
                   )}
                 </div>
 
@@ -174,7 +162,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
                 <div className="flex justify-start lg:justify-center">
                   <Link
                     href={`/${locale}/blog/${category.slug}`}
-                    className="backdrop-blur-[2px] bg-white flex items-center h-[3rem] px-[1.25rem] py-[0.75rem] rounded-[0.375rem] font-['Berka'] font-medium text-[0.9375rem] leading-[1.5] text-black hover:opacity-90 transition-opacity"
+                    className="backdrop-blur-[2px] bg-white flex items-center h-[2.25rem] lg:h-[3rem] px-[0.9375rem] lg:px-[1.25rem] py-[0.625rem] lg:py-[0.75rem] rounded-[0.5rem] lg:rounded-[0.375rem] font-['Berka'] font-medium text-[0.8125rem] lg:text-[0.9375rem] leading-[1.5] text-black hover:opacity-90 transition-opacity"
                   >
                     See all articles
                   </Link>

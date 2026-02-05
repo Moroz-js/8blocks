@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getCategoryBySlug, getSubcategories, getBlogPostsBySubcategory } from '@/lib/blog';
 import BlogCard from '@/components/cards/BlogCard';
+import BlogPostsSlider from '@/components/blog/BlogPostsSlider';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { getUserFriendlyErrorMessage } from '@/lib/errors';
 import type { Locale } from '@/i18n/routing';
@@ -17,7 +18,7 @@ interface CategoryPageProps {
 
 export async function generateMetadata({ params }: CategoryPageProps) {
   const { locale, category: categorySlug } = await params;
-  const category = await getCategoryBySlug(categorySlug);
+  const category = await getCategoryBySlug(categorySlug, locale);
 
   if (!category) {
     return generatePageMetadata({
@@ -48,14 +49,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   try {
     // Fetch category
-    const category = await getCategoryBySlug(categorySlug);
+    const category = await getCategoryBySlug(categorySlug, locale);
 
     if (!category) {
       notFound();
     }
 
     // Fetch subcategories
-    const subcategories = await getSubcategories(categorySlug);
+    const subcategories = await getSubcategories(categorySlug, locale);
 
     // If no subcategories, fetch posts directly from this category
     if (subcategories.length === 0) {
@@ -84,7 +85,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
             <section className="w-full pt-[3.125rem] pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
               <div className="max-w-[77.5rem] mx-auto text-center">
-                <h1 className="font-['Berka'] font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
+                <h1 className="font-['Berka'] font-normal text-[1.875rem] lg:text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
                   {category.name}
                 </h1>
                 <p className="font-['Berka'] font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-70">
@@ -117,18 +118,18 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
 
           {/* Category Title */}
-          <section className="w-full pb-[3.125rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
+          <section className="w-full pb-[1.25rem] lg:pb-[3.125rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
             <div className="max-w-[77.5rem] mx-auto">
-              <h1 className="font-['Berka'] font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white">
+              <h1 className="font-['Berka'] font-normal text-[1.875rem] lg:text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white">
                 {category.name}
               </h1>
             </div>
           </section>
 
           {/* Posts Grid */}
-          <section className="w-full pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
+          <section className="w-full pb-[3.125rem] lg:pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
             <div className="max-w-[77.5rem] mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1.5625rem]">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-[0.625rem] lg:gap-[1.5625rem]">
                 {posts.map((post) => (
                   <BlogCard key={post.id} post={post} variant="default" locale={locale as Locale} />
                 ))}
@@ -171,9 +172,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
 
         {/* Category Title */}
-        <section className="w-full pb-[3.125rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
+        <section className="w-full pb-[1.25rem] lg:pb-[3.125rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
           <div className="max-w-[77.5rem] mx-auto">
-            <h1 className="font-['Berka'] font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white">
+            <h1 className="font-['Berka'] font-normal text-[1.875rem] lg:text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white">
               {category.name}
             </h1>
           </div>
@@ -184,56 +185,43 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           if (posts.length === 0) return null;
 
           const bigPost = posts[0];
-          const smallPosts = posts.slice(1, 3); // Mobile: 2 cards, Desktop: will show 3
+          const smallPosts = posts.slice(1, 3);
 
           return (
             <section
               key={subcategory.id}
-              className="w-full pb-[7.8125rem] px-[clamp(1.25rem,6.25vw,6.25rem)]"
+              className="w-full pb-[6.25rem] lg:pb-[7.8125rem] px-[clamp(1.25rem,6.25vw,6.25rem)]"
             >
               <div className="max-w-[77.5rem] mx-auto">
                 {/* Subcategory Title */}
-                <h2 className="font-['Berka'] font-normal text-[clamp(1.75rem,2.1875rem,2.1875rem)] leading-[1.25] text-white mb-[3.125rem]">
+                <h2 className="font-['Berka'] font-normal text-[1.25rem] lg:text-[clamp(1.75rem,2.1875rem,2.1875rem)] leading-[1.2] lg:leading-[1.25] text-white mb-[1.25rem] lg:mb-[3.125rem]">
                   {subcategory.name}
                 </h2>
 
                 {/* Posts Grid */}
-                <div className="flex flex-col gap-[3.125rem] mb-[1.5625rem] lg:mb-[3.125rem]">
-                  {/* Big Card - Desktop only */}
+                <div className="flex flex-col gap-[1.25rem] lg:gap-[3.125rem] mb-[1.875rem] lg:mb-[3.125rem]">
+                  {/* Big Card */}
                   {bigPost && (
-                    <div className="hidden lg:block">
-                      <BlogCard post={bigPost} variant="big" locale={locale as Locale} />
-                    </div>
+                    <BlogCard post={bigPost} variant="big" locale={locale as Locale} />
                   )}
 
-                  {/* Small Cards Row - Horizontal scroll on mobile, grid on desktop */}
+                  {/* Mobile: Swiper slider */}
                   {smallPosts.length > 0 && (
-                    <>
-                      {/* Mobile: Horizontal scroll */}
-                      <div className="lg:hidden flex gap-[1.25rem] overflow-x-auto pb-2 scrollbar-hide -mx-[clamp(1.25rem,6.25vw,6.25rem)] px-[clamp(1.25rem,6.25vw,6.25rem)]">
-                        {smallPosts.map((post) => (
-                          <div key={post.id} className="flex-shrink-0 w-[18rem]">
-                            <BlogCard
-                              post={post}
-                              variant="default"
-                              locale={locale as Locale}
-                            />
-                          </div>
-                        ))}
-                      </div>
+                    <BlogPostsSlider posts={smallPosts} locale={locale as Locale} />
+                  )}
 
-                      {/* Desktop: Grid */}
-                      <div className="hidden lg:grid lg:grid-cols-3 gap-[1.5625rem]">
-                        {smallPosts.map((post) => (
-                          <BlogCard
-                            key={post.id}
-                            post={post}
-                            variant="default"
-                            locale={locale as Locale}
-                          />
-                        ))}
-                      </div>
-                    </>
+                  {/* Desktop: 3-column grid */}
+                  {smallPosts.length > 0 && (
+                    <div className="hidden lg:grid lg:grid-cols-3 gap-[1.5625rem]">
+                      {smallPosts.map((post) => (
+                        <BlogCard
+                          key={post.id}
+                          post={post}
+                          variant="default"
+                          locale={locale as Locale}
+                        />
+                      ))}
+                    </div>
                   )}
                 </div>
 
@@ -241,7 +229,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 <div className="flex justify-start lg:justify-center">
                   <Link
                     href={`/${locale}/blog/${categorySlug}/${subcategory.slug}`}
-                    className="backdrop-blur-[2px] bg-white flex items-center h-[3rem] px-[1.25rem] py-[0.75rem] rounded-[0.375rem] font-['Berka'] font-medium text-[0.9375rem] leading-[1.5] text-black hover:opacity-90 transition-opacity"
+                    className="backdrop-blur-[2px] bg-white flex items-center h-[2.25rem] lg:h-[3rem] px-[0.9375rem] lg:px-[1.25rem] py-[0.625rem] lg:py-[0.75rem] rounded-[0.5rem] lg:rounded-[0.375rem] font-['Berka'] font-medium text-[0.8125rem] lg:text-[0.9375rem] leading-[1.5] text-black hover:opacity-90 transition-opacity"
                   >
                     See all articles
                   </Link>

@@ -57,9 +57,9 @@ export default function BlogCard({
               />
               {/* Category Tag Overlay */}
               {post.category && (
-                <div className="absolute top-[0.9375rem] left-[0.9375rem]">
-                  <div className="bg-[rgba(233,233,233,0.12)] h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] flex items-center justify-center">
-                    <span className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white">
+                <div className="absolute top-[0.625rem] left-[0.625rem] lg:top-[0.9375rem] lg:left-[0.9375rem]">
+                  <div className="bg-[rgba(233,233,233,0.12)] px-[0.625rem] py-[0.3125rem] rounded-[0.25rem] lg:h-[2.25rem] lg:px-[0.9375rem] lg:py-[0.625rem] lg:rounded-[0.5rem] flex items-center justify-center">
+                    <span className="font-['Berka'] font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white">
                       {post.category.name}
                     </span>
                   </div>
@@ -71,21 +71,21 @@ export default function BlogCard({
           {/* Content - Right side, fixed width */}
           <div className="flex flex-col justify-between w-full lg:w-[24.1875rem] ">
             {/* Top: Date, Title, Excerpt */}
-            <div className="flex flex-col gap-[0.625rem]">
+            <div className="flex flex-col gap-[0.3125rem] lg:gap-[0.625rem]">
               {/* Date */}
               {formattedDate && (
-                <p className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white opacity-50">
+                <p className="font-['Berka'] font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white opacity-50">
                   {formattedDate}
                 </p>
               )}
 
               {/* Title */}
-              <h3 className="font-['Berka'] font-normal text-[clamp(1.75rem,3vw,2.1875rem)] leading-[1.25] text-white group-hover:opacity-80 transition-opacity line-clamp-3">
+              <h3 className="font-['Berka'] font-normal text-[0.9375rem] lg:text-[clamp(1.75rem,3vw,2.1875rem)] leading-[1.3] lg:leading-[1.25] text-white group-hover:opacity-80 transition-opacity line-clamp-2 lg:line-clamp-3">
                 {post.title}
               </h3>
 
               {/* Excerpt */}
-              <p className="font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50 line-clamp-2">
+              <p className="font-['Berka'] font-normal text-[0.8125rem] lg:text-[0.9375rem] leading-[1.5] lg:leading-[1.7] text-white opacity-50 line-clamp-2">
                 {post.excerpt}
               </p>
             </div>
@@ -128,40 +128,27 @@ export default function BlogCard({
       href={`/${locale}/blog/${post.category?.slug}/${post.slug}`}
       className="group"
     >
-      <article className="flex flex-col gap-[0.9375rem] items-end w-full">
+      <article className="flex flex-col gap-[0.625rem] lg:gap-[0.9375rem] items-end w-full">
         {/* Cover and Date */}
         <div className="flex flex-col gap-[0.625rem] items-start w-full">
           {/* Cover Image with Category Tag */}
           {post.featuredImage && (
-            <div className="relative w-full h-[10.4375rem] lg:h-auto lg:aspect-[8/5] bg-black border border-[rgba(255,255,255,0.2)] rounded-[0.5rem] overflow-hidden group-hover:border-[rgba(255,255,255,0.3)] transition-colors">
-              {/* Mobile: normal image with fixed height */}
-              <Image
-                src={post.featuredImage.url}
-                alt={post.featuredImage.alt}
-                width={800}
-                height={500}
-                className="object-cover w-full h-full lg:hidden"
-                sizes="(max-width: 640px) 100vw, 50vw"
-                loading="lazy"
-                placeholder="blur"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg=="
-              />
-              {/* Desktop: fill image */}
+            <div className="relative w-full aspect-[397.67/250] bg-black border border-[rgba(255,255,255,0.2)] rounded-[0.5rem] overflow-hidden group-hover:border-[rgba(255,255,255,0.3)] transition-colors">
               <Image
                 src={post.featuredImage.url}
                 alt={post.featuredImage.alt}
                 fill
-                className="object-cover hidden lg:block"
-                sizes="370px"
+                className="object-cover"
+                sizes="(max-width: 1024px) 50vw, 370px"
                 loading="lazy"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg=="
               />
               {/* Category Tag overlay */}
               {post.category && (
-                <div className="absolute top-[0.9375rem] left-[0.9375rem]">
-                  <div className="bg-[rgba(233,233,233,0.12)] h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] flex items-center justify-center">
-                    <span className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white">
+                <div className="absolute top-[0.625rem] left-[0.625rem] lg:top-[0.9375rem] lg:left-[0.9375rem]">
+                  <div className="bg-[rgba(233,233,233,0.12)] px-[0.625rem] py-[0.3125rem] rounded-[0.25rem] lg:h-[2.25rem] lg:px-[0.9375rem] lg:py-[0.625rem] lg:rounded-[0.5rem] flex items-center justify-center">
+                    <span className="font-['Berka'] font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white">
                       {post.category.name}
                     </span>
                   </div>
@@ -172,7 +159,7 @@ export default function BlogCard({
 
           {/* Date */}
           {formattedDate && (
-            <p className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white opacity-50 w-full">
+            <p className="font-['Berka'] font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white opacity-50 w-full">
               {formattedDate}
             </p>
           )}
@@ -180,16 +167,16 @@ export default function BlogCard({
 
         {/* Title and Excerpt */}
         <div className="flex flex-col gap-[0.3125rem] items-start w-full font-['Berka'] font-normal text-white">
-          <h3 className="text-[clamp(1.125rem,3vw,1.25rem)] leading-[1.3] line-clamp-2 w-full group-hover:opacity-80 transition-opacity">
+          <h3 className="text-[0.9375rem] lg:text-[1.25rem] leading-[1.3] line-clamp-2 w-full group-hover:opacity-80 transition-opacity">
             {post.title}
           </h3>
-          <p className="text-[clamp(0.875rem,2.5vw,0.9375rem)] leading-[1.7] opacity-50 line-clamp-2 w-full">
+          <p className="text-[0.8125rem] lg:text-[0.9375rem] leading-[1.5] lg:leading-[1.7] opacity-50 line-clamp-2 w-full">
             {post.excerpt}
           </p>
         </div>
 
         {/* Meta: Views, Read Time, Author - AFTER description */}
-        <div className="flex items-center gap-[0.75rem] font-['Berka'] text-[0.8125rem] leading-[1.5] text-white w-full flex-wrap">
+        <div className="flex items-center gap-[0.5rem] lg:gap-[0.75rem] font-['Berka'] text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white w-full flex-wrap">
           <div className="flex gap-[0.375rem] opacity-50">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M8 3C4.5 3 1.73 5.61 1 9c.73 3.39 3.5 6 7 6s6.27-2.61 7-6c-.73-3.39-3.5-6-7-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z" fill="currentColor"/>

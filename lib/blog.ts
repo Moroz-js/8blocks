@@ -16,7 +16,6 @@ export async function getBlogPosts(
     prisma.blogPost.findMany({
       where: {
         published: true,
-        locale,
       },
       include: {
         category: true,
@@ -31,12 +30,11 @@ export async function getBlogPosts(
     prisma.blogPost.count({
       where: {
         published: true,
-        locale,
       },
     }),
   ]);
 
-  const normalizedPosts = posts.map(normalizeBlogPost);
+  const normalizedPosts = posts.map((post) => normalizeBlogPost(post, locale));
   const pageCount = Math.ceil(total / pageSize);
 
   return {
@@ -62,7 +60,6 @@ export async function getBlogPostBySlug(
   const post = await prisma.blogPost.findFirst({
     where: {
       slug,
-      locale,
       published: true,
     },
     include: {
@@ -71,7 +68,7 @@ export async function getBlogPostBySlug(
     },
   });
 
-  return post ? normalizeBlogPost(post) : null;
+  return post ? normalizeBlogPost(post, locale) : null;
 }
 
 /**
@@ -89,7 +86,6 @@ export async function getBlogPostsByCategory(
     prisma.blogPost.findMany({
       where: {
         published: true,
-        locale,
         category: {
           slug: categorySlug,
         },
@@ -107,7 +103,6 @@ export async function getBlogPostsByCategory(
     prisma.blogPost.count({
       where: {
         published: true,
-        locale,
         category: {
           slug: categorySlug,
         },
@@ -115,7 +110,7 @@ export async function getBlogPostsByCategory(
     }),
   ]);
 
-  const normalizedPosts = posts.map(normalizeBlogPost);
+  const normalizedPosts = posts.map((post) => normalizeBlogPost(post, locale));
   const pageCount = Math.ceil(total / pageSize);
 
   return {
@@ -134,20 +129,20 @@ export async function getBlogPostsByCategory(
 /**
  * Get all categories
  */
-export async function getCategories(): Promise<NormalizedCategory[]> {
+export async function getCategories(locale: string): Promise<NormalizedCategory[]> {
   const categories = await prisma.category.findMany({
     orderBy: {
       name: 'asc',
     },
   });
 
-  return categories.map(normalizeCategory);
+  return categories.map((cat) => normalizeCategory(cat, locale));
 }
 
 /**
  * Get parent categories only (no parentId)
  */
-export async function getParentCategories(): Promise<NormalizedCategory[]> {
+export async function getParentCategories(locale: string): Promise<NormalizedCategory[]> {
   const categories = await prisma.category.findMany({
     where: {
       parentId: null,
@@ -157,13 +152,13 @@ export async function getParentCategories(): Promise<NormalizedCategory[]> {
     },
   });
 
-  return categories.map(normalizeCategory);
+  return categories.map((cat) => normalizeCategory(cat, locale));
 }
 
 /**
  * Get subcategories for a parent category
  */
-export async function getSubcategories(parentSlug: string): Promise<NormalizedCategory[]> {
+export async function getSubcategories(parentSlug: string, locale: string): Promise<NormalizedCategory[]> {
   const parent = await prisma.category.findUnique({
     where: { slug: parentSlug },
   });
@@ -179,7 +174,7 @@ export async function getSubcategories(parentSlug: string): Promise<NormalizedCa
     },
   });
 
-  return subcategories.map(normalizeCategory);
+  return subcategories.map((cat) => normalizeCategory(cat, locale));
 }
 
 /**
@@ -197,7 +192,6 @@ export async function getBlogPostsBySubcategory(
     prisma.blogPost.findMany({
       where: {
         published: true,
-        locale,
         category: {
           slug: subcategorySlug,
         },
@@ -215,7 +209,6 @@ export async function getBlogPostsBySubcategory(
     prisma.blogPost.count({
       where: {
         published: true,
-        locale,
         category: {
           slug: subcategorySlug,
         },
@@ -223,7 +216,7 @@ export async function getBlogPostsBySubcategory(
     }),
   ]);
 
-  const normalizedPosts = posts.map(normalizeBlogPost);
+  const normalizedPosts = posts.map((post) => normalizeBlogPost(post, locale));
   const pageCount = Math.ceil(total / pageSize);
 
   return {
@@ -260,7 +253,6 @@ export async function getBlogPostsByParentCategory(
   const posts = await prisma.blogPost.findMany({
     where: {
       published: true,
-      locale,
       categoryId: {
         in: subcategoryIds,
       },
@@ -274,47 +266,47 @@ export async function getBlogPostsByParentCategory(
     },
   });
 
-  return posts.map(normalizeBlogPost);
+  return posts.map((post) => normalizeBlogPost(post, locale));
 }
 
 /**
  * Get category by slug
  */
 export async function getCategoryBySlug(
-  slug: string
+  slug: string,
+  locale: string
 ): Promise<NormalizedCategory | null> {
   const category = await prisma.category.findUnique({
     where: { slug },
   });
 
-  return category ? normalizeCategory(category) : null;
+  return category ? normalizeCategory(category, locale) : null;
 }
 
 /**
- * Normalize Prisma post to frontend format
+ * Normalize Prisma post to frontend format (locale-aware)
  */
-function normalizeBlogPost(post: any): NormalizedBlogPost {
+function normalizeBlogPost(post: any, locale: string): NormalizedBlogPost {
   return {
     id: post.id,
-    title: post.title,
+    title: locale === 'ru' ? (post.titleRu || post.title) : post.title,
     slug: post.slug,
-    excerpt: post.excerpt,
-    content: post.content,
+    excerpt: locale === 'ru' ? (post.excerptRu || post.excerpt) : post.excerpt,
+    content: locale === 'ru' ? (post.contentRu || post.content) : post.content,
     featuredImage: post.featuredImage ? {
       url: post.featuredImage,
-      alt: post.title,
+      alt: locale === 'ru' ? (post.titleRu || post.title) : post.title,
     } : null,
     published: post.published,
     publishedAt: post.publishedAt,
-    locale: post.locale,
     category: post.category ? {
       id: post.category.id,
-      name: post.category.name,
+      name: locale === 'ru' ? (post.category.nameRu || post.category.name) : post.category.name,
       slug: post.category.slug,
     } : null,
     tags: post.tags.map((tag: any) => ({
       id: tag.id,
-      name: tag.name,
+      name: locale === 'ru' ? (tag.nameRu || tag.name) : tag.name,
     })),
     createdAt: post.createdAt,
     updatedAt: post.updatedAt,
@@ -333,7 +325,6 @@ export async function getRelatedBlogPosts(
   const posts = await prisma.blogPost.findMany({
     where: {
       published: true,
-      locale,
       categoryId,
       id: {
         not: postId,
@@ -349,18 +340,18 @@ export async function getRelatedBlogPosts(
     take: limit,
   });
 
-  return posts.map(normalizeBlogPost);
+  return posts.map((post) => normalizeBlogPost(post, locale));
 }
 
 /**
- * Normalize Prisma category to frontend format
+ * Normalize Prisma category to frontend format (locale-aware)
  */
-function normalizeCategory(category: any): NormalizedCategory {
+function normalizeCategory(category: any, locale: string): NormalizedCategory {
   return {
     id: category.id,
-    name: category.name,
+    name: locale === 'ru' ? (category.nameRu || category.name) : category.name,
     slug: category.slug,
-    description: category.description,
+    description: locale === 'ru' ? (category.descriptionRu || category.description) : category.description,
     parentId: category.parentId || null,
   };
 }

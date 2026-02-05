@@ -12,7 +12,6 @@ export interface NormalizedBlogPost {
   } | null;
   published: boolean;
   publishedAt: Date | null;
-  locale: string;
   category: {
     id: string;
     name: string;

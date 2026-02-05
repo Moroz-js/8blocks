@@ -22,7 +22,6 @@ model BlogPost {
   featuredImage String?
   
   published Boolean  @default(false)
-  locale    String   @default("en")
   
   // Meta fields
   views     Int      @default(0)

@@ -47,12 +47,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
   });
 
-  // 3. Dynamic: published blog posts
+  // 3. Dynamic: published blog posts (multilingual — generate URL for each locale)
   const posts = await prisma.blogPost.findMany({
     where: { published: true },
     select: {
       slug: true,
-      locale: true,
       publishedAt: true,
       updatedAt: true,
       category: {
@@ -64,12 +63,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postPages: MetadataRoute.Sitemap = posts
     .filter((post) => post.category)
-    .map((post) => ({
-      url: `${BASE_URL}/${post.locale}/blog/${post.category!.slug}/${post.slug}`,
-      lastModified: post.updatedAt || post.publishedAt || currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    }));
+    .flatMap((post) =>
+      routing.locales.map((locale) => ({
+        url: `${BASE_URL}/${locale}/blog/${post.category!.slug}/${post.slug}`,
+        lastModified: post.updatedAt || post.publishedAt || currentDate,
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+      }))
+    );
 
   return [...staticPages, ...categoryPages, ...postPages];
 }

@@ -32,10 +32,10 @@ export async function generateMetadata({ params }: BlogSlugPageProps) {
 
   try {
     // First, check if slug is a subcategory
-    const subcategory = await getCategoryBySlug(slug);
+    const subcategory = await getCategoryBySlug(slug, locale);
     if (subcategory && subcategory.id) {
       // Check if this subcategory belongs to the parent category
-      const parentCategory = await getCategoryBySlug(categorySlug);
+      const parentCategory = await getCategoryBySlug(categorySlug, locale);
       if (parentCategory && subcategory.id) {
         return generatePageMetadata({
           title: subcategory.name,
@@ -77,11 +77,11 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
 
   try {
     // First, check if slug is a subcategory
-    const subcategory = await getCategoryBySlug(slug);
+    const subcategory = await getCategoryBySlug(slug, locale);
     
     if (subcategory && subcategory.id) {
       // This is a subcategory page
-      const parentCategory = await getCategoryBySlug(categorySlug);
+      const parentCategory = await getCategoryBySlug(categorySlug, locale);
       
       if (!parentCategory) {
         notFound();
@@ -190,28 +190,10 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
     }
 
     // If not a subcategory, try to find a blog post
-    let post = await getBlogPostBySlug(slug, locale);
-    let isFallbackLocale = false;
+    const post = await getBlogPostBySlug(slug, locale);
 
-    // If post not found in requested locale, try to find it in any locale
     if (!post) {
-      const { prisma } = await import('@/lib/prisma');
-      const fallbackPost = await prisma.blogPost.findFirst({
-        where: { slug, published: true },
-        include: { category: true, tags: true },
-      });
-
-      if (!fallbackPost) {
-        notFound();
-      }
-
-      // Re-fetch through the normalized function with the fallback locale
-      post = await getBlogPostBySlug(slug, fallbackPost.locale);
-      isFallbackLocale = true;
-
-      if (!post) {
-        notFound();
-      }
+      notFound();
     }
 
     // Format date
@@ -243,24 +225,9 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
         />
 
         <div className="min-h-screen bg-black">
-          {/* Fallback locale notice */}
-          {isFallbackLocale && (
-            <div className="w-full px-[clamp(1.25rem,6.25vw,6.25rem)] pt-[3.125rem] lg:pt-[4.375rem]">
-              <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
-                <div className="flex items-center gap-[0.625rem] px-[1.25rem] py-[0.75rem] rounded-[0.5rem] bg-white/5 border border-white/10">
-                  <span className="font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-70">
-                    {locale === 'ru'
-                      ? 'Эта статья пока недоступна на русском языке и показана на языке оригинала.'
-                      : 'This article is not yet available in English and is shown in the original language.'}
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* Breadcrumbs */}
-          <div className={`w-full ${isFallbackLocale ? 'pt-[1.25rem]' : 'pt-[3.125rem] lg:pt-[4.375rem]'} pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]`}>
-            <div className={`max-w-[77.5rem] mx-auto ${isFallbackLocale ? '' : 'mt-[1.875rem]'}`}>
+          <div className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
+            <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
               <div className="flex items-center gap-[1rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
                 <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
                   Home

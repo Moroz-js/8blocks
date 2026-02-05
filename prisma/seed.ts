@@ -136,8 +136,48 @@ async function main() {
   await prisma.blogPost.deleteMany({});
   console.log('🗑️  Deleted old posts');
 
-  // Create multiple blog posts for different subcategories
-  const richContent = `
+  // Rich content (EN)
+  const richContentEn = `
+    <h2>Tokenomics: How the Web3 Project Economy Works</h2>
+    <p>Tokenomics (from token and economy) is the economics of a token — the rules by which a digital asset lives and develops within a blockchain project. It determines why the token exists, how it is issued, who receives it, how it is used, and what affects its price.</p>
+    <p>If a regular currency has a state and central bank, a token has a smart contract and a project community that manage the entire system.</p>
+
+    <h2>Why Tokenomics Matters</h2>
+    <p>Any token is created not just "to exist." It solves a specific problem:</p>
+    <ul>
+      <li>pays for services within the project (utility token),</li>
+      <li>gives voting rights in governance (governance token),</li>
+      <li>serves as collateral or reward (staking token),</li>
+      <li>or represents an ownership share (security token).</li>
+    </ul>
+    <p>Good tokenomics makes a token valuable and useful, bad tokenomics turns it into useless speculation.</p>
+
+    <h2>Key Elements of Tokenomics</h2>
+    
+    <h3>💰 Emission</h3>
+    <p>How many tokens will be issued and on what schedule. Can be fixed (like Bitcoin — 21 million coins) or inflationary (like Ethereum after transitioning to PoS). This determines scarcity and potential token value.</p>
+
+    <h3>🔄 Distribution</h3>
+    <p>Who receives tokens and on what terms: investors, team, development fund, users (through airdrop or mining). The distribution structure determines the balance of power and interests in the ecosystem.</p>
+
+    <h3>🧩 Circulation Mechanics</h3>
+    <p>How tokens move through the system. For example:</p>
+    <ul>
+      <li>what they pay for;</li>
+      <li>where they can be used;</li>
+      <li>whether they are burned (to reduce supply);</li>
+      <li>whether they can be staked for yield.</li>
+    </ul>
+
+    <h3>📈 Incentives and Participant Behavior</h3>
+    <p>Good tokenomics creates motivation for participation — holding the token is profitable, and selling is unappealing. If incentives are poorly structured, the token depreciates, the project loses interest and trust.</p>
+
+    <h2>Conclusion</h2>
+    <p>Tokenomics is not just about tokens. It's about a system of values, incentives, and trust embedded in code. The fate of a project depends on how well it's designed: whether it becomes an ecosystem — or remains a set of digital wrappers.</p>
+  `;
+
+  // Rich content (RU)
+  const richContentRu = `
     <h2>Токеномика: как устроена экономика Web3-проектов</h2>
     <p>Токеномика (от token и economy) — это экономика токена, то есть правила, по которым живёт и развивается цифровой актив в рамках блокчейн-проекта. Она определяет, зачем токен существует, как он выпускается, кому достаётся, как используется и что влияет на его цену.</p>
     <p>Если у обычной валюты есть государство и центральный банк, то у токена — смарт-контракт и сообщество проекта, которые управляют всей системой.</p>
@@ -176,40 +216,53 @@ async function main() {
     <p>Токеномика — это не просто про токены. Это про систему ценностей, стимулов и доверия, встроенную в код. От того, насколько грамотно она выстроена, зависит судьба проекта: станет ли он экосистемой — или останется набором цифровых фантиков.</p>
   `;
 
+  // Multilingual posts — one post = both languages
   const posts = [
     // Games & Reviews posts (4 posts)
     {
-      title: 'Токеномика: как устроена экономика Web3-проектов',
+      title: 'Tokenomics: How the Web3 Project Economy Works',
+      titleRu: 'Токеномика: как устроена экономика Web3-проектов',
       slug: 'tokenomics-web3-economy',
-      excerpt: 'Откуда берутся токены, почему они растут в цене и зачем нужны даже тем, кто не торгует криптой',
-      content: richContent,
+      excerpt: 'Where tokens come from, why they grow in price, and why they matter even for non-traders',
+      excerptRu: 'Откуда берутся токены, почему они растут в цене и зачем нужны даже тем, кто не торгует криптой',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: gamesReviews.id,
       tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
     },
     {
       title: 'Play-to-Earn Gaming Revolution',
+      titleRu: 'Революция Play-to-Earn в игровой индустрии',
       slug: 'play-to-earn-gaming-revolution',
       excerpt: 'How blockchain is transforming the gaming industry with new economic models',
-      content: richContent,
+      excerptRu: 'Как блокчейн трансформирует игровую индустрию с новыми экономическими моделями',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: gamesReviews.id,
       tags: [nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80',
     },
     {
       title: 'Top 10 GameFi Projects 2026',
+      titleRu: 'Топ-10 GameFi проектов 2026',
       slug: 'top-gamefi-projects-2026',
       excerpt: 'Comprehensive review of the best play-to-earn games and their tokenomics',
-      content: richContent,
+      excerptRu: 'Полный обзор лучших play-to-earn игр и их токеномики',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: gamesReviews.id,
       tags: [reactTag.id, nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200&q=80',
     },
     {
       title: 'GameFi Tokenomics Breakdown',
+      titleRu: 'Разбор токеномики GameFi',
       slug: 'gamefi-tokenomics-breakdown',
       excerpt: 'How gaming tokens create sustainable economies and drive player engagement',
-      content: richContent,
+      excerptRu: 'Как игровые токены создают устойчивые экономики и стимулируют вовлеченность игроков',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: gamesReviews.id,
       tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=1200&q=80',
@@ -217,36 +270,48 @@ async function main() {
     // NFT & Assets posts (4 posts)
     {
       title: 'NFT Gaming Assets Explained',
+      titleRu: 'NFT игровые активы: полное руководство',
       slug: 'nft-gaming-assets-explained',
       excerpt: 'Understanding digital ownership in gaming and the future of in-game economies',
-      content: richContent,
+      excerptRu: 'Понимание цифровой собственности в играх и будущее внутриигровых экономик',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: nftAssets.id,
       tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=1200&q=80',
     },
     {
       title: 'Metaverse Economics Guide',
+      titleRu: 'Гид по экономике метавселенных',
       slug: 'metaverse-economics-guide',
       excerpt: 'Economic models powering virtual worlds and digital real estate',
-      content: richContent,
+      excerptRu: 'Экономические модели, управляющие виртуальными мирами и цифровой недвижимостью',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: nftAssets.id,
       tags: [nextjsTag.id, reactTag.id],
       image: 'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=1200&q=80',
     },
     {
       title: 'NFT Marketplaces Comparison',
+      titleRu: 'Сравнение NFT маркетплейсов',
       slug: 'nft-marketplaces-comparison',
       excerpt: 'Comparing major NFT trading platforms and their unique features',
-      content: richContent,
+      excerptRu: 'Сравнение основных платформ для торговли NFT и их уникальных особенностей',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: nftAssets.id,
       tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1200&q=80',
     },
     {
       title: 'In-Game Asset Valuation',
+      titleRu: 'Оценка внутриигровых активов',
       slug: 'in-game-asset-valuation',
       excerpt: 'How to value digital gaming assets and NFTs in the metaverse',
-      content: richContent,
+      excerptRu: 'Как оценивать цифровые игровые активы и NFT в метавселенной',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: nftAssets.id,
       tags: [nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
@@ -254,36 +319,48 @@ async function main() {
     // DeFi posts (4 posts)
     {
       title: 'DeFi Protocols Architecture',
+      titleRu: 'Архитектура DeFi протоколов',
       slug: 'defi-protocols-architecture',
       excerpt: 'Understanding the architecture of decentralized finance protocols and smart contracts',
-      content: richContent,
+      excerptRu: 'Понимание архитектуры децентрализованных финансовых протоколов и смарт-контрактов',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: defi.id,
       tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
     },
     {
       title: 'Yield Farming Strategies 2026',
+      titleRu: 'Стратегии yield farming 2026',
       slug: 'yield-farming-strategies-2026',
       excerpt: 'Modern approaches to maximizing DeFi yields and managing risk',
-      content: richContent,
+      excerptRu: 'Современные подходы к максимизации доходности в DeFi и управлению рисками',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: defi.id,
       tags: [nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
     },
     {
       title: 'Liquidity Mining Explained',
+      titleRu: 'Ликвидность майнинг: подробное объяснение',
       slug: 'liquidity-mining-explained',
       excerpt: 'How to earn rewards by providing liquidity to decentralized exchanges',
-      content: richContent,
+      excerptRu: 'Как зарабатывать вознаграждения, предоставляя ликвидность децентрализованным биржам',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: defi.id,
       tags: [reactTag.id, nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=1200&q=80',
     },
     {
       title: 'DeFi Security Best Practices',
+      titleRu: 'Лучшие практики безопасности в DeFi',
       slug: 'defi-security-best-practices',
       excerpt: 'Protecting your assets in decentralized finance from hacks and exploits',
-      content: richContent,
+      excerptRu: 'Защита ваших активов в децентрализованных финансах от взломов и эксплойтов',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: defi.id,
       tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80',
@@ -291,39 +368,100 @@ async function main() {
     // Trading posts (4 posts)
     {
       title: 'Stablecoin Mechanisms Explained',
+      titleRu: 'Механизмы стейблкоинов: полное объяснение',
       slug: 'stablecoin-mechanisms-explained',
       excerpt: 'How different stablecoins maintain their peg to fiat currencies',
-      content: richContent,
+      excerptRu: 'Как различные стейблкоины поддерживают привязку к фиатным валютам',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: trading.id,
       tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
     },
     {
       title: 'Liquidity Pools Deep Dive',
+      titleRu: 'Пулы ликвидности: глубокое погружение',
       slug: 'liquidity-pools-deep-dive',
       excerpt: 'Understanding automated market makers and liquidity provision mechanisms',
-      content: richContent,
+      excerptRu: 'Понимание автоматизированных маркет-мейкеров и механизмов предоставления ликвидности',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: trading.id,
       tags: [nextjsTag.id, reactTag.id],
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
     },
     {
       title: 'Crypto Trading Strategies',
+      titleRu: 'Стратегии криптотрейдинга',
       slug: 'crypto-trading-strategies',
       excerpt: 'Proven strategies for cryptocurrency trading in volatile markets',
-      content: richContent,
+      excerptRu: 'Проверенные стратегии для торговли криптовалютами на волатильных рынках',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: trading.id,
       tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=80',
     },
     {
       title: 'Technical Analysis for Crypto',
+      titleRu: 'Технический анализ для крипты',
       slug: 'technical-analysis-crypto',
       excerpt: 'Using technical indicators and chart patterns in cryptocurrency markets',
-      content: richContent,
+      excerptRu: 'Использование технических индикаторов и графических паттернов на криптовалютных рынках',
+      content: richContentEn,
+      contentRu: richContentRu,
       categoryId: trading.id,
       tags: [nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=1200&q=80',
+    },
+    // Blockchain category posts (4 posts)
+    {
+      title: 'Blockchain Technology Basics',
+      titleRu: 'Основы блокчейн технологии',
+      slug: 'blockchain-basics',
+      excerpt: 'Introduction to blockchain: how distributed ledgers work and why it matters',
+      excerptRu: 'Введение в блокчейн: как работает распределенный реестр и почему это важно',
+      content: richContentEn,
+      contentRu: richContentRu,
+      categoryId: blockchain.id,
+      tags: [reactTag.id],
+      image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
+    },
+    {
+      title: 'Smart Contracts: A Beginner\'s Guide',
+      titleRu: 'Смарт-контракты: руководство для начинающих',
+      slug: 'smart-contracts-guide',
+      excerpt: 'What smart contracts are and how they are changing the way deals are made',
+      excerptRu: 'Что такое смарт-контракты и как они меняют способ заключения сделок',
+      content: richContentEn,
+      contentRu: richContentRu,
+      categoryId: blockchain.id,
+      tags: [nextjsTag.id, reactTag.id],
+      image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
+    },
+    {
+      title: 'Consensus Mechanisms in Blockchain',
+      titleRu: 'Консенсус механизмы в блокчейне',
+      slug: 'consensus-mechanisms',
+      excerpt: 'PoW, PoS, and other consensus mechanisms in distributed networks',
+      excerptRu: 'PoW, PoS и другие механизмы достижения консенсуса в распределенных сетях',
+      content: richContentEn,
+      contentRu: richContentRu,
+      categoryId: blockchain.id,
+      tags: [reactTag.id],
+      image: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=1200&q=80',
+    },
+    {
+      title: 'The Future of Web3 and Decentralization',
+      titleRu: 'Будущее Web3 и децентрализации',
+      slug: 'web3-future',
+      excerpt: 'How Web3 technologies will change the internet and digital economy',
+      excerptRu: 'Как Web3 технологии изменят интернет и цифровую экономику',
+      content: richContentEn,
+      contentRu: richContentRu,
+      categoryId: blockchain.id,
+      tags: [nextjsTag.id],
+      image: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1200&q=80',
     },
   ];
 
@@ -331,223 +469,15 @@ async function main() {
     await prisma.blogPost.create({
       data: {
         title: postData.title,
+        titleRu: postData.titleRu,
         slug: postData.slug,
         excerpt: postData.excerpt,
+        excerptRu: postData.excerptRu,
         content: postData.content,
-        featuredImage: postData.image,
-        published: true,
-        publishedAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000), // Random date within last 30 days
-        locale: 'en',
-        categoryId: postData.categoryId,
-        tags: {
-          connect: postData.tags.map(id => ({ id })),
-        },
-      },
-    });
-  }
-
-  console.log(`✅ Created ${posts.length} blog posts`);
-
-  // Create Russian locale posts
-  const russianPosts = [
-    // Games & Reviews posts (4 posts) - RU
-    {
-      title: 'Токеномика: как устроена экономика Web3-проектов',
-      slug: 'tokenomics-web3-economy-ru',
-      excerpt: 'Откуда берутся токены, почему они растут в цене и зачем нужны даже тем, кто не торгует криптой',
-      content: richContent,
-      categoryId: gamesReviews.id,
-      tags: [reactTag.id],
-      image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
-    },
-    {
-      title: 'Революция Play-to-Earn в игровой индустрии',
-      slug: 'play-to-earn-gaming-revolution-ru',
-      excerpt: 'Как блокчейн трансформирует игровую индустрию с новыми экономическими моделями',
-      content: richContent,
-      categoryId: gamesReviews.id,
-      tags: [nextjsTag.id],
-      image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80',
-    },
-    {
-      title: 'Топ-10 GameFi проектов 2026',
-      slug: 'top-gamefi-projects-2026-ru',
-      excerpt: 'Полный обзор лучших play-to-earn игр и их токеномики',
-      content: richContent,
-      categoryId: gamesReviews.id,
-      tags: [reactTag.id, nextjsTag.id],
-      image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200&q=80',
-    },
-    {
-      title: 'Разбор токеномики GameFi',
-      slug: 'gamefi-tokenomics-breakdown-ru',
-      excerpt: 'Как игровые токены создают устойчивые экономики и стимулируют вовлеченность игроков',
-      content: richContent,
-      categoryId: gamesReviews.id,
-      tags: [reactTag.id],
-      image: 'https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=1200&q=80',
-    },
-    // NFT & Assets posts (4 posts) - RU
-    {
-      title: 'NFT игровые активы: полное руководство',
-      slug: 'nft-gaming-assets-explained-ru',
-      excerpt: 'Понимание цифровой собственности в играх и будущее внутриигровых экономик',
-      content: richContent,
-      categoryId: nftAssets.id,
-      tags: [reactTag.id],
-      image: 'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=1200&q=80',
-    },
-    {
-      title: 'Гид по экономике метавселенных',
-      slug: 'metaverse-economics-guide-ru',
-      excerpt: 'Экономические модели, управляющие виртуальными мирами и цифровой недвижимостью',
-      content: richContent,
-      categoryId: nftAssets.id,
-      tags: [nextjsTag.id, reactTag.id],
-      image: 'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=1200&q=80',
-    },
-    {
-      title: 'Сравнение NFT маркетплейсов',
-      slug: 'nft-marketplaces-comparison-ru',
-      excerpt: 'Сравнение основных платформ для торговли NFT и их уникальных особенностей',
-      content: richContent,
-      categoryId: nftAssets.id,
-      tags: [reactTag.id],
-      image: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1200&q=80',
-    },
-    {
-      title: 'Оценка внутриигровых активов',
-      slug: 'in-game-asset-valuation-ru',
-      excerpt: 'Как оценивать цифровые игровые активы и NFT в метавселенной',
-      content: richContent,
-      categoryId: nftAssets.id,
-      tags: [nextjsTag.id],
-      image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
-    },
-    // DeFi posts (4 posts) - RU
-    {
-      title: 'Архитектура DeFi протоколов',
-      slug: 'defi-protocols-architecture-ru',
-      excerpt: 'Понимание архитектуры децентрализованных финансовых протоколов и смарт-контрактов',
-      content: richContent,
-      categoryId: defi.id,
-      tags: [reactTag.id],
-      image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
-    },
-    {
-      title: 'Стратегии yield farming 2026',
-      slug: 'yield-farming-strategies-2026-ru',
-      excerpt: 'Современные подходы к максимизации доходности в DeFi и управлению рисками',
-      content: richContent,
-      categoryId: defi.id,
-      tags: [nextjsTag.id],
-      image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
-    },
-    {
-      title: 'Ликвидность майнинг: подробное объяснение',
-      slug: 'liquidity-mining-explained-ru',
-      excerpt: 'Как зарабатывать вознаграждения, предоставляя ликвидность децентрализованным биржам',
-      content: richContent,
-      categoryId: defi.id,
-      tags: [reactTag.id, nextjsTag.id],
-      image: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=1200&q=80',
-    },
-    {
-      title: 'Лучшие практики безопасности в DeFi',
-      slug: 'defi-security-best-practices-ru',
-      excerpt: 'Защита ваших активов в децентрализованных финансах от взломов и эксплойтов',
-      content: richContent,
-      categoryId: defi.id,
-      tags: [reactTag.id],
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80',
-    },
-    // Trading posts (4 posts) - RU
-    {
-      title: 'Механизмы стейблкоинов: полное объяснение',
-      slug: 'stablecoin-mechanisms-explained-ru',
-      excerpt: 'Как различные стейблкоины поддерживают привязку к фиатным валютам',
-      content: richContent,
-      categoryId: trading.id,
-      tags: [reactTag.id],
-      image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
-    },
-    {
-      title: 'Пулы ликвидности: глубокое погружение',
-      slug: 'liquidity-pools-deep-dive-ru',
-      excerpt: 'Понимание автоматизированных маркет-мейкеров и механизмов предоставления ликвидности',
-      content: richContent,
-      categoryId: trading.id,
-      tags: [nextjsTag.id, reactTag.id],
-      image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
-    },
-    {
-      title: 'Стратегии криптотрейдинга',
-      slug: 'crypto-trading-strategies-ru',
-      excerpt: 'Проверенные стратегии для торговли криптовалютами на волатильных рынках',
-      content: richContent,
-      categoryId: trading.id,
-      tags: [reactTag.id],
-      image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=80',
-    },
-    {
-      title: 'Технический анализ для крипты',
-      slug: 'technical-analysis-crypto-ru',
-      excerpt: 'Использование технических индикаторов и графических паттернов на криптовалютных рынках',
-      content: richContent,
-      categoryId: trading.id,
-      tags: [nextjsTag.id],
-      image: 'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=1200&q=80',
-    },
-    // Blockchain category posts (4 posts) - RU
-    {
-      title: 'Основы блокчейн технологии',
-      slug: 'blockchain-basics-ru',
-      excerpt: 'Введение в блокчейн: как работает распределенный реестр и почему это важно',
-      content: richContent,
-      categoryId: blockchain.id,
-      tags: [reactTag.id],
-      image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
-    },
-    {
-      title: 'Смарт-контракты: руководство для начинающих',
-      slug: 'smart-contracts-guide-ru',
-      excerpt: 'Что такое смарт-контракты и как они меняют способ заключения сделок',
-      content: richContent,
-      categoryId: blockchain.id,
-      tags: [nextjsTag.id, reactTag.id],
-      image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
-    },
-    {
-      title: 'Консенсус механизмы в блокчейне',
-      slug: 'consensus-mechanisms-ru',
-      excerpt: 'PoW, PoS и другие механизмы достижения консенсуса в распределенных сетях',
-      content: richContent,
-      categoryId: blockchain.id,
-      tags: [reactTag.id],
-      image: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=1200&q=80',
-    },
-    {
-      title: 'Будущее Web3 и децентрализации',
-      slug: 'web3-future-ru',
-      excerpt: 'Как Web3 технологии изменят интернет и цифровую экономику',
-      content: richContent,
-      categoryId: blockchain.id,
-      tags: [nextjsTag.id],
-      image: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1200&q=80',
-    },
-  ];
-
-  for (const postData of russianPosts) {
-    await prisma.blogPost.create({
-      data: {
-        title: postData.title,
-        slug: postData.slug,
-        excerpt: postData.excerpt,
-        content: postData.content,
+        contentRu: postData.contentRu,
         featuredImage: postData.image,
         published: true,
         publishedAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000),
-        locale: 'ru',
         categoryId: postData.categoryId,
         tags: {
           connect: postData.tags.map(id => ({ id })),
@@ -556,7 +486,7 @@ async function main() {
     });
   }
 
-  console.log(`✅ Created ${russianPosts.length} Russian blog posts`);
+  console.log(`✅ Created ${posts.length} multilingual blog posts`);
 }
 
 main()
