@@ -127,13 +127,13 @@ jobs:
             docker compose down --remove-orphans || true
             docker image rm 8blocks-nextjs-app:latest || true
             
-            # Prune Docker build cache
-            echo "🗑️  Pruning Docker build cache"
-            docker builder prune -af || true
+            # Prune only old build cache (faster, only >24h old)
+            echo "🗑️  Pruning old Docker build cache (>24h)"
+            timeout 60 docker builder prune -af --filter "until=24h" || echo "⚠️  Cache prune skipped or timed out"
             
             # Build application image with no cache
             echo "🏗️  Building application Docker image (no cache)"
-            DOCKER_BUILDKIT=1 docker compose build --pull --no-cache --progress=plain app
+            DOCKER_BUILDKIT=1 docker compose build --pull --no-cache app
             
             # Recreate and start app container
             echo "🔄 Recreating and starting app container"
