@@ -39,8 +39,11 @@ export async function sendEmail(options: EmailOptions): Promise<void> {
   try {
     const transporter = createTransporter();
     
+    const fromEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
+    const fromName = '8 Blocks';
+    
     await transporter.sendMail({
-      from: `"${process.env.SMTP_FROM_NAME || '8 Blocks'}" <${process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER}>`,
+      from: `"${fromName}" <${fromEmail}>`,
       to: options.to,
       subject: options.subject,
       text: options.text,
@@ -263,7 +266,8 @@ export async function sendThankYouEmail(data: ThankYouEmailData): Promise<void> 
 
 // Optional: Send notification to admin about new contact form submission
 export async function sendAdminNotification(data: ThankYouEmailData): Promise<void> {
-  const adminEmail = process.env.SMTP_ADMIN_EMAIL;
+  // Use SMTP_FROM as admin email if SMTP_ADMIN_EMAIL is not set
+  const adminEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
   
   if (!adminEmail) {
     console.log('Admin email not configured, skipping notification');

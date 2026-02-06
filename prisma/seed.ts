@@ -132,9 +132,14 @@ async function main() {
   console.log('✅ Database seeded successfully!');
   console.log({ webDev, blockchain, gamefi, finance, gamesReviews, nftAssets, defi, trading, nextjsTag, reactTag });
 
-  // Delete old posts first
-  await prisma.blogPost.deleteMany({});
-  console.log('🗑️  Deleted old posts');
+  // Check if posts already exist (skip seeding if they do)
+  const existingPosts = await prisma.blogPost.count();
+  if (existingPosts > 0) {
+    console.log(`⏭️  Skipping post seeding - ${existingPosts} posts already exist`);
+    return;
+  }
+  
+  console.log('📝 Seeding blog posts...');
 
   // Rich content (EN)
   const richContentEn = `

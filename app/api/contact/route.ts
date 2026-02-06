@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendThankYouEmail, sendAdminNotification } from '@/lib/email';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 interface ContactFormData {
   name: string;
@@ -43,6 +46,21 @@ export async function POST(request: NextRequest) {
         { error: 'Message must be between 10 and 2000 characters' },
         { status: 400 }
       );
+    }
+
+    // Save to database first (so data isn't lost if email fails)
+    try {
+      await prisma.contactSubmission.create({
+        data: {
+          name: body.name,
+          email: body.email,
+          message: body.message,
+        },
+      });
+      console.log('Contact submission saved to database');
+    } catch (dbError) {
+      console.error('Failed to save contact submission to database:', dbError);
+      // Don't fail the request if DB save fails, but log it
     }
 
     // Log the submission
