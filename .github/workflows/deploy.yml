@@ -134,9 +134,30 @@ jobs:
             echo "🔄 Recreating and starting app container"
             docker compose up -d --force-recreate app
             
-            # Wait for app to initialize
+            # Wait for app to initialize and check if it's running
             echo "⏳ Waiting for app to initialize..."
-            sleep 5
+            for i in {1..30}; do
+              if docker compose ps app | grep -q "Up"; then
+                echo "✓ App container is running"
+                break
+              fi
+              if [ $i -eq 30 ]; then
+                echo "❌ App container failed to start"
+                docker compose logs --tail=100 app
+                exit 1
+              fi
+              sleep 2
+            done
+            
+            # Additional wait for app to be ready
+            sleep 10
+            
+            # Check if container is still running (not restarting)
+            if ! docker compose ps app | grep -q "Up"; then
+              echo "❌ App container is not running properly"
+              docker compose logs --tail=100 app
+              exit 1
+            fi
             
             # Ensure uploads directory exists with correct permissions
             echo "📂 Ensuring uploads directory exists"
@@ -148,7 +169,7 @@ jobs:
             docker compose exec -T app npx prisma generate || echo "⚠️  Prisma generate failed (may already be generated)"
             docker compose exec -T app npx prisma db push || {
               echo "❌ Database migration failed"
-              docker compose logs --tail=50 app
+              docker compose logs --tail=100 app
               exit 1
             }
             echo "✓ Migrations applied"
