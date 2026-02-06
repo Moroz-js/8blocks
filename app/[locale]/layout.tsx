@@ -32,6 +32,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        {/* Block search engine indexing - site is in development */}
+        <meta name="robots" content="noindex, nofollow" />
+        
         {/* Preload Berka fonts for English */}
         {locale === 'en' && (
           <>
