@@ -203,7 +203,7 @@ jobs:
             
             # Run database seed (creates initial data if DB is empty)
             echo "🌱 Running database seed"
-            docker compose exec -T app npm run db:seed || echo "⚠️  Seed failed or skipped (maybe data already exists)"
+            docker compose exec -T app npm run db:seed:prod || echo "⚠️  Seed failed or skipped (maybe data already exists)"
             
             # Show container status
             echo ""

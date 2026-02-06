@@ -26,6 +26,9 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
+# Compile seed.ts to seed.js for production use (no ts-node needed)
+RUN npx tsc prisma/seed.ts --outDir prisma --esModuleInterop --module commonjs --skipLibCheck || true
+
 # Stage 3: Runner (production)
 FROM node:20-alpine AS runner
 WORKDIR /app
@@ -58,13 +61,8 @@ COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 COPY --from=builder /app/node_modules/.bin ./node_modules/.bin
 
-# Copy ts-node and all its dependencies for seed script
-COPY --from=builder /app/node_modules/ts-node ./node_modules/ts-node
-COPY --from=builder /app/node_modules/typescript ./node_modules/typescript
-COPY --from=builder /app/node_modules/yn ./node_modules/yn
-COPY --from=builder /app/node_modules/make-error ./node_modules/make-error
-COPY --from=builder /app/node_modules/@tsconfig ./node_modules/@tsconfig
-COPY --from=builder /app/node_modules/@cspotcode ./node_modules/@cspotcode
+# Copy compiled seed.js (no ts-node needed in production!)
+COPY --from=builder /app/prisma/seed.js ./prisma/seed.js
 
 # Create uploads directory with proper permissions
 RUN mkdir -p ./public/uploads && chown -R nextjs:nodejs ./public/uploads
