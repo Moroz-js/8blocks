@@ -10,7 +10,8 @@ import { getTranslations } from 'next-intl/server';
 import { prisma } from '@/lib/prisma';
 import type { NormalizedBlogPost } from '@/lib/types';
 
-// Enable ISR with 60 second revalidation for homepage
+// Force dynamic rendering - don't generate at build time
+export const dynamic = 'force-dynamic';
 export const revalidate = 60;
 
 interface HomePageProps {

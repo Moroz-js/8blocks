@@ -9,7 +9,8 @@ import { generatePageMetadata } from '@/lib/seo/metadata';
 import { getUserFriendlyErrorMessage } from '@/lib/errors';
 import type { Locale } from '@/i18n/routing';
 
-// Enable ISR with 60 second revalidation
+// Force dynamic rendering - don't generate at build time
+export const dynamic = 'force-dynamic';
 export const revalidate = 60;
 
 interface BlogPageProps {
