@@ -122,13 +122,18 @@ jobs:
             echo "🧹 Cleaning old build artifacts"
             rm -rf .next || true
             
-            # Prune Docker build cache to save space
-            echo "🗑️  Pruning Docker build cache"
-            docker builder prune -af --filter "until=24h" || true
+            # Stop and remove old containers
+            echo "🗑️  Removing old containers and images"
+            docker compose down --remove-orphans || true
+            docker image rm 8blocks-nextjs-app:latest || true
             
-            # Build application image
-            echo "🏗️  Building application Docker image"
-            DOCKER_BUILDKIT=1 docker compose build --pull --no-cache app
+            # Prune Docker build cache
+            echo "🗑️  Pruning Docker build cache"
+            docker builder prune -af || true
+            
+            # Build application image with no cache
+            echo "🏗️  Building application Docker image (no cache)"
+            DOCKER_BUILDKIT=1 docker compose build --pull --no-cache --progress=plain app
             
             # Recreate and start app container
             echo "🔄 Recreating and starting app container"

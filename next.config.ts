@@ -10,9 +10,6 @@ const nextConfig: NextConfig = {
   // Output standalone for Docker
   output: 'standalone',
   
-  // Monorepo configuration
-  outputFileTracingRoot: require('path').join(__dirname, '../'),
-  
   images: {
     // Remote patterns for external images
     remotePatterns: [
