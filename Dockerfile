@@ -58,10 +58,11 @@ COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 COPY --from=builder /app/node_modules/.bin ./node_modules/.bin
 
-# Copy ts-node and dependencies for seed script
+# Copy ts-node and all its dependencies for seed script
 COPY --from=builder /app/node_modules/ts-node ./node_modules/ts-node
 COPY --from=builder /app/node_modules/typescript ./node_modules/typescript
 COPY --from=builder /app/node_modules/yn ./node_modules/yn
+COPY --from=builder /app/node_modules/make-error ./node_modules/make-error
 
 # Create uploads directory with proper permissions
 RUN mkdir -p ./public/uploads && chown -R nextjs:nodejs ./public/uploads
