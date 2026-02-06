@@ -103,9 +103,9 @@ jobs:
             echo "🧹 Cleaning old build artifacts"
             rm -rf .next || true
             
-            # Stop and remove old containers and networks
+            # Stop and remove old containers and networks (keep volumes/database)
             echo "🗑️  Removing old containers, images, and networks"
-            docker compose down --remove-orphans --volumes || true
+            docker compose down --remove-orphans || true
             sleep 2
             docker container prune -f || true
             docker network prune -f || true
@@ -172,23 +172,19 @@ jobs:
             docker compose exec -T app mkdir -p /app/public/uploads || true
             docker compose exec -T app chmod -R 755 /app/public/uploads || true
             
-            # Run Prisma migrations
+            # Run Prisma migrations using npm scripts (to use correct version)
             echo "🗄️  Running Prisma migrations"
-            docker compose exec -T app npx prisma generate || echo "⚠️  Prisma generate failed (may already be generated)"
-            docker compose exec -T app npx prisma db push || {
+            docker compose exec -T app npm run db:generate || echo "⚠️  Prisma generate failed (may already be generated)"
+            docker compose exec -T app npm run db:push || {
               echo "❌ Database migration failed"
               docker compose logs --tail=100 app
               exit 1
             }
             echo "✓ Migrations applied"
             
-            # Run database seed (optional)
-            echo "🌱 Running database seed (optional)"
-            if docker compose exec -T app npm run | grep -q "db:seed"; then
-              docker compose exec -T app npm run db:seed || echo "⚠️  Seed failed or skipped"
-            else
-              echo "⚠️  No db:seed script found, skipping"
-            fi
+            # Run database seed (creates initial data if DB is empty)
+            echo "🌱 Running database seed"
+            docker compose exec -T app npm run db:seed || echo "⚠️  Seed failed or skipped (maybe data already exists)"
             
             # Show container status
             echo ""

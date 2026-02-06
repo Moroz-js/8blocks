@@ -22,10 +22,7 @@ RUN apk add --no-cache openssl libc6-compat
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Generate Prisma Client
-RUN npx prisma generate
-
-# Build Next.js application
+# Build Next.js application (includes prisma generate)
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
