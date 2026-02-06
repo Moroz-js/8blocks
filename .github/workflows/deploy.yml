@@ -106,26 +106,26 @@ jobs:
             # Aggressive cleanup of Docker state (keep volumes/database)
             echo "🗑️  Stopping and removing old containers"
             
-            # Stop all containers first
-            docker compose stop || true
-            sleep 3
+            # 1. Try graceful compose down first
+            docker compose down --remove-orphans 2>/dev/null || true
+            sleep 2
             
-            # Remove containers and networks
-            docker compose down --remove-orphans || true
-            sleep 3
+            # 2. Force-kill and remove containers by name pattern (handles leftovers)
+            for c in $(docker ps -aq --filter "name=${PROJECT_NAME}"); do
+              docker rm -f "$c" 2>/dev/null || true
+            done
             
-            # Prune dangling resources
-            docker container prune -f || true
-            docker network prune -f || true
+            # 3. Remove orphaned network by name
+            docker network rm "${PROJECT_NAME}_app-network" 2>/dev/null || true
             
-            # Remove specific image
-            docker image rm 8blocks-nextjs-app:latest || true
-            docker image rm 8blocks-nextjs-app:latest --force || true
+            # 4. Prune any remaining dangling resources
+            docker container prune -f 2>/dev/null || true
+            docker network prune -f 2>/dev/null || true
             
-            # Clean dangling volumes (not named volumes - those have DB!)
-            docker volume prune -f || true
+            # 5. Remove old app image (keep postgres image)
+            docker image rm "${PROJECT_NAME}-app:latest" --force 2>/dev/null || true
             
-            # Final wait for Docker daemon to settle
+            # 6. Final wait for Docker daemon to settle
             sleep 2
             
             # Prune only old build cache (faster, only >24h old)
