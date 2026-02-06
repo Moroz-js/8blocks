@@ -7,10 +7,16 @@ const nextConfig: NextConfig = {
   // Base path for all routes - required for assets to load correctly
   basePath: '/new',
   
+  // Asset prefix to ensure all assets use /new prefix
+  assetPrefix: '/new',
+  
   // Output standalone for Docker
   output: 'standalone',
   
   images: {
+    // Disable optimization for SVG files (serve them directly)
+    unoptimized: process.env.NODE_ENV === 'production',
+    
     // Remote patterns for external images
     remotePatterns: [
       {
