@@ -4,8 +4,8 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
 const nextConfig: NextConfig = {
-  // No basePath - Nginx handles the /new path via proxy_pass
-  // Nginx: /new/ -> http://127.0.0.1:3000/ (strips /new prefix)
+  // Base path for all routes - required for assets to load correctly
+  basePath: '/new',
   
   // Output standalone for Docker
   output: 'standalone',
