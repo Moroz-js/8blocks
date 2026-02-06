@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Token economies that power the business — 8Blocks',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://8blocks.io'),
   icons: {
-    icon: '/favicon.ico',
+    icon: '/new/favicon.ico',
   },
 };
 
