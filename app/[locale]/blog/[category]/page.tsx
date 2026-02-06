@@ -181,7 +181,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </section>
 
         {/* Subcategory Sections */}
-        {subcategoriesWithPosts.map(({ subcategory, posts, total }) => {
+        {subcategoriesWithPosts.map(({ subcategory, posts }) => {
           if (posts.length === 0) return null;
 
           const bigPost = posts[0];
