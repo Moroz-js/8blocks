@@ -2,6 +2,8 @@
 
 Modern, multilingual website for 8Blocks with integrated blog and admin panel.
 
+🌐 **Live Site:** https://8blocks.io/new
+
 ## Quick Start
 
 See [SETUP.md](./SETUP.md) for detailed setup instructions.
