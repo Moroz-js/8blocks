@@ -64,6 +64,7 @@ COPY --from=builder /app/node_modules/typescript ./node_modules/typescript
 COPY --from=builder /app/node_modules/yn ./node_modules/yn
 COPY --from=builder /app/node_modules/make-error ./node_modules/make-error
 COPY --from=builder /app/node_modules/@tsconfig ./node_modules/@tsconfig
+COPY --from=builder /app/node_modules/@cspotcode ./node_modules/@cspotcode
 
 # Create uploads directory with proper permissions
 RUN mkdir -p ./public/uploads && chown -R nextjs:nodejs ./public/uploads
