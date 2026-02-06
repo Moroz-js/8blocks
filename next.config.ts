@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   // Asset prefix to ensure all assets use /new prefix
   assetPrefix: '/new',
   
+  // Trailing slash needed for basePath root to work with next-intl
+  trailingSlash: true,
+  
   // Output standalone for Docker
   output: 'standalone',
   
