@@ -41,10 +41,6 @@ services:
       SMTP_USER: ${SMTP_USER}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       SMTP_FROM: ${SMTP_FROM}
-      SMTP_SECURE: ${SMTP_SECURE:-false}
-      SMTP_FROM_EMAIL: ${SMTP_FROM_EMAIL}
-      SMTP_FROM_NAME: ${SMTP_FROM_NAME:-8 Blocks}
-      SMTP_ADMIN_EMAIL: ${SMTP_ADMIN_EMAIL}
       NODE_ENV: production
     env_file:
       - .env
