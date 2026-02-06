@@ -228,11 +228,12 @@ jobs:
             # Wait a bit for app to be fully ready
             sleep 3
             
-            # Check if app responds on /new path
-            if curl -f -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/new | grep -q "200\|301\|302\|307"; then
-              echo "✅ App is responding on http://127.0.0.1:3000/new"
+            # Check if app responds on /new/ path (trailing slash required with trailingSlash: true)
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/new/ || echo "000")
+            if echo "$HTTP_CODE" | grep -qE "^(200|301|302|307|308)$"; then
+              echo "✅ App is responding on http://127.0.0.1:3000/new/ (HTTP $HTTP_CODE)"
             else
-              echo "⚠️  App may not be responding yet (this is normal during first start)"
+              echo "⚠️  App returned HTTP $HTTP_CODE (may not be ready yet, this is normal during first start)"
             fi
             
             echo ""
