@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCategories } from '@/lib/blog';
 
-export async function GET(_request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    const categories = await getCategories();
+    const searchParams = request.nextUrl.searchParams;
+    const locale = searchParams.get('locale') || 'en';
+    const categories = await getCategories(locale);
 
     return NextResponse.json({
       data: categories,
