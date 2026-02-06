@@ -308,6 +308,8 @@ function normalizeBlogPost(post: any, locale: string): NormalizedBlogPost {
       id: tag.id,
       name: locale === 'ru' ? (tag.nameRu || tag.name) : tag.name,
     })),
+    views: post.views || 0,
+    author: post.author || '8 Blocks',
     createdAt: post.createdAt,
     updatedAt: post.updatedAt,
   };

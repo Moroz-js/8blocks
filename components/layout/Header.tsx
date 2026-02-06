@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
 import { Logo } from './Logo';
 import { Button } from '../ui/Button';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -15,7 +14,6 @@ interface HeaderProps {
 
 export function Header({ locale }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const t = useTranslations('header');
 
   // Navigation links
   const navigationLinks = [

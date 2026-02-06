@@ -101,12 +101,13 @@ export function generateBlogPostMetadata(
   locale: string
 ): Metadata {
   // Construct full URL
-  const url = `${SITE_URL}/${locale}/blog/${post.category.slug}/${post.slug}`;
+  const categorySlug = post.category?.slug || 'uncategorized';
+  const url = `${SITE_URL}/${locale}/blog/${categorySlug}/${post.slug}`;
 
   // Use featured image or default
   const imageUrl = post.featuredImage?.url || DEFAULT_OG_IMAGE;
-  const imageWidth = post.featuredImage?.width || 1200;
-  const imageHeight = post.featuredImage?.height || 630;
+  const imageWidth = 1200;
+  const imageHeight = 630;
   const imageAlt = post.featuredImage?.alt || post.title;
 
   // Construct full title
@@ -114,17 +115,17 @@ export function generateBlogPostMetadata(
 
   return {
     title: fullTitle,
-    description: post.excerpt,
+    description: post.excerpt || undefined,
     alternates: {
       canonical: url,
       languages: {
-        'en': `${SITE_URL}/en/blog/${post.category.slug}/${post.slug}`,
-        'ru': `${SITE_URL}/ru/blog/${post.category.slug}/${post.slug}`,
+        'en': `${SITE_URL}/en/blog/${categorySlug}/${post.slug}`,
+        'ru': `${SITE_URL}/ru/blog/${categorySlug}/${post.slug}`,
       },
     },
     openGraph: {
       title: fullTitle,
-      description: post.excerpt,
+      description: post.excerpt || undefined,
       url,
       siteName: SITE_NAME,
       locale: locale === 'ru' ? 'ru_RU' : 'en_US',
@@ -143,7 +144,7 @@ export function generateBlogPostMetadata(
     twitter: {
       card: 'summary_large_image',
       title: fullTitle,
-      description: post.excerpt,
+      description: post.excerpt || undefined,
       images: [imageUrl],
     },
   };
@@ -160,13 +161,14 @@ export function generateBlogPostStructuredData(
   post: NormalizedBlogPost,
   locale: string
 ) {
-  const url = `${SITE_URL}/${locale}/blog/${post.category.slug}/${post.slug}`;
+  const categorySlug = post.category?.slug || 'uncategorized';
+  const url = `${SITE_URL}/${locale}/blog/${categorySlug}/${post.slug}`;
 
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
-    description: post.excerpt,
+    description: post.excerpt || undefined,
     image: post.featuredImage?.url,
     datePublished: post.publishedAt?.toISOString(),
     dateModified: post.publishedAt?.toISOString(),

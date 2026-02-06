@@ -15,7 +15,7 @@ interface TableOfContentsProps {
   }>;
 }
 
-export function TableOfContents({ category, headings = [] }: TableOfContentsProps) {
+export function TableOfContents({ category: _category, headings = [] }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>('');
 
   // If no headings provided, don't render the TOC items
