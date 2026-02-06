@@ -7,17 +7,17 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "node_modules/.bin/prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:e2e": "playwright test",
-    "db:generate": "prisma generate",
-    "db:push": "prisma db push",
-    "db:migrate": "prisma migrate dev",
-    "db:studio": "prisma studio",
-    "db:seed": "ts-node prisma/seed.ts"
+    "db:generate": "node_modules/.bin/prisma generate",
+    "db:push": "node_modules/.bin/prisma db push",
+    "db:migrate": "node_modules/.bin/prisma migrate dev",
+    "db:studio": "node_modules/.bin/prisma studio",
+    "db:seed": "node_modules/.bin/ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
