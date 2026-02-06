@@ -71,24 +71,24 @@ jobs:
             NODE_ENV=production
             
             # URLs (basePath /new is configured in next.config.ts)
-            NEXT_PUBLIC_SITE_URL=https://${DOMAIN}/new
+            NEXT_PUBLIC_SITE_URL="https://${DOMAIN}/new"
             
             # Database (Docker internal)
             POSTGRES_USER=${POSTGRES_USER}
-            POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            POSTGRES_PASSWORD="${POSTGRES_PASSWORD}"
             POSTGRES_DB=${POSTGRES_DB}
-            DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public
+            DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public"
             
             # Email (SMTP via Nodemailer)
             SMTP_HOST=${SMTP_HOST}
             SMTP_PORT=${SMTP_PORT}
             SMTP_USER=${SMTP_USER}
-            SMTP_PASSWORD=${SMTP_PASSWORD}
-            SMTP_FROM=${SMTP_FROM}
+            SMTP_PASSWORD="${SMTP_PASSWORD}"
+            SMTP_FROM="${SMTP_FROM}"
             
             # Admin Authentication
             ADMIN_USERNAME=${ADMIN_USERNAME}
-            ADMIN_PASSWORD=${ADMIN_PASSWORD}
+            ADMIN_PASSWORD="${ADMIN_PASSWORD}"
             
             # Analytics
             GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}

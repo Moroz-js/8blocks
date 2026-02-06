@@ -5,12 +5,12 @@ import './admin.css';
 const berka = localFont({
   src: [
     {
-      path: '../../public/fonts/Berka-Regular.woff2',
+      path: '../../public/fonts/Berka Regular.ttf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Berka-Medium.woff2',
+      path: '../../public/fonts/Berka Medium.ttf',
       weight: '500',
       style: 'normal',
     },
