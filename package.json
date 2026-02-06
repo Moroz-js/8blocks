@@ -51,6 +51,7 @@
     "@types/color-convert": "^2.0.4",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.5",
+    "@types/nodemailer": "^7.0.9",
     "@types/pixelmatch": "^5.2.6",
     "@types/pngjs": "^6.0.5",
     "@types/react": "^19.0.6",
