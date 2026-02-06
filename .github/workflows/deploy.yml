@@ -103,13 +103,30 @@ jobs:
             echo "🧹 Cleaning old build artifacts"
             rm -rf .next || true
             
-            # Stop and remove old containers and networks (keep volumes/database)
-            echo "🗑️  Removing old containers, images, and networks"
+            # Aggressive cleanup of Docker state (keep volumes/database)
+            echo "🗑️  Stopping and removing old containers"
+            
+            # Stop all containers first
+            docker compose stop || true
+            sleep 3
+            
+            # Remove containers and networks
             docker compose down --remove-orphans || true
-            sleep 2
+            sleep 3
+            
+            # Prune dangling resources
             docker container prune -f || true
             docker network prune -f || true
+            
+            # Remove specific image
             docker image rm 8blocks-nextjs-app:latest || true
+            docker image rm 8blocks-nextjs-app:latest --force || true
+            
+            # Clean dangling volumes (not named volumes - those have DB!)
+            docker volume prune -f || true
+            
+            # Final wait for Docker daemon to settle
+            sleep 2
             
             # Prune only old build cache (faster, only >24h old)
             echo "🗑️  Pruning old Docker build cache (>24h)"
@@ -119,9 +136,12 @@ jobs:
             echo "🏗️  Building application Docker image (no cache)"
             DOCKER_BUILDKIT=1 docker compose build --pull --no-cache app
             
-            # Start PostgreSQL first
-            echo "🐘 Starting PostgreSQL"
-            docker compose up -d postgres
+            # Wait for build to settle
+            sleep 2
+            
+            # Start PostgreSQL first with force-recreate
+            echo "🐘 Starting PostgreSQL (force recreate)"
+            docker compose up -d --force-recreate postgres
             
             # Wait for PostgreSQL to be ready
             echo "⏳ Waiting for PostgreSQL to be ready..."
@@ -138,9 +158,9 @@ jobs:
               sleep 2
             done
             
-            # Start app container
-            echo "🔄 Starting app container"
-            docker compose up -d app
+            # Start app container with force-recreate
+            echo "🔄 Starting app container (force recreate)"
+            docker compose up -d --force-recreate app
             
             # Wait for app to initialize and check if it's running
             echo "⏳ Waiting for app to initialize..."
