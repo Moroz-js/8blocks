@@ -172,9 +172,8 @@ jobs:
             docker compose exec -T app mkdir -p /app/public/uploads || true
             docker compose exec -T app chmod -R 755 /app/public/uploads || true
             
-            # Run Prisma migrations using npm scripts (to use correct version)
-            echo "🗄️  Running Prisma migrations"
-            docker compose exec -T app npm run db:generate || echo "⚠️  Prisma generate failed (may already be generated)"
+            # Run database migrations
+            echo "🗄️  Running database migrations"
             docker compose exec -T app npm run db:push || {
               echo "❌ Database migration failed"
               docker compose logs --tail=100 app
