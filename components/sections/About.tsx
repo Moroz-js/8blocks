@@ -30,18 +30,18 @@ export default function About() {
       <Container>
         {/* Screen reader heading for semantic structure */}
         <h2 className="sr-only">About 8Blocks</h2>
-        <div className="overflow-hidden relative rounded-[20px] lg:h-[720px]">
+        <div className="overflow-hidden relative rounded-[20px] h-[730px] lg:h-[720px]">
           {/* Mobile: Single column, Desktop: 2 columns */}
-          <div className="relative z-10 flex flex-col lg:grid lg:grid-cols-[1fr_1fr] h-full gap-[clamp(2rem,4vw,3.125rem)]">
-            {/* Mobile: Quote at top, Desktop: Quote and Team on left */}
-            <div className="flex flex-col justify-between pt-[clamp(1.25rem,3vw,2.1875rem)] pb-[clamp(1.25rem,3vw,2.1875rem)] px-[clamp(1.25rem,3vw,2.1875rem)] lg:pt-[35px] lg:pb-[90px] lg:px-0">
+          <div className="relative z-10 flex flex-col lg:grid lg:grid-cols-[1fr_1fr] h-full">
+            {/* Mobile: Quote at top left, Desktop: Quote and Team on left */}
+            <div className="flex flex-col justify-between items-center lg:items-start pt-[20px] px-[20px] lg:pt-[35px] lg:pb-[90px] lg:px-0">
               {/* Quote */}
-              <div className="flex flex-col gap-[clamp(0.625rem,2vw,0.9375rem)] font-['Berka'] font-normal text-white">
-                <p className="text-[clamp(0.8125rem,1vw,0.9375rem)] leading-[1.7] opacity-50">
+              <div className="flex flex-col gap-[10px] lg:gap-[clamp(0.625rem,2vw,0.9375rem)] font-['Berka'] font-normal text-white w-[295px] lg:w-full">
+                <p className="text-[13px] lg:text-[clamp(0.8125rem,1vw,0.9375rem)] leading-[1.7] opacity-50 text-left">
                   8Blocks Team:
                 </p>
-                <p className="text-[clamp(1.25rem,3vw,2.1875rem)] leading-[1.4] lg:leading-[1.25] max-w-[27.0625rem]">
-                  "A token should generate value for the project over its entire lifetime. <span className="text-[rgba(255,255,255,0.5)] lg:text-[rgba(255,255,255,0.2)]">And that only happens when you clearly understand why it exists and who needs it."</span>
+                <p className="text-[20px] lg:text-[clamp(1.25rem,3vw,2.1875rem)] leading-[1.4] lg:leading-[1.25] max-w-[27.0625rem] text-left">
+                  &ldquo;A token should generate value for the project over its entire lifetime. <span className="text-[rgba(255,255,255,0.5)] lg:text-[rgba(255,255,255,0.2)]">And that only happens when you clearly understand why it exists and who needs it.&rdquo;</span>
                 </p>
               </div>
 
@@ -90,12 +90,12 @@ export default function About() {
               </div>
             </div>
 
-            {/* Stats - Mobile: centered, Desktop: left-aligned */}
-            <div className="flex flex-col gap-[1.5625rem] lg:gap-0 items-center lg:items-start justify-center lg:justify-between px-[clamp(1.25rem,3vw,2.1875rem)] lg:pl-[35px] lg:pr-[100px] lg:pt-[35px] lg:pb-[90px] text-center lg:text-left">
+            {/* Stats - Mobile: centered below quote, Desktop: left-aligned */}
+            <div className="flex flex-col gap-[25px] lg:gap-0 items-center lg:items-start justify-start lg:justify-between px-[20px] lg:pl-[35px] lg:pr-[100px] pt-[30px] lg:pt-[35px] lg:pb-[90px] text-center lg:text-left">
               {/* Stat 1 */}
-              <div className="flex flex-col gap-[0.625rem] w-full max-w-[35.375rem] font-['Berka'] font-normal text-white">
-                <p className="text-[1.1875rem] lg:text-[clamp(1.25rem,2vw,1.5625rem)] leading-[1.4] lg:leading-[1.2]">30+</p>
-                <p className="text-[0.8125rem] lg:text-[clamp(0.875rem,1vw,0.9375rem)] leading-[1.7] opacity-50">
+              <div className="flex flex-col items-center lg:items-start lg:gap-[0.625rem] w-full max-w-[35.375rem] font-['Berka'] font-normal text-white">
+                <p className="text-[19px] lg:text-[clamp(1.25rem,2vw,1.5625rem)] leading-[1.4] lg:leading-[1.2]">30+</p>
+                <p className="text-[13px] lg:text-[clamp(0.875rem,1vw,0.9375rem)] leading-[1.7] opacity-50">
                   token economies designed for products across multiple industries
                 </p>
               </div>
@@ -109,9 +109,9 @@ export default function About() {
               />
 
               {/* Stat 2 */}
-              <div className="flex flex-col gap-[0.625rem] w-full max-w-[35.375rem] font-['Berka'] font-normal text-white">
-                <p className="text-[1.1875rem] lg:text-[clamp(1.25rem,2vw,1.5625rem)] leading-[1.4] lg:leading-[1.2]">$180M+</p>
-                <p className="text-[0.8125rem] lg:text-[clamp(0.875rem,1vw,0.9375rem)] leading-[1.7] opacity-50">
+              <div className="flex flex-col items-center lg:items-start lg:gap-[0.625rem] w-full max-w-[35.375rem] font-['Berka'] font-normal text-white">
+                <p className="text-[19px] lg:text-[clamp(1.25rem,2vw,1.5625rem)] leading-[1.4] lg:leading-[1.2]">$180M+</p>
+                <p className="text-[13px] lg:text-[clamp(0.875rem,1vw,0.9375rem)] leading-[1.7] opacity-50">
                   combined capitalization of client projects
                 </p>
               </div>
@@ -125,9 +125,9 @@ export default function About() {
               />
 
               {/* Stat 3 */}
-              <div className="flex flex-col gap-[0.625rem] w-full max-w-[35.375rem] font-['Berka'] font-normal text-white">
-                <p className="text-[1.1875rem] lg:text-[clamp(1.25rem,2vw,1.5625rem)] leading-[1.4] lg:leading-[1.2]">21 days</p>
-                <p className="text-[0.8125rem] lg:text-[clamp(0.875rem,1vw,0.9375rem)] leading-[1.7] opacity-50">
+              <div className="flex flex-col items-center lg:items-start lg:gap-[0.625rem] w-full max-w-[35.375rem] font-['Berka'] font-normal text-white">
+                <p className="text-[19px] lg:text-[clamp(1.25rem,2vw,1.5625rem)] leading-[1.4] lg:leading-[1.2]">21 days</p>
+                <p className="text-[13px] lg:text-[clamp(0.875rem,1vw,0.9375rem)] leading-[1.7] opacity-50">
                   average time to design a complete token economy model
                 </p>
               </div>
@@ -141,25 +141,25 @@ export default function About() {
               />
 
               {/* Stat 4 */}
-              <div className="flex flex-col gap-[0.625rem] w-full max-w-[35.375rem] font-['Berka'] font-normal text-white">
-                <p className="text-[1.1875rem] lg:text-[clamp(1.25rem,2vw,1.5625rem)] leading-[1.4] lg:leading-[1.2]">14 funds</p>
-                <p className="text-[0.8125rem] lg:text-[clamp(0.875rem,1vw,0.9375rem)] leading-[1.7] opacity-50">
+              <div className="flex flex-col items-center lg:items-start lg:gap-[0.625rem] w-full max-w-[35.375rem] font-['Berka'] font-normal text-white">
+                <p className="text-[19px] lg:text-[clamp(1.25rem,2vw,1.5625rem)] leading-[1.4] lg:leading-[1.2]">14 funds</p>
+                <p className="text-[13px] lg:text-[clamp(0.875rem,1vw,0.9375rem)] leading-[1.7] opacity-50">
                   backed projects built on our economic models
                 </p>
               </div>
             </div>
 
             {/* Team avatars and button - shown on mobile only, centered */}
-            <div className="flex lg:hidden flex-col gap-[1.25rem] items-center px-[clamp(1.25rem,3vw,2.1875rem)] pb-[clamp(1.25rem,3vw,2.1875rem)]">
+            <div className="flex lg:hidden flex-col gap-[20px] items-center px-[20px] pb-[30px] mt-auto">
               {/* Avatars row - 5 members + counter */}
-              <div className="flex items-center">
+              <div className="flex items-center pr-[7px]">
                 {teamMembers.map((member, index) => (
                   <div
                     key={member.id}
-                    className="relative rounded-full overflow-hidden border-[3px] border-black -mr-[0.5625rem]"
+                    className="relative rounded-full overflow-hidden border-[1.5px] border-black -mr-[7px]"
                     style={{ 
-                      width: '2.9206rem',
-                      height: '2.9206rem',
+                      width: '46.73px',
+                      height: '46.73px',
                       zIndex: teamMembers.length - index
                     }}
                   >
@@ -174,22 +174,22 @@ export default function About() {
                 ))}
                 {/* +8 indicator - circular with black background */}
                 <div 
-                  className="relative rounded-full bg-black flex items-center justify-center -ml-[0.5625rem]" 
+                  className="relative rounded-full bg-black flex items-center justify-center -mr-[7px]" 
                   style={{ 
-                    width: '2.9206rem',
-                    height: '2.9206rem',
+                    width: '46.73px',
+                    height: '46.73px',
                     zIndex: 0 
                   }}
                 >
-                  <p className="font-['Berka'] font-normal text-[1.1588rem] leading-[1.2] text-white">
+                  <p className="font-['Berka'] font-normal text-[18.5px] leading-[1.2] text-white">
                     +8
                   </p>
                 </div>
               </div>
 
               {/* Button */}
-              <button className="bg-[rgba(233,233,233,0.12)] h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] flex items-center justify-center font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white hover:opacity-80 transition-opacity">
-                View result
+              <button className="bg-[rgba(233,233,233,0.12)] h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center font-['Berka'] font-medium text-[13px] leading-[1.5] text-white hover:opacity-80 transition-opacity">
+                View details
               </button>
             </div>
           </div>

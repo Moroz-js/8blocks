@@ -3,27 +3,27 @@ import { Container } from '@/components/layout';
 
 export default function CallToAction() {
   return (
-    <section className="w-full py-[clamp(3.125rem,6vw,6.25rem)]">
+    <section className="w-full pt-[120px] pb-[200px] lg:py-[clamp(3.125rem,6vw,6.25rem)]">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_417px] gap-[clamp(2.5rem,5vw,5rem)] items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-[1fr_417px] gap-[20px] lg:gap-[clamp(2.5rem,5vw,5rem)] items-start lg:items-center">
           {/* Left Column: Text */}
-          <div className="flex flex-col gap-[clamp(0.625rem,1vw,0.625rem)]">
-            <h2 className="font-['Berka'] font-normal text-[clamp(1.5625rem,2vw,1.5625rem)] leading-[1.2] text-white">
+          <div className="flex flex-col gap-[10px] items-start text-left pt-[20px] lg:pt-0">
+            <h2 className="font-['Berka'] font-normal text-[30px] lg:text-[clamp(1.5625rem,2vw,1.5625rem)] leading-[1.1] lg:leading-[1.2] text-white">
               If the token has no purpose, the project has no future
             </h2>
-            <p className="font-['Berka'] font-normal text-[clamp(0.875rem,1vw,0.9375rem)] leading-[1.7] text-white opacity-50">
-              We define the token's role and connect it directly to revenue and operations.
+            <p className="font-['Berka'] font-normal text-[15px] lg:text-[clamp(0.875rem,1vw,0.9375rem)] leading-[1.7] text-white opacity-50">
+              We define the token&apos;s role and connect it directly to revenue and operations.
             </p>
           </div>
 
           {/* Right Column: Contact Buttons */}
-          <div className="flex gap-[1.0625rem] items-center justify-center lg:justify-end">
+          <div className="flex items-center justify-between w-full lg:w-auto lg:gap-[1.0625rem] lg:justify-end">
             {/* WhatsApp */}
             <a
               href="https://wa.me/"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative w-[12.5rem] h-[12.5rem] group"
+              className="relative w-[165px] h-[165px] lg:w-[12.5rem] lg:h-[12.5rem] group"
               aria-label="Message us on WhatsApp"
             >
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[6.25rem] h-[6.25rem] flex items-center justify-center">
@@ -36,8 +36,8 @@ export default function CallToAction() {
                   </svg>
                 </div>
               </div>
-              <div className="absolute bottom-[0.815rem] left-1/2 -translate-x-1/2 flex flex-col gap-[0.3125rem] items-center">
-                <p className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-[#75fb63] border-b border-[#75fb63] whitespace-nowrap">
+              <div className="absolute bottom-[11px] lg:bottom-[0.815rem] left-1/2 -translate-x-1/2 flex flex-col gap-[4px] items-center">
+                <p className="font-['Berka'] font-medium text-[12px] lg:text-[0.8125rem] leading-[1.5] text-[#75fb63] border-b border-[#75fb63] whitespace-nowrap">
                   Message us on WhatsApp
                 </p>
               </div>
@@ -48,7 +48,7 @@ export default function CallToAction() {
               href="https://t.me/"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative w-[12.5rem] h-[12.5rem] group"
+              className="relative w-[165px] h-[165px] lg:w-[12.5rem] lg:h-[12.5rem] group"
               aria-label="Message us on Telegram"
             >
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[6.25rem] h-[6.25rem] flex items-center justify-center">
@@ -60,8 +60,8 @@ export default function CallToAction() {
                   </svg>
                 </div>
               </div>
-              <div className="absolute bottom-[0.815rem] left-1/2 -translate-x-1/2 flex flex-col gap-[0.3125rem] items-center">
-                <p className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-[#638efb] border-b border-[#638efb] whitespace-nowrap">
+              <div className="absolute bottom-[11px] lg:bottom-[0.815rem] left-1/2 -translate-x-1/2 flex flex-col gap-[4px] items-center">
+                <p className="font-['Berka'] font-medium text-[12px] lg:text-[0.8125rem] leading-[1.5] text-[#638efb] border-b border-[#638efb] whitespace-nowrap">
                   Message us on Telegram
                 </p>
               </div>

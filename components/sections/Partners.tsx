@@ -16,10 +16,10 @@ export default function Partners() {
   ];
 
   return (
-    <section className="w-full py-fluid-xl overflow-hidden">
+    <section className="w-full pt-[90px] pb-[40px] lg:py-fluid-xl overflow-hidden">
       {/* Title in container */}
-      <Container className="mb-[clamp(1.875rem,3vw,3.125rem)] lg:mt-[3.125rem]">
-        <h2 className="font-['Berka'] font-normal text-[clamp(1.5625rem,2.1875rem,2.1875rem)] leading-[1.25] text-white w-full text-left">
+      <Container className="mb-[30px] lg:mb-[clamp(1.875rem,3vw,3.125rem)] lg:mt-[3.125rem]">
+        <h2 className="font-['Berka'] font-normal text-[30px] lg:text-[clamp(1.5625rem,2.1875rem,2.1875rem)] leading-[1.1] lg:leading-[1.25] text-white w-full text-left">
           Our partners
         </h2>
       </Container>
@@ -31,12 +31,12 @@ export default function Partners() {
         <div className="absolute right-0 top-0 bottom-0 w-[100px] bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
         
         {/* Marquee track - duplicate logos for seamless loop */}
-        <div className="flex gap-[clamp(2.5rem,5vw,5rem)] animate-marquee hover:pause">
+        <div className="flex gap-[28px] lg:gap-[clamp(2.5rem,5vw,5rem)] animate-marquee hover:pause opacity-20 lg:opacity-100">
           {/* First set of logos */}
           {partners.map((partner, index) => (
             <div
               key={`first-${index}`}
-              className="relative flex-shrink-0 w-[clamp(8rem,12vw,12.5rem)] h-[4rem] flex items-center justify-center"
+              className="relative flex-shrink-0 w-[100px] lg:w-[clamp(8rem,12vw,12.5rem)] h-[3rem] lg:h-[4rem] flex items-center justify-center"
             >
               <Image
                 src={partner.src}
@@ -51,7 +51,7 @@ export default function Partners() {
           {partners.map((partner, index) => (
             <div
               key={`second-${index}`}
-              className="relative flex-shrink-0 w-[clamp(8rem,12vw,12.5rem)] h-[4rem] flex items-center justify-center"
+              className="relative flex-shrink-0 w-[100px] lg:w-[clamp(8rem,12vw,12.5rem)] h-[3rem] lg:h-[4rem] flex items-center justify-center"
             >
               <Image
                 src={partner.src}

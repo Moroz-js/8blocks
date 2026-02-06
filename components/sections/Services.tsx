@@ -36,7 +36,7 @@ export default function Services() {
     <section id="services" className="w-full py-fluid-lg">
       <Container className="flex flex-col gap-[clamp(1.875rem,3vw,3.1875rem)] items-center">
         {/* Section Title */}
-        <h2 className="text-h2 font-berka font-normal text-white w-full text-left">
+        <h2 className="text-[30px] lg:text-h2 leading-[1.1] font-berka font-normal text-white w-full text-left">
           How we design and fix broken economics
         </h2>
 
@@ -92,7 +92,7 @@ export default function Services() {
         </div>
 
         {/* Mobile: 1 column (< 768px) */}
-        <div className="flex md:hidden flex-col gap-[clamp(1.25rem,3vw,1.5625rem)] w-full">
+        <div className="flex md:hidden flex-col gap-[10px] w-full">
           {services.map((service) => (
             <ServiceCard
               key={service.id}
@@ -105,9 +105,14 @@ export default function Services() {
         </div>
 
         {/* CTA Button */}
-        <Button variant="secondary">
+        <button className="bg-white h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center font-['Berka'] font-medium text-[13px] leading-[1.5] text-black hover:opacity-90 transition-opacity lg:hidden">
           Talk to the team
-        </Button>
+        </button>
+        <div className="hidden lg:block">
+          <Button variant="secondary">
+            Talk to the team
+          </Button>
+        </div>
       </Container>
     </section>
   );

@@ -4,6 +4,12 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
 const nextConfig: NextConfig = {
+  // Base path for all routes
+  basePath: '/new',
+  
+  // Output standalone for Docker
+  output: 'standalone',
+  
   // Monorepo configuration
   outputFileTracingRoot: require('path').join(__dirname, '../'),
   

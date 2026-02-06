@@ -133,7 +133,7 @@ export default function BlogCard({
         <div className="flex flex-col gap-[0.625rem] items-start w-full">
           {/* Cover Image with Category Tag */}
           {post.featuredImage && (
-            <div className="relative w-full aspect-[397.67/250] bg-black border border-[rgba(255,255,255,0.2)] rounded-[0.5rem] overflow-hidden group-hover:border-[rgba(255,255,255,0.3)] transition-colors">
+            <div className="relative w-full aspect-[267/167] lg:aspect-[397.67/250] bg-black border border-[rgba(255,255,255,0.2)] rounded-[0.5rem] overflow-hidden group-hover:border-[rgba(255,255,255,0.3)] transition-colors">
               <Image
                 src={post.featuredImage.url}
                 alt={post.featuredImage.alt}

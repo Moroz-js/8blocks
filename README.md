@@ -117,6 +117,9 @@ The project follows a strict design system based on Figma specifications:
 ## Documentation
 
 - [Setup Guide](./SETUP.md) - Complete setup instructions
+- [Docker Guide](./DOCKER.md) - Docker development and commands
+- [Deployment Guide](./DEPLOYMENT.md) - Production deployment
+- [GitHub Actions Setup](./.github/GITHUB_ACTIONS_SETUP.md) - CI/CD configuration
 - [Project Structure](./PROJECT_STRUCTURE.md) - Project organization
 - [Layout Rules](./.kiro/steering/layout-rules.md) - Design system
 

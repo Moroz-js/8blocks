@@ -32,22 +32,20 @@ export default function Benefits() {
   return (
     <section id="benefits" className="w-full py-fluid-lg">
       <Container className="flex flex-col gap-fluid-xs items-start">
-        {/* Section Title - Fluid typography: 25px → 28px → 35px */}
-        <h2 className="font-berka font-normal text-h2 text-white w-full max-w-[1040px]">
-          When a business grows, the token doesn't always follow.{' '}
+        {/* Section Title - Fluid typography: 30px mobile → 35px desktop */}
+        <h2 className="font-berka font-normal text-[30px] lg:text-h2 leading-[1.1] text-white w-full max-w-[1040px]">
+          When a business grows, the token doesn&apos;t always follow.{' '}
           <br className="hidden sm:block" />
           <span className="text-text-secondary">
             So we design economies where it has to.
           </span>
         </h2>
 
-        {/* Benefits Grid - Responsive: 1 → 2 → 4 columns */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1.25rem] md:gap-[1.5625rem] lg:gap-[3.125rem] pt-fluid-sm">
+        {/* Desktop: 4 columns grid */}
+        <div className="w-full hidden lg:grid lg:grid-cols-4 lg:gap-[3.125rem] pt-fluid-sm">
           {benefits.map((benefit, index) => (
             <div key={benefit.id} className="flex flex-col gap-[0.625rem] items-start relative">
-              {/* Card Content */}
               <div className="flex flex-col gap-[15px] items-start w-full">
-                {/* Icon - Fixed 40px */}
                 <div className="relative size-[40px] overflow-hidden flex-shrink-0">
                   <Image
                     src={benefit.icon}
@@ -58,26 +56,59 @@ export default function Benefits() {
                     sizes="40px"
                   />
                 </div>
-                {/* Title - Fluid typography */}
-                <h3 className="font-berka font-normal text-h3 text-white whitespace-pre-line">
+                <h3 className="font-berka font-normal text-h3 leading-[1.2] text-white whitespace-pre-line">
                   {benefit.title}
                 </h3>
               </div>
-              {/* Description - Fluid typography */}
-              <p className="font-berka font-normal text-body text-text-secondary w-full">
+              <p className="font-berka font-normal text-body leading-[1.7] text-text-secondary w-full">
                 {benefit.description}
               </p>
-
-              {/* Vertical divider - Hidden on mobile, shown on desktop between cards */}
               {index < benefits.length - 1 && (
                 <div 
-                  className="hidden lg:block absolute top-0 h-full w-px" 
+                  className="absolute top-0 h-full w-px" 
                   style={{ 
                     right: 'calc(-3.125rem / 2)',
                     background: 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 15%, rgba(255, 255, 255, 0.1) 85%, rgba(255, 255, 255, 0) 100%)'
                   }}
                 />
               )}
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile: single column with interleaved dividers */}
+        <div className="w-full flex flex-col gap-[30px] lg:hidden pt-fluid-sm">
+          {benefits.map((benefit, index) => (
+            <div key={benefit.id}>
+              {/* Horizontal divider before items 2-4 */}
+              {index > 0 && (
+                <div 
+                  className="w-full h-px mb-[30px]"
+                  style={{
+                    background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 15%, rgba(255,255,255,0.1) 85%, rgba(255,255,255,0) 100%)'
+                  }}
+                />
+              )}
+              <div className={`flex flex-col gap-[10px] items-start ${index > 0 ? 'pl-[15px]' : ''}`}>
+                <div className="flex flex-col gap-[15px] items-start w-full">
+                  <div className="relative size-[30px] overflow-hidden flex-shrink-0">
+                    <Image
+                      src={benefit.icon}
+                      alt={`${benefit.title.replace(/\n/g, ' ')} icon`}
+                      fill
+                      className="object-contain"
+                      loading="lazy"
+                      sizes="30px"
+                    />
+                  </div>
+                  <h3 className="font-berka font-normal text-[20px] leading-[1.2] text-white whitespace-pre-line">
+                    {benefit.title}
+                  </h3>
+                </div>
+                <p className="font-berka font-normal text-[13px] leading-[1.7] text-text-secondary w-full">
+                  {benefit.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

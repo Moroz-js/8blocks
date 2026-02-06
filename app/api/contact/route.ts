@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sendThankYouEmail, sendAdminNotification } from '@/lib/email';
 
 interface ContactFormData {
   name: string;
@@ -52,6 +53,34 @@ export async function POST(request: NextRequest) {
       locale: body.locale,
       timestamp: new Date().toISOString(),
     });
+
+    // Send thank you email to the user
+    try {
+      await sendThankYouEmail({
+        name: body.name,
+        email: body.email,
+        message: body.message,
+        locale: body.locale,
+      });
+      console.log('Thank you email sent to:', body.email);
+    } catch (emailError) {
+      console.error('Failed to send thank you email:', emailError);
+      // Continue even if email fails - don't block the form submission
+    }
+
+    // Send notification to admin (optional)
+    try {
+      await sendAdminNotification({
+        name: body.name,
+        email: body.email,
+        message: body.message,
+        locale: body.locale,
+      });
+      console.log('Admin notification sent');
+    } catch (emailError) {
+      console.error('Failed to send admin notification:', emailError);
+      // Continue even if admin notification fails
+    }
 
     return NextResponse.json(
       { success: true, message: 'Form submitted successfully' },

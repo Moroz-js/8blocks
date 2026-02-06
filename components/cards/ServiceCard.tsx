@@ -37,17 +37,17 @@ export default function ServiceCard({
       className={`
         bg-[#0b0b0b] 
         border border-[#171717] 
-        rounded-[clamp(0.75rem,1.25rem,1.25rem)]
+        rounded-[20px]
         overflow-hidden 
         relative
         flex flex-col
-        ${isLarge ? 'min-h-[clamp(17.125rem,35.25rem,35.25rem)]' : 'min-h-[clamp(17.125rem,17.125rem,17.125rem)]'}
-        lg:h-auto
-        p-[clamp(1.25rem,2.1875rem,2.1875rem)]
+        h-[400px] lg:h-auto
+        ${isLarge ? 'lg:min-h-[35.25rem]' : 'lg:min-h-[17.125rem]'}
+        p-[19px] lg:p-[clamp(1.25rem,2.1875rem,2.1875rem)]
       `}
     >
       {/* Background Image - positioned in bottom right */}
-      <div className={`absolute pointer-events-none ${
+      <div className={`absolute pointer-events-none hidden md:block ${
         cardType === 'strategic'
           ? 'inset-0 w-full h-full'
           : cardType === 'advanced' 
@@ -72,20 +72,29 @@ export default function ServiceCard({
         />
       </div>
 
-      {/* Text content */}
-      <div className={`flex flex-col gap-[clamp(0.625rem,0.625rem,0.625rem)] ${textWidths[cardType]} w-full relative z-10`}>
-        <h3 className="text-[clamp(1.25rem,1.5625rem,1.5625rem)] leading-[1.2] font-['Berka'] font-normal text-white">
-          {title}
-        </h3>
-        <p className="text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] font-['Berka'] font-normal text-white opacity-50">
-          {description}
-        </p>
+      {/* Text block: text group + tag button with gap-[15px] */}
+      <div className={`flex flex-col gap-[15px] lg:gap-[clamp(0.625rem,0.625rem,0.625rem)] w-[295px] ${textWidths[cardType]} relative z-10 ${cardType === 'audit' ? 'lg:items-start lg:text-left' : ''}`}>
+        {/* Text group: title + description with gap-[10px] */}
+        <div className="flex flex-col gap-[10px] lg:gap-[clamp(0.625rem,0.625rem,0.625rem)]">
+          <h3 className="text-[20px] lg:text-[clamp(1.25rem,1.5625rem,1.5625rem)] leading-[1.2] font-['Berka'] font-normal text-white">
+            {title}
+          </h3>
+          <p className="text-[13px] lg:text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] font-['Berka'] font-normal text-white opacity-50">
+            {description}
+          </p>
+        </div>
+        {/* Mobile tag button inside text block */}
+        <div className={`bg-[rgba(233,233,233,0.12)] h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center w-fit font-['Berka'] font-medium text-[13px] leading-[1.5] text-white lg:hidden`}>
+          {cardType === 'audit' ? 'Start now' : 'View details'}
+        </div>
       </div>
       
-      {/* Button - pushed to bottom */}
-      <Button variant="primary" className={`max-w-[125px] mt-auto relative z-10 ${cardType === 'audit' ? 'mx-auto' : ''}`}>
-        View details
-      </Button>
+      {/* Desktop button - pushed to bottom */}
+      <div className={`mt-auto relative z-10 hidden lg:block ${cardType === 'audit' ? 'text-center' : ''}`}>
+        <Button variant="primary" className={`max-w-[125px] ${cardType === 'audit' ? 'mx-auto' : ''}`}>
+          {cardType === 'audit' ? 'Start now' : 'View details'}
+        </Button>
+      </div>
     </div>
   );
 }
