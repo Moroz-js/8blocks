@@ -99,7 +99,27 @@ jobs:
             chmod 600 .env
             echo "✓ .env file created with secure permissions"
             
-            # Start PostgreSQL
+            # Clean build artifacts and old containers FIRST
+            echo "🧹 Cleaning old build artifacts"
+            rm -rf .next || true
+            
+            # Stop and remove old containers and networks
+            echo "🗑️  Removing old containers, images, and networks"
+            docker compose down --remove-orphans --volumes || true
+            sleep 2
+            docker container prune -f || true
+            docker network prune -f || true
+            docker image rm 8blocks-nextjs-app:latest || true
+            
+            # Prune only old build cache (faster, only >24h old)
+            echo "🗑️  Pruning old Docker build cache (>24h)"
+            timeout 60 docker builder prune -af --filter "until=24h" || echo "⚠️  Cache prune skipped or timed out"
+            
+            # Build application image with no cache
+            echo "🏗️  Building application Docker image (no cache)"
+            DOCKER_BUILDKIT=1 docker compose build --pull --no-cache app
+            
+            # Start PostgreSQL first
             echo "🐘 Starting PostgreSQL"
             docker compose up -d postgres
             
@@ -118,26 +138,9 @@ jobs:
               sleep 2
             done
             
-            # Clean build artifacts (optional, helps with fresh builds)
-            echo "🧹 Cleaning old build artifacts"
-            rm -rf .next || true
-            
-            # Stop and remove old containers
-            echo "🗑️  Removing old containers and images"
-            docker compose down --remove-orphans || true
-            docker image rm 8blocks-nextjs-app:latest || true
-            
-            # Prune only old build cache (faster, only >24h old)
-            echo "🗑️  Pruning old Docker build cache (>24h)"
-            timeout 60 docker builder prune -af --filter "until=24h" || echo "⚠️  Cache prune skipped or timed out"
-            
-            # Build application image with no cache
-            echo "🏗️  Building application Docker image (no cache)"
-            DOCKER_BUILDKIT=1 docker compose build --pull --no-cache app
-            
-            # Recreate and start app container
-            echo "🔄 Recreating and starting app container"
-            docker compose up -d --force-recreate app
+            # Start app container
+            echo "🔄 Starting app container"
+            docker compose up -d app
             
             # Wait for app to initialize and check if it's running
             echo "⏳ Waiting for app to initialize..."
