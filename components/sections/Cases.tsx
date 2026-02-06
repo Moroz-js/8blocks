@@ -196,7 +196,7 @@ export default function Cases({ posts, locale }: CasesProps) {
           Explore all cases
         </button>
         <div className="hidden lg:flex justify-center">
-        image.png          <Button variant="secondary">
+        <Button variant="secondary">
             Explore all cases
           </Button>
         </div>
