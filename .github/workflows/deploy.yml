@@ -112,74 +112,87 @@ jobs:
               docker volume prune -f 2>/dev/null || true
               docker image rm "${PROJECT_NAME}-app:latest" --force 2>/dev/null || true
 
-            else
-              echo "🟢 SOFT RESET: keeping volumes (database data preserved)"
-
-              # Graceful stop
-              docker compose down --remove-orphans 2>/dev/null || true
               sleep 2
 
-              # Force-kill leftover containers
-              for c in $(docker ps -aq --filter "name=${PROJECT_NAME}" 2>/dev/null); do
-                docker rm -f "$c" 2>/dev/null || true
+              # Build cache prune (non-blocking)
+              echo "🗑️  Pruning old build cache"
+              timeout 30 docker builder prune -af --filter "until=24h" 2>/dev/null || echo "⚠️  Cache prune skipped"
+
+              # ==========================================
+              # HARD: Build → Start all → Migrate → Seed
+              # ==========================================
+              echo "🏗️  Building Docker image (no cache)"
+              DOCKER_BUILDKIT=1 docker compose build --pull --no-cache app
+              sleep 2
+
+              echo "🐘 Starting PostgreSQL"
+              docker compose up -d --force-recreate postgres
+
+              echo "⏳ Waiting for PostgreSQL..."
+              for i in $(seq 1 60); do
+                if docker compose exec -T postgres pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB" >/dev/null 2>&1; then
+                  echo "✓ PostgreSQL is ready"
+                  break
+                fi
+                if [ "$i" -eq 60 ]; then
+                  echo "❌ PostgreSQL failed to start"
+                  docker compose logs postgres
+                  exit 1
+                fi
+                sleep 2
               done
 
-              # Remove network and old app image only
-              docker network rm "${PROJECT_NAME}_app-network" 2>/dev/null || true
-              docker container prune -f 2>/dev/null || true
-              docker network prune -f 2>/dev/null || true
-              docker image rm "${PROJECT_NAME}-app:latest" --force 2>/dev/null || true
+              echo "🗄️  Running migrations"
+              docker compose run --rm -T --no-deps app sh -c "node_modules/.bin/prisma db push --skip-generate" || {
+                echo "❌ Migration failed"; exit 1
+              }
+              echo "✓ Migrations applied"
+
+              echo "🔄 Starting app container"
+              docker compose up -d --force-recreate app
+
+            else
+              echo "🟢 SOFT DEPLOY: zero-downtime — old app stays up during build"
+
+              # Ensure postgres is running (don't touch it)
+              if ! docker compose ps postgres 2>/dev/null | grep -q "Up"; then
+                echo "🐘 PostgreSQL not running, starting it"
+                docker compose up -d postgres
+                for i in $(seq 1 60); do
+                  if docker compose exec -T postgres pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB" >/dev/null 2>&1; then
+                    echo "✓ PostgreSQL is ready"
+                    break
+                  fi
+                  if [ "$i" -eq 60 ]; then
+                    echo "❌ PostgreSQL failed to start"
+                    docker compose logs postgres
+                    exit 1
+                  fi
+                  sleep 2
+                done
+              else
+                echo "✓ PostgreSQL already running"
+              fi
+
+              # Build new image WHILE old app is still serving traffic
+              echo "🏗️  Building new Docker image (old app still running)"
+              DOCKER_BUILDKIT=1 docker compose build --pull --no-cache app
+
+              # Run migrations via temp container (doesn't affect running app)
+              echo "🗄️  Running migrations"
+              docker compose run --rm -T --no-deps app sh -c "node_modules/.bin/prisma db push --skip-generate" || {
+                echo "❌ Migration failed"; exit 1
+              }
+              echo "✓ Migrations applied"
+
+              # Quick swap: stop old app → start new app (minimal downtime ~2-5s)
+              echo "🔄 Swapping app container (brief restart)"
+              docker compose up -d --force-recreate --no-deps app
             fi
 
-            sleep 2
-
-            # Build cache prune (non-blocking, 30s timeout max)
-            echo "🗑️  Pruning old build cache"
-            timeout 30 docker builder prune -af --filter "until=24h" 2>/dev/null || echo "⚠️  Cache prune skipped"
-
             # ==========================================
-            # 4. Build app image
+            # Wait for app to be healthy
             # ==========================================
-            echo "🏗️  Building Docker image (no cache)"
-            DOCKER_BUILDKIT=1 docker compose build --pull --no-cache app
-            sleep 2
-
-            # ==========================================
-            # 5. Start PostgreSQL
-            # ==========================================
-            echo "🐘 Starting PostgreSQL"
-            docker compose up -d --force-recreate postgres
-
-            echo "⏳ Waiting for PostgreSQL..."
-            for i in $(seq 1 60); do
-              if docker compose exec -T postgres pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB" >/dev/null 2>&1; then
-                echo "✓ PostgreSQL is ready"
-                break
-              fi
-              if [ "$i" -eq 60 ]; then
-                echo "❌ PostgreSQL failed to start"
-                docker compose logs postgres
-                exit 1
-              fi
-              sleep 2
-            done
-
-            # ==========================================
-            # 6. Run migrations BEFORE starting app
-            # ==========================================
-            echo "🗄️  Running database migrations (via temp container)"
-            docker compose run --rm -T --no-deps app sh -c "node_modules/.bin/prisma db push --skip-generate" || {
-              echo "❌ Database migration failed"
-              exit 1
-            }
-            echo "✓ Migrations applied"
-
-            # ==========================================
-            # 7. Start app container
-            # ==========================================
-            echo "🔄 Starting app container"
-            docker compose up -d --force-recreate app
-
             echo "⏳ Waiting for app..."
             for i in $(seq 1 30); do
               if docker compose ps app | grep -q "Up"; then
@@ -194,7 +207,7 @@ jobs:
               sleep 2
             done
 
-            # Additional wait for Next.js to be fully ready
+            # Wait for Next.js to be fully ready
             sleep 10
 
             if ! docker compose ps app | grep -q "Up"; then
