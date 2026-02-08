@@ -66,24 +66,7 @@ jobs:
             # ==========================================
             echo "⚙️  Generating .env"
             umask 077
-            cat > .env <<ENVEOF
-            PROJECT_NAME=${PROJECT_NAME}
-            NODE_ENV=production
-            NEXT_PUBLIC_SITE_URL="https://${DOMAIN}/new"
-            POSTGRES_USER=${POSTGRES_USER}
-            POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-            POSTGRES_DB=${POSTGRES_DB}
-            DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public
-            SMTP_HOST=${SMTP_HOST}
-            SMTP_PORT=${SMTP_PORT}
-            SMTP_USER=${SMTP_USER}
-            SMTP_PASSWORD=${SMTP_PASSWORD}
-            SMTP_FROM=${SMTP_FROM}
-            ADMIN_USERNAME=${ADMIN_USERNAME}
-            ADMIN_PASSWORD=${ADMIN_PASSWORD}
-            GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}
-            UPLOAD_DIR=public/uploads
-            ENVEOF
+            printf '%s\n' "PROJECT_NAME=${PROJECT_NAME}" "NODE_ENV=production" "NEXT_PUBLIC_SITE_URL=https://${DOMAIN}/new" "POSTGRES_USER=${POSTGRES_USER}" "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" "POSTGRES_DB=${POSTGRES_DB}" "DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public" "SMTP_HOST=${SMTP_HOST}" "SMTP_PORT=${SMTP_PORT}" "SMTP_USER=${SMTP_USER}" "SMTP_PASSWORD=${SMTP_PASSWORD}" "SMTP_FROM=${SMTP_FROM}" "ADMIN_USERNAME=${ADMIN_USERNAME}" "ADMIN_PASSWORD=${ADMIN_PASSWORD}" "GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}" "UPLOAD_DIR=public/uploads" > .env
             chmod 600 .env
             echo "✓ .env created"
 
