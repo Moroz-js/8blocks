@@ -370,7 +370,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                     {/* Share Buttons */}
                     <ShareButtons 
                       title={post.title}
-                      url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://8blocks.io'}/${locale}/blog/${post.category?.slug || 'blog'}/${post.slug}`}
+                      url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://8blocks.io/new'}${locale === 'en' ? '' : `/${locale}`}/blog/${post.category?.slug || 'blog'}/${post.slug}`}
                     />
 
                     {/* Table of Contents */}
