@@ -31,7 +31,7 @@ export default function Partners() {
         <div className="absolute right-0 top-0 bottom-0 w-[100px] bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
         
         {/* Marquee track - duplicate logos for seamless loop */}
-        <div className="flex gap-[28px] lg:gap-[clamp(2.5rem,5vw,5rem)] animate-marquee hover:pause opacity-20 lg:opacity-100">
+        <div className="flex gap-[28px] lg:gap-[clamp(2.5rem,5vw,5rem)] animate-marquee-mobile lg:animate-marquee hover:pause opacity-20 lg:opacity-100">
           {/* First set of logos */}
           {partners.map((partner, index) => (
             <div

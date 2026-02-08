@@ -175,6 +175,7 @@ const config: Config = {
       },
       animation: {
         marquee: 'marquee 30s linear infinite',
+        'marquee-mobile': 'marquee 15s linear infinite',
       },
     },
   },
