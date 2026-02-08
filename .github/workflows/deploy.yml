@@ -66,7 +66,7 @@ jobs:
             # ==========================================
             echo "⚙️  Generating .env"
             umask 077
-            printf '%s\n' "PROJECT_NAME=${PROJECT_NAME}" "NODE_ENV=production" "NEXT_PUBLIC_SITE_URL=https://${DOMAIN}/new" "POSTGRES_USER=${POSTGRES_USER}" "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" "POSTGRES_DB=${POSTGRES_DB}" "DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public" "SMTP_HOST=${SMTP_HOST}" "SMTP_PORT=${SMTP_PORT}" "SMTP_USER=${SMTP_USER}" "SMTP_PASSWORD=${SMTP_PASSWORD}" "SMTP_FROM=${SMTP_FROM}" "ADMIN_USERNAME=${ADMIN_USERNAME}" "ADMIN_PASSWORD=${ADMIN_PASSWORD}" "GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}" "UPLOAD_DIR=public/uploads" > .env
+            printf '%s\n' "PROJECT_NAME=${PROJECT_NAME}" "NODE_ENV=production" "NEXT_PUBLIC_SITE_URL=https://${DOMAIN}/new" "POSTGRES_USER=${POSTGRES_USER}" "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" "POSTGRES_DB=${POSTGRES_DB}" "DATABASE_URL=postgresql://appuser:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public" "SMTP_HOST=${SMTP_HOST}" "SMTP_PORT=${SMTP_PORT}" "SMTP_USER=${SMTP_USER}" "SMTP_PASSWORD=${SMTP_PASSWORD}" "SMTP_FROM=${SMTP_FROM}" "ADMIN_USERNAME=${ADMIN_USERNAME}" "ADMIN_PASSWORD=${ADMIN_PASSWORD}" "GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}" "UPLOAD_DIR=public/uploads" > .env
             chmod 600 .env
             echo "✓ .env created"
 
@@ -125,6 +125,15 @@ jobs:
                 sleep 2
               done
 
+              # Create dedicated app user (avoids ALTER USER issues on superuser)
+              echo "👤 Creating app database user"
+              docker compose exec -T postgres psql -U postgres -d "$POSTGRES_DB" -c "CREATE USER appuser WITH PASSWORD '${POSTGRES_PASSWORD}' SUPERUSER;" 2>/dev/null || echo "⚠️  User already exists or creation failed"
+              docker compose exec -T postgres psql -U postgres -d "$POSTGRES_DB" -c "GRANT ALL PRIVILEGES ON DATABASE ${POSTGRES_DB} TO appuser;" 2>/dev/null || true
+              docker compose exec -T postgres psql -U postgres -d "$POSTGRES_DB" -c "GRANT ALL PRIVILEGES ON SCHEMA public TO appuser;" 2>/dev/null || true
+              docker compose exec -T postgres psql -U postgres -d "$POSTGRES_DB" -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO appuser;" 2>/dev/null || true
+              docker compose exec -T postgres psql -U postgres -d "$POSTGRES_DB" -c "GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO appuser;" 2>/dev/null || true
+              echo "✓ App user configured"
+
               echo "🗄️  Running migrations"
               docker compose run --rm -T --no-deps app sh -c "node_modules/.bin/prisma db push --skip-generate" || {
                 echo "❌ Migration failed"; exit 1
@@ -156,6 +165,15 @@ jobs:
               else
                 echo "✓ PostgreSQL already running"
               fi
+
+              # Ensure appuser exists (safe to run multiple times)
+              echo "👤 Ensuring app database user exists"
+              docker compose exec -T postgres psql -U postgres -d "$POSTGRES_DB" -c "CREATE USER appuser WITH PASSWORD '${POSTGRES_PASSWORD}' SUPERUSER;" 2>/dev/null || echo "⚠️  User already exists"
+              docker compose exec -T postgres psql -U postgres -d "$POSTGRES_DB" -c "GRANT ALL PRIVILEGES ON DATABASE ${POSTGRES_DB} TO appuser;" 2>/dev/null || true
+              docker compose exec -T postgres psql -U postgres -d "$POSTGRES_DB" -c "GRANT ALL PRIVILEGES ON SCHEMA public TO appuser;" 2>/dev/null || true
+              docker compose exec -T postgres psql -U postgres -d "$POSTGRES_DB" -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO appuser;" 2>/dev/null || true
+              docker compose exec -T postgres psql -U postgres -d "$POSTGRES_DB" -c "GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO appuser;" 2>/dev/null || true
+              echo "✓ App user configured"
 
               # Build new image WHILE old app is still serving traffic
               echo "🏗️  Building new Docker image (old app still running)"
