@@ -22,6 +22,11 @@ export default function ServiceCard({
   const btnLabel = buttonText || (cardType === 'audit' ? 'Start now' : 'View details');
   const isLarge = variant === 'large';
   
+  // Encoded PDF URLs for proper download
+  const pdfUrl = locale === 'ru' 
+    ? '/new/presentations/8Blocks%20%D0%A3%D1%81%D0%BB%D1%83%D0%B3%D0%B8.pdf' 
+    : '/new/presentations/8Blocks%20Services.pdf';
+  
   // Exact widths from Figma for text blocks (desktop only)
   const textWidths = {
     strategic: 'lg:w-[460px]',
@@ -154,7 +159,7 @@ export default function ServiceCard({
         </div>
         {/* Mobile tag button inside text block */}
         <a
-          href={locale === 'ru' ? '/presentations/8Blocks Услуги.pdf' : '/presentations/8Blocks Services.pdf'}
+          href={pdfUrl}
           download
           className={`bg-[rgba(233,233,233,0.12)] h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center w-fit font-berka font-medium text-[13px] leading-[1.5] text-white lg:hidden hover:opacity-80 transition-opacity`}
         >
@@ -165,7 +170,7 @@ export default function ServiceCard({
       {/* Desktop button - pushed to bottom */}
       <div className={`mt-auto relative z-10 hidden lg:block ${cardType === 'audit' ? 'text-center' : ''}`}>
         <a
-          href={locale === 'ru' ? '/presentations/8Blocks Услуги.pdf' : '/presentations/8Blocks Services.pdf'}
+          href={pdfUrl}
           download
         >
           <Button variant="primary" className={`max-w-[125px] ${cardType === 'audit' ? 'mx-auto' : ''}`}>

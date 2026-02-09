@@ -68,7 +68,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         return (
           <div className="min-h-screen bg-black">
             {/* Breadcrumbs */}
-            <div className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
+            <div className="w-full pt-[3.125rem] lg:pt-[7.125rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
               <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
                 <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
                   <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
@@ -102,7 +102,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       return (
         <div className="min-h-screen bg-black">
           {/* Breadcrumbs */}
-          <div className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
+          <div className="w-full pt-[3.125rem] lg:pt-[7.125rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
             <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
               <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
                 <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
@@ -156,7 +156,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     return (
       <div className="min-h-screen bg-black">
         {/* Breadcrumbs */}
-        <div className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
+        <div className="w-full pt-[3.125rem] lg:pt-[7.125rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
           <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
             <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
               <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
@@ -246,7 +246,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
     return (
       <div className="min-h-screen bg-black">
-        <section className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
+        <section className="w-full pt-[3.125rem] lg:pt-[7.125rem] pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
           <div className="max-w-[77.5rem] mx-auto text-center">
             <h1 className="font-berka font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
               {t('title')}
