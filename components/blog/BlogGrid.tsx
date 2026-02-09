@@ -11,7 +11,7 @@ export function BlogGrid({ posts, locale, variant = 'default' }: BlogGridProps) 
   if (posts.length === 0) {
     return (
       <div className="w-full text-center py-[3.125rem]">
-        <p className="font-['Berka'] text-[0.9375rem] text-white opacity-50">
+        <p className="font-berka text-[0.9375rem] text-white opacity-50">
           {locale === 'en' ? 'No posts found' : 'Статьи не найдены'}
         </p>
       </div>

@@ -68,7 +68,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
         {/* Breadcrumbs */}
         <div className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
           <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
-            <div className="flex items-center gap-[1rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
+            <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
               <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
                 Home
               </Link>
@@ -85,10 +85,10 @@ export default async function BlogPage({ params }: BlogPageProps) {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-[1.875rem] mb-[1.875rem] lg:mb-[3.125rem]">
               {/* Title with count */}
               <div className="flex items-start gap-[0.625rem]">
-                <h1 className="font-['Berka'] font-normal text-[1.875rem] lg:text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white">
+                <h1 className="font-berka font-normal text-[1.875rem] lg:text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white">
                   8Blocks blog
                 </h1>
-                <span className="font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50">
+                <span className="font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50">
                   {totalPosts}
                 </span>
               </div>
@@ -128,7 +128,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
             >
               <div className="max-w-[77.5rem] mx-auto">
                 {/* Category Title */}
-                <h2 className="font-['Berka'] font-normal text-[1.25rem] lg:text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.2] lg:leading-[1.1] text-white mb-[1.25rem] lg:mb-[3.125rem]">
+                <h2 className="font-berka font-normal text-[1.25rem] lg:text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.2] lg:leading-[1.1] text-white mb-[1.25rem] lg:mb-[3.125rem]">
                   {category.name}
                 </h2>
 
@@ -163,7 +163,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
                 <div className="flex justify-start lg:justify-center">
                   <Link
                     href={`/${locale}/blog/${category.slug}`}
-                    className="backdrop-blur-[2px] bg-white flex items-center h-[2.25rem] lg:h-[3rem] px-[0.9375rem] lg:px-[1.25rem] py-[0.625rem] lg:py-[0.75rem] rounded-[0.5rem] lg:rounded-[0.375rem] font-['Berka'] font-medium text-[0.8125rem] lg:text-[0.9375rem] leading-[1.5] text-black hover:opacity-90 transition-opacity"
+                    className="backdrop-blur-[2px] bg-white flex items-center h-[2.25rem] lg:h-[3rem] px-[0.9375rem] lg:px-[1.25rem] py-[0.625rem] lg:py-[0.75rem] rounded-[0.5rem] lg:rounded-[0.375rem] font-berka font-medium text-[0.8125rem] lg:text-[0.9375rem] leading-[1.5] text-black hover:opacity-90 transition-opacity"
                   >
                     See all articles
                   </Link>
@@ -181,14 +181,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <div className="min-h-screen bg-black">
         <section className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
           <div className="max-w-[77.5rem] mx-auto text-center">
-            <h1 className="font-['Berka'] font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
+            <h1 className="font-berka font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
               {t('title')}
             </h1>
             <div className="flex flex-col items-center gap-[1.25rem]">
-              <p className="font-['Berka'] font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-70">
+              <p className="font-berka font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-70">
                 {errorMessage}
               </p>
-              <p className="font-['Berka'] font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-50">
+              <p className="font-berka font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-50">
                 {t('tryAgainLater')}
               </p>
             </div>

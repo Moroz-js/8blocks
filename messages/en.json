@@ -3,14 +3,27 @@
     "readMore": "Read more",
     "viewAll": "View all",
     "loading": "Loading...",
-    "error": "An error occurred"
+    "error": "An error occurred",
+    "talkToTeam": "Talk to the team",
+    "viewDetails": "View details",
+    "startNow": "Start now",
+    "messageOnTelegram": "Message us on Telegram",
+    "privacyPolicy": "Privacy Policy",
+    "by": "By"
+  },
+  "banner": {
+    "message": "We're updating the site. Some features may be limited.",
+    "close": "Close"
   },
   "header": {
     "home": "Home",
     "blog": "Blog",
     "services": "Services",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "navigation": "Navigation",
+    "cases": "Cases",
+    "benefits": "Benefits"
   },
   "footer": {
     "newsletter": {
@@ -38,6 +51,76 @@
     },
     "copyright": "© 2026 8Blocks. All rights reserved.",
     "privacyPolicy": "Privacy Policy"
+  },
+  "hero": {
+    "titleLine1": "Token economies",
+    "titleLine2": "that power",
+    "titleLine3": "the business",
+    "description": "We help businesses turn tokens from one-time fundraising tools into working economic instruments. Tokens are embedded into products and operations, so usage and demand drive lasting value, not speculation.",
+    "tags": {
+      "strategic": "Strategic consulting",
+      "basic": "Basic tokenomics",
+      "advanced": "Advanced tokenomics",
+      "audit": "Tokenomics audit"
+    }
+  },
+  "services": {
+    "sectionTitle": "How we design and fix broken economics",
+    "strategic": {
+      "title": "Strategic consulting",
+      "description": "We design the economic strategy behind the system. This includes defining token logic, incentives, and partner structure for Web3 projects and businesses entering tokenized ecosystems."
+    },
+    "basic": {
+      "title": "Basic tokenomics",
+      "description": "A foundational token economics model covering supply, emission, and distribution, built to keep the system stable from day one."
+    },
+    "advanced": {
+      "title": "Advanced tokenomics",
+      "description": "A deeper token economics model for complex ecosystems, extending the foundation with treasury logic, incentive systems, liquidity mechanics, and internal flows."
+    },
+    "audit": {
+      "title": "Tokenomics audit",
+      "description": "A full assessment of an existing token economy, identifying structural risks, broken incentive loops, and scaling bottlenecks."
+    }
+  },
+  "about": {
+    "srTitle": "About 8Blocks",
+    "teamLabel": "8Blocks Team:",
+    "quote": "A token should generate value for the project over its entire lifetime. And that only happens when you clearly understand why it exists and who needs it.",
+    "stat1value": "20+",
+    "stat1label": "token economies designed for products across multiple industries",
+    "stat2value": "$500M+",
+    "stat2label": "combined capitalization of client projects",
+    "stat3value": "6 weeks",
+    "stat3label": "average time to design a complete token economy model",
+    "stat4value": "12",
+    "stat4label": "backed projects built on our economic models"
+  },
+  "partners": {
+    "title": "Our partners"
+  },
+  "benefits": {
+    "title1": "Business-linked\neconomics",
+    "desc1": "Token value is structurally tied to usage, not market sentiment. When the business grows, demand has no choice but to follow.",
+    "title2": "Usage-driven\ndemand",
+    "desc2": "Tokens are required to access products, rights, or advantages. People hold them because they're needed, not because they're promised.",
+    "title3": "Stress-tested\ncirculation",
+    "desc3": "Models are tested against real behavior: selling pressure, churn, low liquidity, growth spikes. Because markets never follow best-case scenarios.",
+    "title4": "Controlled growth\nmechanics",
+    "desc4": "Supply, incentives, and circulation scale with operations, without handing control to speculation or market cycles.",
+    "headingLine1": "When a business grows,",
+    "headingLine2": "the token doesn't always follow.",
+    "headingLine3": "So we design economies where it has to."
+  },
+  "cases": {
+    "title": "Our cases",
+    "allFilter": "All",
+    "noPosts": "No published posts yet.",
+    "exploreAll": "Explore all cases"
+  },
+  "cta": {
+    "title": "If the token has no purpose, the project has no future",
+    "description": "We define the token's role and connect it directly to revenue and operations."
   },
   "homepage": {
     "hero": {

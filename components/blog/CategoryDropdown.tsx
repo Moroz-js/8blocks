@@ -40,7 +40,7 @@ export default function CategoryDropdown({ category, locale }: CategoryDropdownP
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-[0.3125rem] h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white transition-colors whitespace-nowrap flex-shrink-0"
+        className="flex items-center gap-[0.3125rem] h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] font-berka font-medium text-[0.8125rem] leading-[1.5] text-white transition-colors whitespace-nowrap flex-shrink-0"
       >
         <span>{category.name}</span>
         <ChevronDown 
@@ -57,14 +57,14 @@ export default function CategoryDropdown({ category, locale }: CategoryDropdownP
               {category.children?.map((child, index) => (
                 <div key={child.id}>
                   {index > 0 && (
-                    <div className="px-[1rem] py-[0.25rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50">
+                    <div className="px-[1rem] py-[0.25rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50">
                       -
                     </div>
                   )}
                   <Link
                     href={`/${locale}/blog/${child.slug}`}
                     onClick={() => setIsOpen(false)}
-                    className="block px-[1rem] py-[0.5rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white hover:bg-[rgba(255,255,255,0.05)] transition-colors"
+                    className="block px-[1rem] py-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white hover:bg-[rgba(255,255,255,0.05)] transition-colors"
                   >
                     {child.name}
                   </Link>
@@ -75,7 +75,7 @@ export default function CategoryDropdown({ category, locale }: CategoryDropdownP
             <Link
               href={`/${locale}/blog/${category.slug}`}
               onClick={() => setIsOpen(false)}
-              className="block px-[1rem] py-[0.5rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white hover:bg-[rgba(255,255,255,0.05)] transition-colors"
+              className="block px-[1rem] py-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white hover:bg-[rgba(255,255,255,0.05)] transition-colors"
             >
               {category.name}
             </Link>

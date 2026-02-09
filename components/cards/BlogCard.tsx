@@ -1,3 +1,6 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { NormalizedBlogPost } from '@/lib/types';
@@ -13,6 +16,7 @@ export default function BlogCard({
   variant = 'default',
   locale,
 }: BlogCardProps) {
+  const tc = useTranslations('common');
   // Format date with fallback for invalid dates
   const formattedDate = post.publishedAt && post.publishedAt instanceof Date && !isNaN(post.publishedAt.getTime())
     ? new Intl.DateTimeFormat(locale, {
@@ -59,7 +63,7 @@ export default function BlogCard({
               {post.category && (
                 <div className="absolute top-[0.625rem] left-[0.625rem] lg:top-[0.9375rem] lg:left-[0.9375rem]">
                   <div className="bg-[rgba(233,233,233,0.12)] px-[0.625rem] py-[0.3125rem] rounded-[0.25rem] lg:h-[2.25rem] lg:px-[0.9375rem] lg:py-[0.625rem] lg:rounded-[0.5rem] flex items-center justify-center">
-                    <span className="font-['Berka'] font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white">
+                    <span className="font-berka font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white">
                       {post.category.name}
                     </span>
                   </div>
@@ -74,24 +78,24 @@ export default function BlogCard({
             <div className="flex flex-col gap-[0.3125rem] lg:gap-[0.625rem]">
               {/* Date */}
               {formattedDate && (
-                <p className="font-['Berka'] font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white opacity-50">
+                <p className="font-berka font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white opacity-50">
                   {formattedDate}
                 </p>
               )}
 
               {/* Title */}
-              <h3 className="font-['Berka'] font-normal text-[0.9375rem] lg:text-[clamp(1.75rem,3vw,2.1875rem)] leading-[1.3] lg:leading-[1.25] text-white group-hover:opacity-80 transition-opacity line-clamp-2 lg:line-clamp-3">
+              <h3 className="font-berka font-normal text-[0.9375rem] lg:text-[clamp(1.75rem,3vw,2.1875rem)] leading-[1.3] lg:leading-[1.25] text-white group-hover:opacity-80 transition-opacity line-clamp-2 lg:line-clamp-3">
                 {post.title}
               </h3>
 
               {/* Excerpt */}
-              <p className="font-['Berka'] font-normal text-[0.8125rem] lg:text-[0.9375rem] leading-[1.5] lg:leading-[1.7] text-white opacity-50 line-clamp-2">
+              <p className="font-berka font-normal text-[0.8125rem] lg:text-[0.9375rem] leading-[1.5] lg:leading-[1.7] text-white opacity-50 line-clamp-2">
                 {post.excerpt}
               </p>
             </div>
 
             {/* Bottom: Meta */}
-            <div className="flex items-center gap-[1.25rem] font-['Berka'] text-[0.8125rem] leading-[1.5] text-white mt-[1.25rem]">
+            <div className="flex items-center gap-[1.25rem] font-berka text-[0.8125rem] leading-[1.5] text-white mt-[1.25rem]">
               <div className="flex items-center gap-[0.125rem] opacity-40">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M10 3.75C6.5625 3.75 3.65625 5.7625 2.5 8.75C3.65625 11.7375 6.5625 13.75 10 13.75C13.4375 13.75 16.3438 11.7375 17.5 8.75C16.3438 5.7625 13.4375 3.75 10 3.75ZM10 12.5C8.275 12.5 6.875 11.1 6.875 9.375C6.875 7.65 8.275 6.25 10 6.25C11.725 6.25 13.125 7.65 13.125 9.375C13.125 11.1 11.725 12.5 10 12.5ZM10 7.5C8.9625 7.5 8.125 8.3375 8.125 9.375C8.125 10.4125 8.9625 11.25 10 11.25C11.0375 11.25 11.875 10.4125 11.875 9.375C11.875 8.3375 11.0375 7.5 10 7.5Z" fill="currentColor"/>
@@ -113,7 +117,7 @@ export default function BlogCard({
                   height={16}
                   className="object-contain"
                 />
-                <span className="font-medium opacity-50">By {post.author || '8Blocks'}</span>
+                <span className="font-medium opacity-50">{tc('by')} {post.author || '8Blocks'}</span>
               </div>
             </div>
           </div>
@@ -148,7 +152,7 @@ export default function BlogCard({
               {post.category && (
                 <div className="absolute top-[0.625rem] left-[0.625rem] lg:top-[0.9375rem] lg:left-[0.9375rem]">
                   <div className="bg-[rgba(233,233,233,0.12)] px-[0.625rem] py-[0.3125rem] rounded-[0.25rem] lg:h-[2.25rem] lg:px-[0.9375rem] lg:py-[0.625rem] lg:rounded-[0.5rem] flex items-center justify-center">
-                    <span className="font-['Berka'] font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white">
+                    <span className="font-berka font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white">
                       {post.category.name}
                     </span>
                   </div>
@@ -159,14 +163,14 @@ export default function BlogCard({
 
           {/* Date */}
           {formattedDate && (
-            <p className="font-['Berka'] font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white opacity-50 w-full">
+            <p className="font-berka font-medium text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white opacity-50 w-full">
               {formattedDate}
             </p>
           )}
         </div>
 
         {/* Title and Excerpt */}
-        <div className="flex flex-col gap-[0.3125rem] items-start w-full font-['Berka'] font-normal text-white">
+        <div className="flex flex-col gap-[0.3125rem] items-start w-full font-berka font-normal text-white">
           <h3 className="text-[0.9375rem] lg:text-[1.25rem] leading-[1.3] line-clamp-2 w-full group-hover:opacity-80 transition-opacity">
             {post.title}
           </h3>
@@ -176,7 +180,7 @@ export default function BlogCard({
         </div>
 
         {/* Meta: Views, Read Time, Author - AFTER description */}
-        <div className="flex items-center gap-[0.5rem] lg:gap-[0.75rem] font-['Berka'] text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white w-full flex-wrap">
+        <div className="flex items-center gap-[0.5rem] lg:gap-[0.75rem] font-berka text-[0.6875rem] lg:text-[0.8125rem] leading-[1.5] text-white w-full flex-wrap">
           <div className="flex gap-[0.375rem] opacity-50">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M8 3C4.5 3 1.73 5.61 1 9c.73 3.39 3.5 6 7 6s6.27-2.61 7-6c-.73-3.39-3.5-6-7-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z" fill="currentColor"/>
@@ -198,7 +202,7 @@ export default function BlogCard({
               height={16}
               className="object-contain"
             />
-            <span className="opacity-50">By {post.author || '8Blocks'}</span>
+            <span className="opacity-50">{tc('by')} {post.author || '8Blocks'}</span>
           </div>
         </div>
       </article>

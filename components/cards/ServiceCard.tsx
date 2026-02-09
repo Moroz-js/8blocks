@@ -1,19 +1,25 @@
 import { Button } from '@/components/ui';
 import Image from 'next/image';
+import type { Locale } from '@/i18n/routing';
 
 interface ServiceCardProps {
   title: string;
   description: string;
   variant?: 'default' | 'large';
   cardType?: 'strategic' | 'basic' | 'advanced' | 'audit';
+  locale?: Locale;
+  buttonText?: string;
 }
 
 export default function ServiceCard({ 
   title, 
   description, 
   variant = 'default',
-  cardType = 'strategic'
+  cardType = 'strategic',
+  locale = 'en',
+  buttonText
 }: ServiceCardProps) {
+  const btnLabel = buttonText || (cardType === 'audit' ? 'Start now' : 'View details');
   const isLarge = variant === 'large';
   
   // Exact widths from Figma for text blocks (desktop only)
@@ -31,6 +37,14 @@ export default function ServiceCard({
     advanced: '/assets/services/service-3.png',
     audit: '/assets/services/service-4.png'
   };
+
+  // Mobile images map
+  const mobileImageMap = {
+    strategic: '/assets/services/service-1-mobile.svg',
+    basic: '/assets/services/service-2-mobile.svg',
+    advanced: '/assets/services/service-3-mobile.svg',
+    audit: '/assets/services/service-4-mobile.svg'
+  };
   
   return (
     <div 
@@ -46,7 +60,62 @@ export default function ServiceCard({
         p-[19px] lg:p-[clamp(1.25rem,2.1875rem,2.1875rem)]
       `}
     >
-      {/* Background Image - positioned in bottom right */}
+      {/* Mobile Background Image - custom positioning per card type */}
+      {cardType === 'strategic' && (
+        <div className="absolute bottom-0 right-0 left-0 pointer-events-none md:hidden w-full h-auto">
+          <Image
+            src={mobileImageMap[cardType]}
+            alt=""
+            width={400}
+            height={400}
+            className="w-full h-auto object-contain"
+            quality={95}
+          />
+        </div>
+      )}
+      
+      {cardType === 'basic' && (
+        <div className="absolute bottom-0 right-0 pointer-events-none md:hidden w-full h-auto flex justify-end">
+          <Image
+            src={mobileImageMap[cardType]}
+            alt=""
+            width={400}
+            height={400}
+            className="w-[80%] h-auto object-contain"
+            quality={95}
+          />
+        </div>
+      )}
+      
+      {cardType === 'advanced' && (
+        <div className="absolute bottom-0 pointer-events-none md:hidden w-full h-auto flex">
+          <Image
+            src={mobileImageMap[cardType]}
+            alt=""
+            width={400}
+            height={400}
+            className="w-[23%] h-auto object-contain ml-auto"
+            style={{ marginRight: '55px' }}
+            quality={95}
+          />
+        </div>
+      )}
+      
+      {cardType === 'audit' && (
+        <div className="absolute bottom-0 right-0 left-0 pointer-events-none md:hidden w-full h-auto">
+          <Image
+            src={mobileImageMap[cardType]}
+            alt=""
+            width={400}
+            height={400}
+            className="w-[87%] h-auto object-contain"
+            style={{ marginBottom: '10px' }}
+            quality={95}
+          />
+        </div>
+      )}
+
+      {/* Desktop Background Image - positioned in bottom right */}
       <div className={`absolute pointer-events-none hidden md:block ${
         cardType === 'strategic'
           ? 'inset-0 w-full h-full'
@@ -76,24 +145,33 @@ export default function ServiceCard({
       <div className={`flex flex-col gap-[15px] lg:gap-[clamp(0.625rem,0.625rem,0.625rem)] w-[295px] ${textWidths[cardType]} relative z-10 ${cardType === 'audit' ? 'lg:items-start lg:text-left' : ''}`}>
         {/* Text group: title + description with gap-[10px] */}
         <div className="flex flex-col gap-[10px] lg:gap-[clamp(0.625rem,0.625rem,0.625rem)]">
-          <h3 className="text-[20px] lg:text-[clamp(1.25rem,1.5625rem,1.5625rem)] leading-[1.2] font-['Berka'] font-normal text-white">
+          <h3 className="text-[20px] lg:text-[clamp(1.25rem,1.5625rem,1.5625rem)] leading-[1.2] font-berka font-normal text-white">
             {title}
           </h3>
-          <p className="text-[13px] lg:text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] font-['Berka'] font-normal text-white opacity-50">
+          <p className="text-[13px] lg:text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] font-berka font-normal text-white opacity-50">
             {description}
           </p>
         </div>
         {/* Mobile tag button inside text block */}
-        <div className={`bg-[rgba(233,233,233,0.12)] h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center w-fit font-['Berka'] font-medium text-[13px] leading-[1.5] text-white lg:hidden`}>
-          {cardType === 'audit' ? 'Start now' : 'View details'}
-        </div>
+        <a
+          href={locale === 'ru' ? '/presentations/8Blocks Услуги.pdf' : '/presentations/8Blocks Services.pdf'}
+          download
+          className={`bg-[rgba(233,233,233,0.12)] h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center w-fit font-berka font-medium text-[13px] leading-[1.5] text-white lg:hidden hover:opacity-80 transition-opacity`}
+        >
+          {btnLabel}
+        </a>
       </div>
       
       {/* Desktop button - pushed to bottom */}
       <div className={`mt-auto relative z-10 hidden lg:block ${cardType === 'audit' ? 'text-center' : ''}`}>
-        <Button variant="primary" className={`max-w-[125px] ${cardType === 'audit' ? 'mx-auto' : ''}`}>
-          {cardType === 'audit' ? 'Start now' : 'View details'}
-        </Button>
+        <a
+          href={locale === 'ru' ? '/presentations/8Blocks Услуги.pdf' : '/presentations/8Blocks Services.pdf'}
+          download
+        >
+          <Button variant="primary" className={`max-w-[125px] ${cardType === 'audit' ? 'mx-auto' : ''}`}>
+            {btnLabel}
+          </Button>
+        </a>
       </div>
     </div>
   );

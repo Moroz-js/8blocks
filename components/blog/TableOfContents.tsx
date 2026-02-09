@@ -74,7 +74,7 @@ export function TableOfContents({ category: _category, headings = [] }: TableOfC
             activeId === heading.id ? 'bg-[rgba(233,233,233,0.12)]' : ''
           }`}
         >
-          <p className={`font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white truncate transition-opacity ${
+          <p className={`font-berka font-medium text-[0.8125rem] leading-[1.5] text-white truncate transition-opacity ${
             activeId === heading.id ? 'opacity-100' : 'opacity-50'
           }`}>
             {heading.text}

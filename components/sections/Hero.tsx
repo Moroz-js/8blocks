@@ -1,14 +1,19 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui';
 import { Container } from '@/components/layout';
 
-const services = [
-  'Strategic consulting',
-  'Basic tokenomics',
-  'Advanced tokenomics',
-  'Tokenomics audit',
-];
-
 export default function Hero() {
+  const t = useTranslations('hero');
+
+  const services = [
+    t('tags.strategic'),
+    t('tags.basic'),
+    t('tags.advanced'),
+    t('tags.audit'),
+  ];
+
   return (
     <section className="relative w-full h-[600px] lg:h-hero-fluid bg-black overflow-hidden">
       {/* Background gradient - mobile vs desktop */}
@@ -47,26 +52,26 @@ export default function Hero() {
           <h1
             className="lg:hidden text-[40px] font-berka font-normal leading-[1.1] text-center w-full text-transparent bg-white bg-clip-text mix-blend-overlay [-webkit-text-fill-color:transparent]"
           >
-            Token economies
+            {t('titleLine1')}
             <br />
-            that power the business
+            {t('titleLine2')} {t('titleLine3')}
           </h1>
           {/* Mobile: soft-light duplicate */}
           <h1
             className="lg:hidden absolute inset-0 text-[40px] font-berka font-normal leading-[1.1] text-center w-full text-transparent bg-white bg-clip-text mix-blend-soft-light [-webkit-text-fill-color:transparent]"
             aria-hidden="true"
           >
-            Token economies
+            {t('titleLine1')}
             <br />
-            that power the business
+            {t('titleLine2')} {t('titleLine3')}
           </h1>
           {/* Desktop: plain white text */}
           <h1
             className="hidden lg:block text-[clamp(2.5rem,5vw,4.0625rem)] font-berka font-normal leading-[1.1] text-center w-full text-white"
           >
-            Token economies
+            {t('titleLine1')}
             <br />
-            that power the business
+            {t('titleLine2')} {t('titleLine3')}
           </h1>
         </div>
 
@@ -97,7 +102,7 @@ export default function Hero() {
 
           {/* Description */}
           <p className="font-berka font-medium lg:font-normal text-[13px] lg:text-[15px] leading-[1.5] lg:leading-[1.7] text-center text-white opacity-50 max-w-[349px] lg:max-w-[771px] lg:w-full">
-            We help businesses turn tokens from one-time fundraising tools into working economic instruments. Tokens are embedded into products and operations, so usage and demand drive lasting value, not speculation.
+            {t('description')}
           </p>
         </div>
       </Container>

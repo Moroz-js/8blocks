@@ -36,7 +36,7 @@ export function CategoryFilter({
         <Link
           href={`/${locale}/blog`}
           className={cn(
-            'inline-flex items-center justify-center h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] text-[0.8125rem] font-medium font-[\'Berka\'] leading-[1.5] transition-all',
+            'inline-flex items-center justify-center h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] text-[0.8125rem] font-medium font-berka leading-[1.5] transition-all',
             isActive()
               ? 'bg-white text-black'
               : 'bg-[rgba(233,233,233,0.12)] text-white hover:bg-[rgba(233,233,233,0.18)]'
@@ -51,7 +51,7 @@ export function CategoryFilter({
             key={category.id}
             href={`/${locale}/blog/${category.slug}`}
             className={cn(
-              'inline-flex items-center justify-center h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] text-[0.8125rem] font-medium font-[\'Berka\'] leading-[1.5] transition-all',
+              'inline-flex items-center justify-center h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] text-[0.8125rem] font-medium font-berka leading-[1.5] transition-all',
               isActive(category.slug)
                 ? 'bg-white text-black'
                 : 'bg-[rgba(233,233,233,0.12)] text-white hover:bg-[rgba(233,233,233,0.18)]'

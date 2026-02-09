@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
+import Link from 'next/link';
 import BlogCard from '@/components/cards/BlogCard';
 import { Button } from '@/components/ui';
 import { Container } from '@/components/layout';
@@ -19,18 +21,18 @@ interface CasesProps {
 }
 
 export default function Cases({ posts, locale }: CasesProps) {
-  const [selectedTag, setSelectedTag] = useState('All');
+  const t = useTranslations('cases');
+  const [selectedTag, setSelectedTag] = useState(t('allFilter'));
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
 
   // Get unique tags from posts
-  const allTags = ['All', ...Array.from(new Set(posts.map(p => p.category?.name).filter((name): name is string => Boolean(name))))];
-  const tags = allTags.slice(0, 5); // Limit to 5 tags
+  const allTags = [t('allFilter'), ...Array.from(new Set(posts.map(p => p.category?.name).filter((name): name is string => Boolean(name))))];
+  const tags = allTags.slice(0, 5);
 
-  // Filter cases by selected tag
-  const filteredCases = selectedTag === 'All' 
+  const filteredCases = selectedTag === t('allFilter') 
     ? posts 
     : posts.filter(p => p.category?.name === selectedTag);
 
@@ -65,9 +67,9 @@ export default function Cases({ posts, locale }: CasesProps) {
       <section id="cases" className="w-full py-fluid-lg">
         <Container className="flex flex-col gap-fluid-md items-center justify-center">
           <h2 className="font-berka font-normal text-h2 text-white">
-            Our cases
+            {t('title')}
           </h2>
-          <p className="text-white opacity-50">No published posts yet.</p>
+          <p className="text-white opacity-50">{t('noPosts')}</p>
         </Container>
       </section>
     );
@@ -78,7 +80,7 @@ export default function Cases({ posts, locale }: CasesProps) {
       {/* Title in Container */}
       <Container>
         <h2 className="font-berka font-normal text-[30px] lg:text-h2 leading-[1.1] text-white w-full md:w-[36.3125rem]">
-          Our cases
+          {t('title')}
         </h2>
       </Container>
 
@@ -192,13 +194,15 @@ export default function Cases({ posts, locale }: CasesProps) {
 
       {/* CTA Button in Container */}
       <Container className="mt-fluid-md">
-        <button className="bg-white h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center font-['Berka'] font-medium text-[13px] leading-[1.5] text-black hover:opacity-90 transition-opacity lg:hidden">
-          Explore all cases
-        </button>
+        <Link href={`/${locale}/blog`} className="bg-white h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center font-berka font-medium text-[13px] leading-[1.5] text-black hover:opacity-90 transition-opacity lg:hidden">
+          {t('exploreAll')}
+        </Link>
         <div className="hidden lg:flex justify-center">
-        <Button variant="secondary">
-            Explore all cases
-          </Button>
+          <Link href={`/${locale}/blog`}>
+            <Button variant="secondary">
+              {t('exploreAll')}
+            </Button>
+          </Link>
         </div>
       </Container>
     </section>

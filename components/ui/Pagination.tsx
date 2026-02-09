@@ -64,7 +64,7 @@ export function Pagination({
           href={getPageUrl(currentPage - 1)}
           className={cn(
             'inline-flex items-center justify-center h-[2.5rem] px-[1.25rem] rounded-[0.375rem]',
-            'font-[\'Berka\'] font-medium text-[0.9375rem] leading-[1.5]',
+            'font-berka font-medium text-[0.9375rem] leading-[1.5]',
             'bg-[rgba(255,255,255,0.14)] backdrop-blur-[2px] text-white',
             'hover:bg-[rgba(255,255,255,0.2)] transition-all'
           )}
@@ -75,7 +75,7 @@ export function Pagination({
         <span
           className={cn(
             'inline-flex items-center justify-center h-[2.5rem] px-[1.25rem] rounded-[0.375rem]',
-            'font-[\'Berka\'] font-medium text-[0.9375rem] leading-[1.5]',
+            'font-berka font-medium text-[0.9375rem] leading-[1.5]',
             'bg-[rgba(255,255,255,0.07)] text-white opacity-40 cursor-not-allowed'
           )}
         >
@@ -106,7 +106,7 @@ export function Pagination({
               href={getPageUrl(pageNum)}
               className={cn(
                 'inline-flex items-center justify-center w-[2.5rem] h-[2.5rem] rounded-[0.375rem]',
-                'font-[\'Berka\'] font-medium text-[0.9375rem] leading-[1.5]',
+                'font-berka font-medium text-[0.9375rem] leading-[1.5]',
                 'transition-all',
                 isActive
                   ? 'bg-white text-black'
@@ -126,7 +126,7 @@ export function Pagination({
           href={getPageUrl(currentPage + 1)}
           className={cn(
             'inline-flex items-center justify-center h-[2.5rem] px-[1.25rem] rounded-[0.375rem]',
-            'font-[\'Berka\'] font-medium text-[0.9375rem] leading-[1.5]',
+            'font-berka font-medium text-[0.9375rem] leading-[1.5]',
             'bg-[rgba(255,255,255,0.14)] backdrop-blur-[2px] text-white',
             'hover:bg-[rgba(255,255,255,0.2)] transition-all'
           )}
@@ -137,7 +137,7 @@ export function Pagination({
         <span
           className={cn(
             'inline-flex items-center justify-center h-[2.5rem] px-[1.25rem] rounded-[0.375rem]',
-            'font-[\'Berka\'] font-medium text-[0.9375rem] leading-[1.5]',
+            'font-berka font-medium text-[0.9375rem] leading-[1.5]',
             'bg-[rgba(255,255,255,0.07)] text-white opacity-40 cursor-not-allowed'
           )}
         >

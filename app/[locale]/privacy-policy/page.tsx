@@ -1,0 +1,1258 @@
+import { setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next';
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return locale === 'ru'
+    ? {
+        title: 'Политика конфиденциальности — 8Blocks',
+        description:
+          'Политика конфиденциальности 8Blocks. Узнайте, как мы собираем, используем и защищаем ваши персональные данные.',
+      }
+    : {
+        title: 'Privacy Policy — 8Blocks',
+        description:
+          'Privacy Policy for 8Blocks. Learn how we collect, use, and protect your personal data.',
+      };
+}
+
+export default async function PrivacyPolicyPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  return (
+    <section className="w-full bg-background-primary py-[clamp(2.5rem,5vw,5rem)]">
+      <div className="container-fluid content-width">
+        <article className="prose max-w-none text-body leading-[1.7] text-text-secondary">
+          {locale === 'ru' ? <ContentRu /> : <ContentEn />}
+        </article>
+      </div>
+    </section>
+  );
+}
+
+/* ================================================================
+   EN content
+   ================================================================ */
+function ContentEn() {
+  return (
+    <>
+      <h1 className="text-h1 font-medium leading-[1.15] text-white mb-[1.25rem]">
+        Privacy Policy
+      </h1>
+
+      <p>Last updated: February 09, 2026</p>
+
+      <p>
+        This Privacy Policy describes Our policies and procedures on the
+        collection, use and disclosure of Your information when You use the
+        Service and tells You about Your privacy rights and how the law protects
+        You.
+      </p>
+      <p>
+        We use Your Personal Data to provide and improve the Service. By using
+        the Service, You agree to the collection and use of information in
+        accordance with this Privacy Policy. This Privacy Policy has been
+        created with the help of the{' '}
+        <a
+          href="https://www.termsfeed.com/privacy-policy-generator/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Privacy Policy Generator
+        </a>
+        .
+      </p>
+
+      <h2>Interpretation and Definitions</h2>
+
+      <h3>Interpretation</h3>
+      <p>
+        The words whose initial letters are capitalized have meanings defined
+        under the following conditions. The following definitions shall have the
+        same meaning regardless of whether they appear in singular or in plural.
+      </p>
+
+      <h3>Definitions</h3>
+      <p>For the purposes of this Privacy Policy:</p>
+      <ul>
+        <li>
+          <strong>Account</strong> means a unique account created for You to
+          access our Service or parts of our Service.
+        </li>
+        <li>
+          <strong>Affiliate</strong> means an entity that controls, is controlled
+          by, or is under common control with a party, where &quot;control&quot;
+          means ownership of 50% or more of the shares, equity interest or other
+          securities entitled to vote for election of directors or other managing
+          authority.
+        </li>
+        <li>
+          <strong>Company</strong> (referred to as either &quot;the
+          Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in
+          this Privacy Policy) refers to 8BLOCKS FZCO, Unit No: UT-12-CO-372
+          DMCC Business Centre Level No 12 Uptown Tower Dubai United Arab
+          Emirates.
+        </li>
+        <li>
+          <strong>Cookies</strong> are small files that are placed on Your
+          computer, mobile device or any other device by a website, containing
+          the details of Your browsing history on that website among its many
+          uses.
+        </li>
+        <li>
+          <strong>Country</strong> refers to: United Arab Emirates
+        </li>
+        <li>
+          <strong>Device</strong> means any device that can access the Service
+          such as a computer, a cell phone or a digital tablet.
+        </li>
+        <li>
+          <strong>Personal Data</strong> (or &quot;Personal Information&quot;) is
+          any information that relates to an identified or identifiable
+          individual.
+          <p>
+            We use &quot;Personal Data&quot; and &quot;Personal
+            Information&quot; interchangeably unless a law uses a specific term.
+          </p>
+        </li>
+        <li>
+          <strong>Service</strong> refers to the Website.
+        </li>
+        <li>
+          <strong>Service Provider</strong> means any natural or legal person who
+          processes the data on behalf of the Company. It refers to third-party
+          companies or individuals employed by the Company to facilitate the
+          Service, to provide the Service on behalf of the Company, to perform
+          services related to the Service or to assist the Company in analyzing
+          how the Service is used.
+        </li>
+        <li>
+          <strong>Usage Data</strong> refers to data collected automatically,
+          either generated by the use of the Service or from the Service
+          infrastructure itself (for example, the duration of a page visit).
+        </li>
+        <li>
+          <strong>Website</strong> refers to 8blocks, accessible from{' '}
+          <a
+            href="https://8blocks.io"
+            rel="external nofollow noopener"
+            target="_blank"
+          >
+            8blocks.io
+          </a>
+          .
+        </li>
+        <li>
+          <strong>You</strong> means the individual accessing or using the
+          Service, or the company, or other legal entity on behalf of which such
+          individual is accessing or using the Service, as applicable.
+        </li>
+      </ul>
+
+      <h2>Collecting and Using Your Personal Data</h2>
+
+      <h3>Types of Data Collected</h3>
+
+      <h4>Personal Data</h4>
+      <p>
+        While using Our Service, We may ask You to provide Us with certain
+        personally identifiable information that can be used to contact or
+        identify You. Personally identifiable information may include, but is
+        not limited to:
+      </p>
+      <ul>
+        <li>Email address</li>
+      </ul>
+
+      <h4>Usage Data</h4>
+      <p>Usage Data is collected automatically when using the Service.</p>
+      <p>
+        Usage Data may include information such as Your Device&apos;s Internet
+        Protocol address (e.g. IP address), browser type, browser version, the
+        pages of our Service that You visit, the time and date of Your visit,
+        the time spent on those pages, unique device identifiers and other
+        diagnostic data.
+      </p>
+      <p>
+        When You access the Service by or through a mobile device, We may
+        collect certain information automatically, including, but not limited to,
+        the type of mobile device You use, Your mobile device&apos;s unique ID,
+        the IP address of Your mobile device, Your mobile operating system, the
+        type of mobile Internet browser You use, unique device identifiers and
+        other diagnostic data.
+      </p>
+      <p>
+        We may also collect information that Your browser sends whenever You
+        visit Our Service or when You access the Service by or through a mobile
+        device.
+      </p>
+
+      <h4>Tracking Technologies and Cookies</h4>
+      <p>
+        We use Cookies and similar tracking technologies to track the activity on
+        Our Service and store certain information. Tracking technologies We use
+        include beacons, tags, and scripts to collect and track information and
+        to improve and analyze Our Service. The technologies We use may include:
+      </p>
+      <ul>
+        <li>
+          <strong>Cookies or Browser Cookies.</strong> A cookie is a small file
+          placed on Your Device. You can instruct Your browser to refuse all
+          Cookies or to indicate when a Cookie is being sent. However, if You do
+          not accept Cookies, You may not be able to use some parts of our
+          Service.
+        </li>
+        <li>
+          <strong>Web Beacons.</strong> Certain sections of our Service and our
+          emails may contain small electronic files known as web beacons (also
+          referred to as clear gifs, pixel tags, and single-pixel gifs) that
+          permit the Company, for example, to count users who have visited those
+          pages or opened an email and for other related website statistics (for
+          example, recording the popularity of a certain section and verifying
+          system and server integrity).
+        </li>
+      </ul>
+      <p>
+        Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies.
+        Persistent Cookies remain on Your personal computer or mobile device
+        when You go offline, while Session Cookies are deleted as soon as You
+        close Your web browser.
+      </p>
+      <p>
+        Where required by law, we use non-essential cookies (such as analytics,
+        advertising, and remarketing cookies) only with Your consent. You can
+        withdraw or change Your consent at any time using Our cookie preferences
+        tool (if available) or through Your browser/device settings. Withdrawing
+        consent does not affect the lawfulness of processing based on consent
+        before its withdrawal.
+      </p>
+      <p>
+        We use both Session and Persistent Cookies for the purposes set out
+        below:
+      </p>
+      <ul>
+        <li>
+          <p>
+            <strong>Necessary / Essential Cookies</strong>
+          </p>
+          <p>Type: Session Cookies</p>
+          <p>Administered by: Us</p>
+          <p>
+            Purpose: These Cookies are essential to provide You with services
+            available through the Website and to enable You to use some of its
+            features. They help to authenticate users and prevent fraudulent use
+            of user accounts. Without these Cookies, the services that You have
+            asked for cannot be provided, and We only use these Cookies to
+            provide You with those services.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Cookies Policy / Notice Acceptance Cookies</strong>
+          </p>
+          <p>Type: Persistent Cookies</p>
+          <p>Administered by: Us</p>
+          <p>
+            Purpose: These Cookies identify if users have accepted the use of
+            cookies on the Website.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Functionality Cookies</strong>
+          </p>
+          <p>Type: Persistent Cookies</p>
+          <p>Administered by: Us</p>
+          <p>
+            Purpose: These Cookies allow Us to remember choices You make when You
+            use the Website, such as remembering your login details or language
+            preference. The purpose of these Cookies is to provide You with a
+            more personal experience and to avoid You having to re-enter your
+            preferences every time You use the Website.
+          </p>
+        </li>
+      </ul>
+      <p>
+        For more information about the cookies we use and your choices regarding
+        cookies, please visit our Cookies Policy or the Cookies section of Our
+        Privacy Policy.
+      </p>
+
+      <h3>Use of Your Personal Data</h3>
+      <p>The Company may use Personal Data for the following purposes:</p>
+      <ul>
+        <li>
+          <strong>To provide and maintain our Service</strong>, including to
+          monitor the usage of our Service.
+        </li>
+        <li>
+          <strong>To manage Your Account:</strong> to manage Your registration as
+          a user of the Service. The Personal Data You provide can give You
+          access to different functionalities of the Service that are available
+          to You as a registered user.
+        </li>
+        <li>
+          <strong>For the performance of a contract:</strong> the development,
+          compliance and undertaking of the purchase contract for the products,
+          items or services You have purchased or of any other contract with Us
+          through the Service.
+        </li>
+        <li>
+          <strong>To contact You:</strong> To contact You by email, telephone
+          calls, SMS, or other equivalent forms of electronic communication, such
+          as a mobile application&apos;s push notifications regarding updates or
+          informative communications related to the functionalities, products or
+          contracted services, including the security updates, when necessary or
+          reasonable for their implementation.
+        </li>
+        <li>
+          <strong>To provide You</strong> with news, special offers, and general
+          information about other goods, services and events which We offer that
+          are similar to those that you have already purchased or inquired about
+          unless You have opted not to receive such information.
+        </li>
+        <li>
+          <strong>To manage Your requests:</strong> To attend and manage Your
+          requests to Us.
+        </li>
+        <li>
+          <strong>For business transfers:</strong> We may use Your Personal Data
+          to evaluate or conduct a merger, divestiture, restructuring,
+          reorganization, dissolution, or other sale or transfer of some or all
+          of Our assets, whether as a going concern or as part of bankruptcy,
+          liquidation, or similar proceeding, in which Personal Data held by Us
+          about our Service users is among the assets transferred.
+        </li>
+        <li>
+          <strong>For other purposes</strong>: We may use Your information for
+          other purposes, such as data analysis, identifying usage trends,
+          determining the effectiveness of our promotional campaigns and to
+          evaluate and improve our Service, products, services, marketing and
+          your experience.
+        </li>
+      </ul>
+
+      <p>We may share Your Personal Data in the following situations:</p>
+      <ul>
+        <li>
+          <strong>With Service Providers:</strong> We may share Your Personal
+          Data with Service Providers to monitor and analyze the use of our
+          Service, to contact You.
+        </li>
+        <li>
+          <strong>For business transfers:</strong> We may share or transfer Your
+          Personal Data in connection with, or during negotiations of, any
+          merger, sale of Company assets, financing, or acquisition of all or a
+          portion of Our business to another company.
+        </li>
+        <li>
+          <strong>With Affiliates:</strong> We may share Your Personal Data with
+          Our affiliates, in which case we will require those affiliates to honor
+          this Privacy Policy. Affiliates include Our parent company and any
+          other subsidiaries, joint venture partners or other companies that We
+          control or that are under common control with Us.
+        </li>
+        <li>
+          <strong>With business partners:</strong> We may share Your Personal
+          Data with Our business partners to offer You certain products, services
+          or promotions.
+        </li>
+        <li>
+          <strong>With other users:</strong> If Our Service offers public areas,
+          when You share Personal Data or otherwise interact in the public areas
+          with other users, such information may be viewed by all users and may
+          be publicly distributed outside.
+        </li>
+        <li>
+          <strong>With Your consent</strong>: We may disclose Your Personal Data
+          for any other purpose with Your consent.
+        </li>
+      </ul>
+
+      <h3>Retention of Your Personal Data</h3>
+      <p>
+        The Company will retain Your Personal Data only for as long as is
+        necessary for the purposes set out in this Privacy Policy. We will
+        retain and use Your Personal Data to the extent necessary to comply with
+        our legal obligations (for example, if We are required to retain Your
+        data to comply with applicable laws), resolve disputes, and enforce our
+        legal agreements and policies.
+      </p>
+      <p>
+        Where possible, We apply shorter retention periods and/or reduce
+        identifiability by deleting, aggregating, or anonymizing data. Unless
+        otherwise stated, the retention periods below are maximum periods
+        (&quot;up to&quot;) and We may delete or anonymize data sooner when it
+        is no longer needed for the relevant purpose. We apply different
+        retention periods to different categories of Personal Data based on the
+        purpose of processing and legal obligations:
+      </p>
+      <ul>
+        <li>
+          <p>Account Information</p>
+          <ul>
+            <li>
+              User Accounts: retained for the duration of your account
+              relationship plus up to 24 months after account closure to handle
+              any post-termination issues or resolve disputes.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>Customer Support Data</p>
+          <ul>
+            <li>
+              Support tickets and correspondence: up to 24 months from the date
+              of ticket closure to resolve follow-up inquiries, track service
+              quality, and defend against potential legal claims
+            </li>
+            <li>
+              Chat transcripts: up to 24 months for quality assurance and staff
+              training purposes.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>Usage Data</p>
+          <ul>
+            <li>
+              Website analytics data (cookies, IP addresses, device
+              identifiers): up to 24 months from the date of collection, which
+              allows us to analyze trends while respecting privacy principles.
+            </li>
+            <li>
+              Server logs (IP addresses, access times): up to 24 months for
+              security monitoring and troubleshooting purposes.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p>
+        Usage Data is retained in accordance with the retention periods described
+        above, and may be retained longer only where necessary for security,
+        fraud prevention, or legal compliance.
+      </p>
+      <p>
+        We may retain Personal Data beyond the periods stated above for
+        different reasons:
+      </p>
+      <ul>
+        <li>
+          Legal obligation: We are required by law to retain specific data (e.g.,
+          financial records for tax authorities).
+        </li>
+        <li>
+          Legal claims: Data is necessary to establish, exercise, or defend legal
+          claims.
+        </li>
+        <li>
+          Your explicit request: You ask Us to retain specific information.
+        </li>
+        <li>
+          Technical limitations: Data exists in backup systems that are scheduled
+          for routine deletion.
+        </li>
+      </ul>
+      <p>
+        You may request information about how long We will retain Your Personal
+        Data by contacting Us.
+      </p>
+      <p>
+        When retention periods expire, We securely delete or anonymize Personal
+        Data according to the following procedures:
+      </p>
+      <ul>
+        <li>
+          Deletion: Personal Data is removed from Our systems and no longer
+          actively processed.
+        </li>
+        <li>
+          Backup retention: Residual copies may remain in encrypted backups for a
+          limited period consistent with our backup retention schedule and are
+          not restored except where necessary for security, disaster recovery, or
+          legal compliance.
+        </li>
+        <li>
+          Anonymization: In some cases, We convert Personal Data into anonymous
+          statistical data that cannot be linked back to You. This anonymized
+          data may be retained indefinitely for research and analytics.
+        </li>
+      </ul>
+
+      <h3>Transfer of Your Personal Data</h3>
+      <p>
+        Your information, including Personal Data, is processed at the
+        Company&apos;s operating offices and in any other places where the
+        parties involved in the processing are located. It means that this
+        information may be transferred to — and maintained on — computers
+        located outside of Your state, province, country or other governmental
+        jurisdiction where the data protection laws may differ from those from
+        Your jurisdiction.
+      </p>
+      <p>
+        Where required by applicable law, We will ensure that international
+        transfers of Your Personal Data are subject to appropriate safeguards
+        and supplementary measures where appropriate. The Company will take all
+        steps reasonably necessary to ensure that Your data is treated securely
+        and in accordance with this Privacy Policy and no transfer of Your
+        Personal Data will take place to an organization or a country unless
+        there are adequate controls in place including the security of Your data
+        and other personal information.
+      </p>
+
+      <h3>Delete Your Personal Data</h3>
+      <p>
+        You have the right to delete or request that We assist in deleting the
+        Personal Data that We have collected about You.
+      </p>
+      <p>
+        Our Service may give You the ability to delete certain information about
+        You from within the Service.
+      </p>
+      <p>
+        You may update, amend, or delete Your information at any time by signing
+        in to Your Account, if you have one, and visiting the account settings
+        section that allows you to manage Your personal information. You may also
+        contact Us to request access to, correct, or delete any Personal Data
+        that You have provided to Us.
+      </p>
+      <p>
+        Please note, however, that We may need to retain certain information
+        when we have a legal obligation or lawful basis to do so.
+      </p>
+
+      <h3>Disclosure of Your Personal Data</h3>
+
+      <h4>Business Transactions</h4>
+      <p>
+        If the Company is involved in a merger, acquisition or asset sale, Your
+        Personal Data may be transferred. We will provide notice before Your
+        Personal Data is transferred and becomes subject to a different Privacy
+        Policy.
+      </p>
+
+      <h4>Law enforcement</h4>
+      <p>
+        Under certain circumstances, the Company may be required to disclose
+        Your Personal Data if required to do so by law or in response to valid
+        requests by public authorities (e.g. a court or a government agency).
+      </p>
+
+      <h4>Other legal requirements</h4>
+      <p>
+        The Company may disclose Your Personal Data in the good faith belief
+        that such action is necessary to:
+      </p>
+      <ul>
+        <li>Comply with a legal obligation</li>
+        <li>Protect and defend the rights or property of the Company</li>
+        <li>
+          Prevent or investigate possible wrongdoing in connection with the
+          Service
+        </li>
+        <li>
+          Protect the personal safety of Users of the Service or the public
+        </li>
+        <li>Protect against legal liability</li>
+      </ul>
+
+      <h3>Security of Your Personal Data</h3>
+      <p>
+        The security of Your Personal Data is important to Us, but remember that
+        no method of transmission over the Internet, or method of electronic
+        storage is 100% secure. While We strive to use commercially reasonable
+        means to protect Your Personal Data, We cannot guarantee its absolute
+        security.
+      </p>
+
+      <h2>Children&apos;s Privacy</h2>
+      <p>
+        Our Service does not address anyone under the age of 16. We do not
+        knowingly collect personally identifiable information from anyone under
+        the age of 16. If You are a parent or guardian and You are aware that
+        Your child has provided Us with Personal Data, please contact Us. If We
+        become aware that We have collected Personal Data from anyone under the
+        age of 16 without verification of parental consent, We take steps to
+        remove that information from Our servers.
+      </p>
+      <p>
+        If We need to rely on consent as a legal basis for processing Your
+        information and Your country requires consent from a parent, We may
+        require Your parent&apos;s consent before We collect and use that
+        information.
+      </p>
+
+      <h2>Links to Other Websites</h2>
+      <p>
+        Our Service may contain links to other websites that are not operated by
+        Us. If You click on a third party link, You will be directed to that
+        third party&apos;s site. We strongly advise You to review the Privacy
+        Policy of every site You visit.
+      </p>
+      <p>
+        We have no control over and assume no responsibility for the content,
+        privacy policies or practices of any third party sites or services.
+      </p>
+
+      <h2>Changes to this Privacy Policy</h2>
+      <p>
+        We may update Our Privacy Policy from time to time. We will notify You
+        of any changes by posting the new Privacy Policy on this page.
+      </p>
+      <p>
+        We will let You know via email and/or a prominent notice on Our Service,
+        prior to the change becoming effective and update the &quot;Last
+        updated&quot; date at the top of this Privacy Policy.
+      </p>
+      <p>
+        You are advised to review this Privacy Policy periodically for any
+        changes. Changes to this Privacy Policy are effective when they are
+        posted on this page.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have any questions about this Privacy Policy, You can contact us:
+      </p>
+      <ul>
+        <li>
+          By email: <a href="mailto:hello@8blocks.io">hello@8blocks.io</a>
+        </li>
+      </ul>
+    </>
+  );
+}
+
+/* ================================================================
+   RU content
+   ================================================================ */
+function ContentRu() {
+  return (
+    <>
+      <h1 className="text-h1 font-medium leading-[1.15] text-white mb-[1.25rem]">
+        Политика конфиденциальности
+      </h1>
+
+      <p>Последнее обновление: 9 февраля 2026 г.</p>
+
+      <p>
+        Настоящая Политика конфиденциальности описывает наши правила и процедуры
+        в отношении сбора, использования и раскрытия Вашей информации при
+        использовании Вами Сервиса, а также информирует Вас о Ваших правах на
+        конфиденциальность и о том, как закон защищает Вас.
+      </p>
+      <p>
+        Мы используем Ваши Персональные данные для предоставления и улучшения
+        Сервиса. Используя Сервис, Вы соглашаетесь со сбором и использованием
+        информации в соответствии с настоящей Политикой конфиденциальности.
+        Настоящая Политика конфиденциальности была создана с помощью{' '}
+        <a
+          href="https://www.termsfeed.com/privacy-policy-generator/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Privacy Policy Generator
+        </a>
+        .
+      </p>
+
+      <h2>Толкование и определения</h2>
+
+      <h3>Толкование</h3>
+      <p>
+        Слова, начальные буквы которых написаны с заглавной буквы, имеют
+        значения, определённые в следующих условиях. Приведённые ниже определения
+        имеют одинаковое значение независимо от того, используются ли они в
+        единственном или множественном числе.
+      </p>
+
+      <h3>Определения</h3>
+      <p>Для целей настоящей Политики конфиденциальности:</p>
+      <ul>
+        <li>
+          <strong>Аккаунт</strong> означает уникальную учётную запись, созданную
+          для Вас для доступа к нашему Сервису или его частям.
+        </li>
+        <li>
+          <strong>Аффилированное лицо</strong> означает юридическое лицо, которое
+          контролирует, контролируется или находится под общим контролем с
+          одной из сторон, где «контроль» означает владение 50% и более акций,
+          долей участия или других ценных бумаг, дающих право голоса при избрании
+          директоров или иного управляющего органа.
+        </li>
+        <li>
+          <strong>Компания</strong> (также именуемая «Компания», «Мы», «Нас» или
+          «Наш» в настоящей Политике конфиденциальности) относится к 8BLOCKS
+          FZCO, Unit No: UT-12-CO-372 DMCC Business Centre Level No 12 Uptown
+          Tower Dubai United Arab Emirates.
+        </li>
+        <li>
+          <strong>Файлы cookie</strong> — это небольшие файлы, которые
+          размещаются на Вашем компьютере, мобильном устройстве или любом другом
+          устройстве веб-сайтом и содержат, среди прочего, сведения о Вашей
+          истории просмотров на этом веб-сайте.
+        </li>
+        <li>
+          <strong>Страна</strong> относится к: Объединённые Арабские Эмираты
+        </li>
+        <li>
+          <strong>Устройство</strong> означает любое устройство, которое может
+          получить доступ к Сервису, такое как компьютер, мобильный телефон или
+          цифровой планшет.
+        </li>
+        <li>
+          <strong>Персональные данные</strong> (или «Личная информация») — это
+          любая информация, которая относится к идентифицированному или
+          идентифицируемому физическому лицу.
+          <p>
+            Мы используем термины «Персональные данные» и «Личная информация» как
+            взаимозаменяемые, если в законе не используется конкретный термин.
+          </p>
+        </li>
+        <li>
+          <strong>Сервис</strong> относится к Веб-сайту.
+        </li>
+        <li>
+          <strong>Поставщик услуг</strong> означает любое физическое или
+          юридическое лицо, которое обрабатывает данные от имени Компании. Это
+          относится к сторонним компаниям или лицам, нанятым Компанией для
+          содействия предоставлению Сервиса, оказания Сервиса от имени Компании,
+          выполнения услуг, связанных с Сервисом, или помощи Компании в анализе
+          использования Сервиса.
+        </li>
+        <li>
+          <strong>Данные об использовании</strong> относятся к данным,
+          собираемым автоматически, генерируемым в результате использования
+          Сервиса или из инфраструктуры Сервиса (например, продолжительность
+          посещения страницы).
+        </li>
+        <li>
+          <strong>Веб-сайт</strong> относится к 8blocks, доступному по адресу{' '}
+          <a
+            href="https://8blocks.io"
+            rel="external nofollow noopener"
+            target="_blank"
+          >
+            8blocks.io
+          </a>
+          .
+        </li>
+        <li>
+          <strong>Вы</strong> означает физическое лицо, получающее доступ к
+          Сервису или использующее его, либо компанию или другое юридическое лицо,
+          от имени которого такое физическое лицо получает доступ к Сервису или
+          использует его.
+        </li>
+      </ul>
+
+      <h2>Сбор и использование Ваших Персональных данных</h2>
+
+      <h3>Типы собираемых данных</h3>
+
+      <h4>Персональные данные</h4>
+      <p>
+        При использовании нашего Сервиса мы можем попросить Вас предоставить нам
+        определённую личную информацию, которая может быть использована для связи
+        с Вами или Вашей идентификации. Личная информация может включать, помимо
+        прочего:
+      </p>
+      <ul>
+        <li>Адрес электронной почты</li>
+      </ul>
+
+      <h4>Данные об использовании</h4>
+      <p>
+        Данные об использовании собираются автоматически при использовании
+        Сервиса.
+      </p>
+      <p>
+        Данные об использовании могут включать такую информацию, как IP-адрес
+        Вашего устройства, тип и версия браузера, страницы нашего Сервиса,
+        которые Вы посещаете, дата и время Вашего посещения, время, проведённое
+        на этих страницах, уникальные идентификаторы устройства и другие
+        диагностические данные.
+      </p>
+      <p>
+        Когда Вы получаете доступ к Сервису через мобильное устройство, мы можем
+        автоматически собирать определённую информацию, включая, помимо прочего,
+        тип используемого мобильного устройства, уникальный идентификатор Вашего
+        мобильного устройства, IP-адрес Вашего мобильного устройства,
+        мобильную операционную систему, тип мобильного интернет-браузера,
+        уникальные идентификаторы устройства и другие диагностические данные.
+      </p>
+      <p>
+        Мы также можем собирать информацию, которую Ваш браузер отправляет
+        каждый раз, когда Вы посещаете наш Сервис или получаете доступ к Сервису
+        через мобильное устройство.
+      </p>
+
+      <h4>Технологии отслеживания и файлы cookie</h4>
+      <p>
+        Мы используем файлы cookie и аналогичные технологии отслеживания для
+        отслеживания активности в нашем Сервисе и хранения определённой
+        информации. Используемые нами технологии отслеживания включают маяки,
+        теги и скрипты для сбора и отслеживания информации, а также для улучшения
+        и анализа нашего Сервиса. Используемые нами технологии могут включать:
+      </p>
+      <ul>
+        <li>
+          <strong>Файлы cookie или cookie-файлы браузера.</strong> Cookie — это
+          небольшой файл, размещаемый на Вашем устройстве. Вы можете настроить
+          свой браузер на отклонение всех файлов cookie или на уведомление о
+          том, что файл cookie отправляется. Однако если Вы не принимаете файлы
+          cookie, Вы не сможете использовать некоторые части нашего Сервиса.
+        </li>
+        <li>
+          <strong>Веб-маяки.</strong> Некоторые разделы нашего Сервиса и наши
+          электронные письма могут содержать небольшие электронные файлы, известные
+          как веб-маяки (также называемые clear gifs, пиксельные теги и
+          однопиксельные gif-файлы), которые позволяют Компании, например,
+          подсчитывать пользователей, посетивших эти страницы или открывших
+          электронное письмо, а также для другой статистики веб-сайта.
+        </li>
+      </ul>
+      <p>
+        Файлы cookie могут быть «Постоянными» или «Сессионными». Постоянные
+        файлы cookie остаются на Вашем компьютере или мобильном устройстве после
+        выхода из сети, тогда как сессионные файлы cookie удаляются сразу после
+        закрытия веб-браузера.
+      </p>
+      <p>
+        Если это требуется законом, мы используем необязательные файлы cookie
+        (такие как аналитические, рекламные и ремаркетинговые) только с Вашего
+        согласия. Вы можете отозвать или изменить своё согласие в любое время с
+        помощью нашего инструмента управления cookie-файлами (при наличии) или
+        через настройки Вашего браузера/устройства. Отзыв согласия не влияет на
+        законность обработки, основанной на согласии до его отзыва.
+      </p>
+      <p>
+        Мы используем как сессионные, так и постоянные файлы cookie для целей,
+        указанных ниже:
+      </p>
+      <ul>
+        <li>
+          <p>
+            <strong>Необходимые / Обязательные файлы cookie</strong>
+          </p>
+          <p>Тип: Сессионные файлы cookie</p>
+          <p>Управляются: Нами</p>
+          <p>
+            Назначение: Эти файлы cookie необходимы для предоставления Вам услуг,
+            доступных через Веб-сайт, и для обеспечения возможности использования
+            некоторых его функций. Они помогают аутентифицировать пользователей и
+            предотвращать мошенническое использование учётных записей. Без этих
+            файлов cookie запрашиваемые Вами услуги не могут быть предоставлены, и
+            мы используем эти файлы cookie только для предоставления Вам этих
+            услуг.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Файлы cookie политики / уведомления о принятии cookie</strong>
+          </p>
+          <p>Тип: Постоянные файлы cookie</p>
+          <p>Управляются: Нами</p>
+          <p>
+            Назначение: Эти файлы cookie определяют, приняли ли пользователи
+            использование файлов cookie на Веб-сайте.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Функциональные файлы cookie</strong>
+          </p>
+          <p>Тип: Постоянные файлы cookie</p>
+          <p>Управляются: Нами</p>
+          <p>
+            Назначение: Эти файлы cookie позволяют нам запоминать Ваш выбор при
+            использовании Веб-сайта, например, данные для входа или языковые
+            настройки. Цель этих файлов cookie — обеспечить Вам более
+            персонализированный опыт и избавить Вас от необходимости повторно
+            вводить свои настройки каждый раз при использовании Веб-сайта.
+          </p>
+        </li>
+      </ul>
+      <p>
+        Для получения дополнительной информации о файлах cookie, которые мы
+        используем, и Ваших вариантах выбора в отношении файлов cookie,
+        пожалуйста, посетите нашу Политику в отношении файлов cookie или раздел о
+        файлах cookie нашей Политики конфиденциальности.
+      </p>
+
+      <h3>Использование Ваших Персональных данных</h3>
+      <p>
+        Компания может использовать Персональные данные в следующих целях:
+      </p>
+      <ul>
+        <li>
+          <strong>Для предоставления и поддержания нашего Сервиса</strong>,
+          включая мониторинг использования нашего Сервиса.
+        </li>
+        <li>
+          <strong>Для управления Вашим Аккаунтом:</strong> для управления Вашей
+          регистрацией в качестве пользователя Сервиса. Предоставленные Вами
+          Персональные данные могут дать Вам доступ к различным функциям Сервиса,
+          доступным Вам как зарегистрированному пользователю.
+        </li>
+        <li>
+          <strong>Для исполнения договора:</strong> разработка, соблюдение и
+          исполнение договора купли-продажи продуктов, товаров или услуг, которые
+          Вы приобрели, или любого другого договора с нами через Сервис.
+        </li>
+        <li>
+          <strong>Для связи с Вами:</strong> для связи с Вами по электронной
+          почте, телефону, SMS или другими эквивалентными формами электронной
+          связи, такими как push-уведомления мобильного приложения, касающиеся
+          обновлений или информационных сообщений, связанных с функциями,
+          продуктами или контрактными услугами, включая обновления безопасности,
+          когда это необходимо или обосновано для их реализации.
+        </li>
+        <li>
+          <strong>Для предоставления Вам</strong> новостей, специальных
+          предложений и общей информации о других товарах, услугах и событиях,
+          которые мы предлагаем и которые аналогичны тем, которые Вы уже
+          приобрели или о которых интересовались, если Вы не отказались от
+          получения такой информации.
+        </li>
+        <li>
+          <strong>Для управления Вашими запросами:</strong> для обработки и
+          управления Вашими запросами к нам.
+        </li>
+        <li>
+          <strong>Для передачи бизнеса:</strong> мы можем использовать Ваши
+          Персональные данные для оценки или проведения слияния, выделения,
+          реструктуризации, реорганизации, ликвидации или иной продажи или
+          передачи части или всех наших активов, будь то в качестве действующего
+          предприятия или в рамках банкротства, ликвидации или аналогичной
+          процедуры, в которой Персональные данные, хранящиеся у нас о
+          пользователях нашего Сервиса, входят в состав передаваемых активов.
+        </li>
+        <li>
+          <strong>Для других целей:</strong> мы можем использовать Вашу
+          информацию для других целей, таких как анализ данных, выявление
+          тенденций использования, определение эффективности наших рекламных
+          кампаний, а также для оценки и улучшения нашего Сервиса, продуктов,
+          услуг, маркетинга и Вашего опыта.
+        </li>
+      </ul>
+
+      <p>
+        Мы можем передавать Ваши Персональные данные в следующих ситуациях:
+      </p>
+      <ul>
+        <li>
+          <strong>Поставщикам услуг:</strong> мы можем передавать Ваши
+          Персональные данные Поставщикам услуг для мониторинга и анализа
+          использования нашего Сервиса, для связи с Вами.
+        </li>
+        <li>
+          <strong>Для передачи бизнеса:</strong> мы можем передавать Ваши
+          Персональные данные в связи с любым слиянием, продажей активов
+          Компании, финансированием или приобретением всего или части нашего
+          бизнеса другой компанией, или в ходе переговоров о таких сделках.
+        </li>
+        <li>
+          <strong>Аффилированным лицам:</strong> мы можем передавать Ваши
+          Персональные данные нашим аффилированным лицам, и в этом случае мы
+          потребуем от этих аффилированных лиц соблюдения настоящей Политики
+          конфиденциальности. Аффилированные лица включают нашу материнскую
+          компанию и любые другие дочерние компании, партнёров по совместным
+          предприятиям или другие компании, которые мы контролируем или которые
+          находятся под общим контролем с нами.
+        </li>
+        <li>
+          <strong>Деловым партнёрам:</strong> мы можем передавать Ваши
+          Персональные данные нашим деловым партнёрам для предложения Вам
+          определённых продуктов, услуг или акций.
+        </li>
+        <li>
+          <strong>Другим пользователям:</strong> если наш Сервис предоставляет
+          общедоступные области, когда Вы делитесь Персональными данными или
+          иным образом взаимодействуете в общедоступных областях с другими
+          пользователями, такая информация может быть просмотрена всеми
+          пользователями и может быть публично распространена за пределами
+          Сервиса.
+        </li>
+        <li>
+          <strong>С Вашего согласия:</strong> мы можем раскрывать Ваши
+          Персональные данные для любых других целей с Вашего согласия.
+        </li>
+      </ul>
+
+      <h3>Хранение Ваших Персональных данных</h3>
+      <p>
+        Компания будет хранить Ваши Персональные данные только до тех пор, пока
+        это необходимо для целей, изложенных в настоящей Политике
+        конфиденциальности. Мы будем хранить и использовать Ваши Персональные
+        данные в объёме, необходимом для выполнения наших юридических
+        обязательств (например, если мы обязаны хранить Ваши данные в
+        соответствии с применимым законодательством), разрешения споров и
+        обеспечения соблюдения наших юридических соглашений и политик.
+      </p>
+      <p>
+        По возможности мы применяем более короткие сроки хранения и/или снижаем
+        идентифицируемость путём удаления, агрегирования или анонимизации данных.
+        Если не указано иное, приведённые ниже сроки хранения являются
+        максимальными («до»), и мы можем удалить или анонимизировать данные
+        раньше, если они больше не нужны для соответствующей цели. Мы применяем
+        различные сроки хранения к различным категориям Персональных данных в
+        зависимости от цели обработки и юридических обязательств:
+      </p>
+      <ul>
+        <li>
+          <p>Информация об аккаунте</p>
+          <ul>
+            <li>
+              Учётные записи пользователей: хранятся в течение всего срока
+              действия учётной записи плюс до 24 месяцев после её закрытия для
+              решения вопросов, возникших после прекращения действия, или
+              разрешения споров.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>Данные службы поддержки</p>
+          <ul>
+            <li>
+              Обращения и переписка: до 24 месяцев с даты закрытия обращения для
+              решения дополнительных запросов, отслеживания качества обслуживания
+              и защиты от потенциальных юридических претензий.
+            </li>
+            <li>
+              Расшифровки чатов: до 24 месяцев для обеспечения качества и
+              обучения персонала.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>Данные об использовании</p>
+          <ul>
+            <li>
+              Данные веб-аналитики (файлы cookie, IP-адреса, идентификаторы
+              устройств): до 24 месяцев с даты сбора, что позволяет нам
+              анализировать тенденции с соблюдением принципов конфиденциальности.
+            </li>
+            <li>
+              Журналы сервера (IP-адреса, время доступа): до 24 месяцев для
+              мониторинга безопасности и устранения неполадок.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p>
+        Данные об использовании хранятся в соответствии со сроками хранения,
+        описанными выше, и могут храниться дольше только в случае необходимости
+        для обеспечения безопасности, предотвращения мошенничества или соблюдения
+        законодательства.
+      </p>
+      <p>
+        Мы можем хранить Персональные данные сверх указанных выше сроков по
+        следующим причинам:
+      </p>
+      <ul>
+        <li>
+          Юридическое обязательство: мы обязаны по закону хранить определённые
+          данные (например, финансовые записи для налоговых органов).
+        </li>
+        <li>
+          Юридические претензии: данные необходимы для установления, осуществления
+          или защиты юридических претензий.
+        </li>
+        <li>
+          Ваш явный запрос: Вы просите нас сохранить определённую информацию.
+        </li>
+        <li>
+          Технические ограничения: данные существуют в резервных системах,
+          запланированных для планового удаления.
+        </li>
+      </ul>
+      <p>
+        Вы можете запросить информацию о том, как долго мы будем хранить Ваши
+        Персональные данные, связавшись с нами.
+      </p>
+      <p>
+        По истечении сроков хранения мы безопасно удаляем или анонимизируем
+        Персональные данные в соответствии со следующими процедурами:
+      </p>
+      <ul>
+        <li>
+          Удаление: Персональные данные удаляются из наших систем и больше не
+          обрабатываются.
+        </li>
+        <li>
+          Хранение резервных копий: остаточные копии могут оставаться в
+          зашифрованных резервных копиях в течение ограниченного периода в
+          соответствии с нашим графиком хранения резервных копий и не
+          восстанавливаются, за исключением случаев, когда это необходимо для
+          обеспечения безопасности, аварийного восстановления или соблюдения
+          законодательства.
+        </li>
+        <li>
+          Анонимизация: в некоторых случаях мы преобразуем Персональные данные в
+          анонимные статистические данные, которые невозможно связать с Вами. Эти
+          анонимизированные данные могут храниться бессрочно для исследований и
+          аналитики.
+        </li>
+      </ul>
+
+      <h3>Передача Ваших Персональных данных</h3>
+      <p>
+        Ваша информация, включая Персональные данные, обрабатывается в офисах
+        Компании и в любых других местах, где находятся стороны, участвующие в
+        обработке. Это означает, что эта информация может быть передана на
+        компьютеры, расположенные за пределами Вашего штата, провинции, страны
+        или иной государственной юрисдикции, где законы о защите данных могут
+        отличаться от законов Вашей юрисдикции, и храниться на них.
+      </p>
+      <p>
+        Если это требуется применимым законодательством, мы обеспечим, чтобы
+        международная передача Ваших Персональных данных осуществлялась при
+        наличии соответствующих гарантий и дополнительных мер, где это уместно.
+        Компания предпримет все разумно необходимые шаги для обеспечения
+        безопасного обращения с Вашими данными в соответствии с настоящей
+        Политикой конфиденциальности, и никакая передача Ваших Персональных
+        данных не будет осуществляться организации или в страну, если не
+        обеспечены надлежащие меры контроля, включая безопасность Ваших данных и
+        другой личной информации.
+      </p>
+
+      <h3>Удаление Ваших Персональных данных</h3>
+      <p>
+        Вы имеете право удалить или запросить содействие в удалении Персональных
+        данных, которые мы собрали о Вас.
+      </p>
+      <p>
+        Наш Сервис может предоставить Вам возможность удалить определённую
+        информацию о Вас из Сервиса.
+      </p>
+      <p>
+        Вы можете обновить, изменить или удалить свою информацию в любое время,
+        войдя в свой Аккаунт, если он у Вас есть, и посетив раздел настроек
+        учётной записи, который позволяет управлять Вашей личной информацией. Вы
+        также можете связаться с нами, чтобы запросить доступ, исправление или
+        удаление любых Персональных данных, которые Вы нам предоставили.
+      </p>
+      <p>
+        Обратите внимание, что мы можем быть обязаны сохранить определённую
+        информацию, если у нас есть юридическое обязательство или законное
+        основание для этого.
+      </p>
+
+      <h3>Раскрытие Ваших Персональных данных</h3>
+
+      <h4>Деловые операции</h4>
+      <p>
+        Если Компания участвует в слиянии, приобретении или продаже активов, Ваши
+        Персональные данные могут быть переданы. Мы уведомим Вас до передачи
+        Ваших Персональных данных и до того, как они станут предметом иной
+        Политики конфиденциальности.
+      </p>
+
+      <h4>Правоохранительные органы</h4>
+      <p>
+        При определённых обстоятельствах Компания может быть обязана раскрыть
+        Ваши Персональные данные, если это требуется по закону или в ответ на
+        обоснованные запросы государственных органов (например, суда или
+        государственного учреждения).
+      </p>
+
+      <h4>Другие юридические требования</h4>
+      <p>
+        Компания может раскрыть Ваши Персональные данные, добросовестно полагая,
+        что такие действия необходимы для:
+      </p>
+      <ul>
+        <li>Соблюдения юридического обязательства</li>
+        <li>Защиты прав или собственности Компании</li>
+        <li>
+          Предотвращения или расследования возможных правонарушений в связи с
+          Сервисом
+        </li>
+        <li>
+          Защиты личной безопасности пользователей Сервиса или общественности
+        </li>
+        <li>Защиты от юридической ответственности</li>
+      </ul>
+
+      <h3>Безопасность Ваших Персональных данных</h3>
+      <p>
+        Безопасность Ваших Персональных данных важна для нас, но помните, что ни
+        один способ передачи данных через Интернет или метод электронного хранения
+        не является на 100% безопасным. Хотя мы стремимся использовать
+        коммерчески разумные средства для защиты Ваших Персональных данных, мы не
+        можем гарантировать их абсолютную безопасность.
+      </p>
+
+      <h2>Конфиденциальность детей</h2>
+      <p>
+        Наш Сервис не предназначен для лиц младше 16 лет. Мы сознательно не
+        собираем личную информацию от лиц младше 16 лет. Если Вы являетесь
+        родителем или опекуном и знаете, что Ваш ребёнок предоставил нам
+        Персональные данные, свяжитесь с нами. Если нам станет известно, что мы
+        собрали Персональные данные от лица младше 16 лет без подтверждения
+        согласия родителей, мы предпримем меры для удаления этой информации с
+        наших серверов.
+      </p>
+      <p>
+        Если нам необходимо полагаться на согласие как правовое основание для
+        обработки Вашей информации и в Вашей стране требуется согласие родителей,
+        мы можем потребовать согласия Вашего родителя до сбора и использования
+        этой информации.
+      </p>
+
+      <h2>Ссылки на другие веб-сайты</h2>
+      <p>
+        Наш Сервис может содержать ссылки на другие веб-сайты, которые не
+        управляются нами. Если Вы нажмёте на ссылку третьей стороны, Вы будете
+        перенаправлены на сайт этой третьей стороны. Мы настоятельно рекомендуем
+        Вам ознакомиться с Политикой конфиденциальности каждого посещаемого Вами
+        сайта.
+      </p>
+      <p>
+        Мы не контролируем и не несём ответственности за содержание, политики
+        конфиденциальности или практики любых сторонних сайтов или сервисов.
+      </p>
+
+      <h2>Изменения в настоящей Политике конфиденциальности</h2>
+      <p>
+        Мы можем время от времени обновлять нашу Политику конфиденциальности. Мы
+        уведомим Вас о любых изменениях, разместив новую Политику
+        конфиденциальности на этой странице.
+      </p>
+      <p>
+        Мы сообщим Вам по электронной почте и/или посредством заметного
+        уведомления в нашем Сервисе до вступления изменений в силу и обновим дату
+        «Последнее обновление» в верхней части настоящей Политики
+        конфиденциальности.
+      </p>
+      <p>
+        Рекомендуем периодически просматривать настоящую Политику
+        конфиденциальности на предмет изменений. Изменения вступают в силу с
+        момента их размещения на этой странице.
+      </p>
+
+      <h2>Свяжитесь с нами</h2>
+      <p>
+        Если у Вас есть вопросы по поводу настоящей Политики конфиденциальности,
+        Вы можете связаться с нами:
+      </p>
+      <ul>
+        <li>
+          По электронной почте:{' '}
+          <a href="mailto:hello@8blocks.io">hello@8blocks.io</a>
+        </li>
+      </ul>
+    </>
+  );
+}

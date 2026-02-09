@@ -34,7 +34,7 @@ export function RelatedArticles({ posts, locale, title = 'Related articles' }: R
     <section className="w-full py-[3.125rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
       <div className="max-w-[77.5rem] mx-auto">
         {/* Title */}
-        <h2 className="font-['Berka'] font-normal text-[clamp(1.75rem,2.1875rem,2.1875rem)] leading-[1.25] text-white mb-[3.125rem]">
+        <h2 className="font-berka font-normal text-[clamp(1.75rem,2.1875rem,2.1875rem)] leading-[1.25] text-white mb-[3.125rem]">
           {title}
         </h2>
 

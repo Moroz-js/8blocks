@@ -1,79 +1,76 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import ServiceCard from '@/components/cards/ServiceCard';
 import { Button } from '@/components/ui';
 import { Container } from '@/components/layout';
+import type { Locale } from '@/i18n/routing';
 
-// Mock data - will be replaced with database data later
-const services = [
-  {
-    id: 1,
-    title: 'Strategic consulting',
-    description: 'We design the economic strategy behind the system. This includes defining token logic, incentives, and partner structure for Web3 projects and businesses entering tokenized ecosystems.',
-    cardType: 'strategic' as const,
-  },
-  {
-    id: 2,
-    title: 'Basic tokenomics',
-    description: 'A foundational token economics model covering supply, emission, and distribution, built to keep the system stable from day one.',
-    cardType: 'basic' as const,
-  },
-  {
-    id: 3,
-    title: 'Advanced tokenomics',
-    description: 'A deeper token economics model for complex ecosystems, extending the foundation with treasury logic, incentive systems, liquidity mechanics, and internal flows.',
-    cardType: 'advanced' as const,
-  },
-  {
-    id: 4,
-    title: 'Tokenomics audit',
-    description: 'A full assessment of an existing token economy, identifying structural risks, broken incentive loops, and scaling bottlenecks.',
-    variant: 'large' as const,
-    cardType: 'audit' as const,
-  },
-];
+interface ServicesProps {
+  locale?: Locale;
+}
 
-export default function Services() {
+export default function Services({ locale = 'en' }: ServicesProps) {
+  const t = useTranslations('services');
+  const tc = useTranslations('common');
+
+  const services = [
+    { id: 1, cardType: 'strategic' as const },
+    { id: 2, cardType: 'basic' as const },
+    { id: 3, cardType: 'advanced' as const },
+    { id: 4, cardType: 'audit' as const, variant: 'large' as const },
+  ];
+
+  const scrollToFooter = () => {
+    const footer = document.querySelector('footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <section id="services" className="w-full py-fluid-lg">
       <Container className="flex flex-col gap-[clamp(1.875rem,3vw,3.1875rem)] items-center">
         {/* Section Title */}
         <h2 className="text-[30px] lg:text-h2 leading-[1.1] font-berka font-normal text-white w-full text-left">
-          How we design and fix broken economics
+          {t('sectionTitle')}
         </h2>
 
-        {/* Services Grid - Responsive: Desktop (complex layout) → Tablet (2 cols) → Mobile (1 col) */}
-        
         {/* Desktop: CSS Grid layout (>= 1024px) */}
         <div className="hidden lg:grid w-full grid-cols-[1fr_18.990625rem] gap-[1.1875rem] auto-rows-[17.125rem]">
-          {/* Top card - full width spanning both columns */}
           <div className="col-span-2">
             <ServiceCard
-              title={services[0].title}
-              description={services[0].description}
-              cardType={services[0].cardType}
+              title={t('strategic.title')}
+              description={t('strategic.description')}
+              cardType="strategic"
+              locale={locale}
+              buttonText={tc('viewDetails')}
             />
           </div>
-
-          {/* Left column - 2 cards stacked */}
           <div className="flex flex-col gap-[1.1875rem]">
             <ServiceCard
-              title={services[1].title}
-              description={services[1].description}
-              cardType={services[1].cardType}
+              title={t('basic.title')}
+              description={t('basic.description')}
+              cardType="basic"
+              locale={locale}
+              buttonText={tc('viewDetails')}
             />
             <ServiceCard
-              title={services[2].title}
-              description={services[2].description}
-              cardType={services[2].cardType}
+              title={t('advanced.title')}
+              description={t('advanced.description')}
+              cardType="advanced"
+              locale={locale}
+              buttonText={tc('viewDetails')}
             />
           </div>
-
-          {/* Right card - tall, spanning 2 rows */}
           <div className="row-span-2">
             <ServiceCard
-              title={services[3].title}
-              description={services[3].description}
+              title={t('audit.title')}
+              description={t('audit.description')}
               variant="large"
-              cardType={services[3].cardType}
+              cardType="audit"
+              locale={locale}
+              buttonText={tc('startNow')}
             />
           </div>
         </div>
@@ -83,10 +80,12 @@ export default function Services() {
           {services.map((service) => (
             <ServiceCard
               key={service.id}
-              title={service.title}
-              description={service.description}
+              title={t(`${service.cardType}.title`)}
+              description={t(`${service.cardType}.description`)}
               cardType={service.cardType}
               variant={service.variant}
+              locale={locale}
+              buttonText={service.cardType === 'audit' ? tc('startNow') : tc('viewDetails')}
             />
           ))}
         </div>
@@ -96,21 +95,26 @@ export default function Services() {
           {services.map((service) => (
             <ServiceCard
               key={service.id}
-              title={service.title}
-              description={service.description}
+              title={t(`${service.cardType}.title`)}
+              description={t(`${service.cardType}.description`)}
               cardType={service.cardType}
               variant={service.variant}
+              locale={locale}
+              buttonText={service.cardType === 'audit' ? tc('startNow') : tc('viewDetails')}
             />
           ))}
         </div>
 
         {/* CTA Button */}
-        <button className="bg-white h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center font-['Berka'] font-medium text-[13px] leading-[1.5] text-black hover:opacity-90 transition-opacity lg:hidden">
-          Talk to the team
+        <button 
+          onClick={scrollToFooter}
+          className="bg-white h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center font-berka font-medium text-[13px] leading-[1.5] text-black hover:opacity-90 transition-opacity lg:hidden"
+        >
+          {tc('talkToTeam')}
         </button>
         <div className="hidden lg:block">
-          <Button variant="secondary">
-            Talk to the team
+          <Button variant="secondary" onClick={scrollToFooter}>
+            {tc('talkToTeam')}
           </Button>
         </div>
       </Container>

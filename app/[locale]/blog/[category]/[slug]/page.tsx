@@ -98,7 +98,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
             {/* Breadcrumbs */}
             <div className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
               <div className="max-w-[77.5rem] mx-auto">
-                <div className="flex items-center gap-[1rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
+                <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
                   <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
                     Home
                   </Link>
@@ -118,10 +118,10 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
 
             <section className="w-full pt-[3.125rem] pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
               <div className="max-w-[77.5rem] mx-auto text-center">
-                <h1 className="font-['Berka'] font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
+                <h1 className="font-berka font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
                   {subcategory.name}
                 </h1>
-                <p className="font-['Berka'] font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-70">
+                <p className="font-berka font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-70">
                   {t('noPosts')}
                 </p>
               </div>
@@ -135,7 +135,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
           {/* Breadcrumbs */}
           <div className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
             <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
-              <div className="flex items-center gap-[1rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
+              <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
                 <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
                   Home
                 </Link>
@@ -156,11 +156,11 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
           {/* Subcategory Header */}
           <section className="w-full pb-[3.125rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
             <div className="max-w-[77.5rem] mx-auto">
-              <h1 className="font-['Berka'] font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
+              <h1 className="font-berka font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
                 {subcategory.name}
               </h1>
               {subcategory.description && (
-                <p className="font-['Berka'] font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-70">
+                <p className="font-berka font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-70">
                   {subcategory.description}
                 </p>
               )}
@@ -229,7 +229,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
           {/* Breadcrumbs */}
           <div className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
             <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
-              <div className="flex items-center gap-[1rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
+              <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
                 <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
                   Home
                 </Link>
@@ -258,7 +258,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                 {/* Main Content */}
                 <article className="w-full order-1">
                   {/* Title */}
-                  <h1 className="font-['Berka'] font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.875rem]">
+                  <h1 className="font-berka font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.875rem]">
                     {post.title}
                   </h1>
 
@@ -270,7 +270,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                       {formattedDate && post.publishedAt && (
                         <time
                           dateTime={post.publishedAt.toISOString()}
-                          className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white opacity-50"
+                          className="font-berka font-medium text-[0.8125rem] leading-[1.5] text-white opacity-50"
                         >
                           {formattedDate}
                         </time>
@@ -283,7 +283,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-white">
                             <path d="M10 3.75C6.5625 3.75 3.65625 5.7625 2.5 8.75C3.65625 11.7375 6.5625 13.75 10 13.75C13.4375 13.75 16.3438 11.7375 17.5 8.75C16.3438 5.7625 13.4375 3.75 10 3.75ZM10 12.5C8.275 12.5 6.875 11.1 6.875 9.375C6.875 7.65 8.275 6.25 10 6.25C11.725 6.25 13.125 7.65 13.125 9.375C13.125 11.1 11.725 12.5 10 12.5ZM10 7.5C8.9625 7.5 8.125 8.3375 8.125 9.375C8.125 10.4125 8.9625 11.25 10 11.25C11.0375 11.25 11.875 10.4125 11.875 9.375C11.875 8.3375 11.0375 7.5 10 7.5Z" fill="currentColor"/>
                           </svg>
-                          <span className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white">
+                          <span className="font-berka font-medium text-[0.8125rem] leading-[1.5] text-white">
                             {post.views || 125}
                           </span>
                         </div>
@@ -294,7 +294,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                             <path d="M10 1.875C5.5125 1.875 1.875 5.5125 1.875 10C1.875 14.4875 5.5125 18.125 10 18.125C14.4875 18.125 18.125 14.4875 18.125 10C18.125 5.5125 14.4875 1.875 10 1.875ZM10 16.5625C6.375 16.5625 3.4375 13.625 3.4375 10C3.4375 6.375 6.375 3.4375 10 3.4375C13.625 3.4375 16.5625 6.375 16.5625 10C16.5625 13.625 13.625 16.5625 10 16.5625Z" fill="currentColor"/>
                             <path d="M10.625 5.9375H9.375V10.625L13.4375 13.0625L14.0625 12.0375L10.625 10.0625V5.9375Z" fill="currentColor"/>
                           </svg>
-                          <span className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white">
+                          <span className="font-berka font-medium text-[0.8125rem] leading-[1.5] text-white">
                             {post.readTime || 10} min
                           </span>
                         </div>
@@ -310,7 +310,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                               className="object-contain"
                             />
                           </div>
-                          <span className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white opacity-50">
+                          <span className="font-berka font-medium text-[0.8125rem] leading-[1.5] text-white opacity-50">
                             By {post.author || '8Blocks'}
                           </span>
                         </div>
@@ -334,7 +334,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                         {post.category && (
                           <div className="absolute top-[0.9375rem] left-[0.9375rem]">
                             <div className="bg-[rgba(233,233,233,0.12)] h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] flex items-center justify-center">
-                              <span className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white">
+                              <span className="font-berka font-medium text-[0.8125rem] leading-[1.5] text-white">
                                 {post.category.name}
                               </span>
                             </div>
@@ -345,7 +345,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
 
                     {/* Excerpt */}
                     {post.excerpt && (
-                      <p className="font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50 overflow-hidden text-ellipsis whitespace-nowrap">
+                      <p className="font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50 overflow-hidden text-ellipsis whitespace-nowrap">
                         {post.excerpt}
                       </p>
                     )}
@@ -355,7 +355,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                   <div
                     className="prose prose-invert max-w-none mb-[3.125rem]"
                     style={{
-                      fontFamily: 'Berka',
+                      fontFamily: 'Manrope',
                       fontSize: '0.9375rem',
                       lineHeight: '1.7',
                       color: 'white',
@@ -400,7 +400,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
             <div className="max-w-[77.5rem] mx-auto">
               <div className="flex flex-col gap-[3.125rem]">
                 {/* Title */}
-                <h2 className="font-['Berka'] font-normal text-[clamp(1.75rem,2.1875rem,2.1875rem)] leading-[1.25] text-white">
+                <h2 className="font-berka font-normal text-[clamp(1.75rem,2.1875rem,2.1875rem)] leading-[1.25] text-white">
                   {locale === 'ru' ? 'Давайте поговорим о вашем токене' : 'Let\'s talk about your token'}
                 </h2>
 
@@ -411,12 +411,12 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                     <input
                       type="text"
                       placeholder={locale === 'ru' ? 'Ваше имя' : 'Your name'}
-                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
+                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
                     />
                     <input
                       type="text"
                       placeholder={locale === 'ru' ? 'Название компании' : 'Company name'}
-                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
+                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
                     />
                   </div>
 
@@ -425,12 +425,12 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                     <input
                       type="text"
                       placeholder={locale === 'ru' ? 'Предпочитаемый мессенджер' : 'Preferred messenger number'}
-                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
+                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
                     />
                     <input
                       type="email"
                       placeholder="Email"
-                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
+                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
                     />
                   </div>
 
@@ -438,13 +438,13 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                   <textarea
                     placeholder={locale === 'ru' ? 'Кратко опишите ваш проект или вопрос' : 'Briefly describe your project or question'}
                     rows={5}
-                    className="!bg-[rgba(255,255,255,0.08)] min-h-[9.375rem] px-[1.5625rem] py-[0.75rem] rounded-[0.5rem] font-['Berka'] font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 w-full resize-none"
+                    className="!bg-[rgba(255,255,255,0.08)] min-h-[9.375rem] px-[1.5625rem] py-[0.75rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 w-full resize-none"
                   />
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="backdrop-blur-[2px] bg-white h-[3rem] px-[1.25rem] py-[0.75rem] rounded-[0.375rem] font-['Berka'] font-medium text-[0.9375rem] leading-[1.5] text-black hover:bg-white/90 transition-colors mt-[1.875rem] w-[9rem]"
+                    className="backdrop-blur-[2px] bg-white h-[3rem] px-[1.25rem] py-[0.75rem] rounded-[0.375rem] font-berka font-medium text-[0.9375rem] leading-[1.5] text-black hover:bg-white/90 transition-colors mt-[1.875rem] w-[9rem]"
                   >
                     {locale === 'ru' ? 'Отправить' : 'Send message'}
                   </button>
@@ -469,14 +469,14 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
       <div className="min-h-screen bg-black">
         <section className="w-full pt-[3.125rem] lg:pt-[4.375rem] pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
           <div className="max-w-[50rem] mx-auto text-center">
-            <h1 className="font-['Berka'] font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
+            <h1 className="font-berka font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
               {t('title')}
             </h1>
             <div className="flex flex-col items-center gap-[1.25rem]">
-              <p className="font-['Berka'] font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-70">
+              <p className="font-berka font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-70">
                 {errorMessage}
               </p>
-              <p className="font-['Berka'] font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-50">
+              <p className="font-berka font-normal text-[clamp(0.875rem,0.9375rem,0.9375rem)] leading-[1.7] text-white opacity-50">
                 {t('tryAgainLater')}
               </p>
             </div>

@@ -90,12 +90,12 @@ export default async function Home({ params }: HomePageProps) {
       
       {/* Sections wrapped by <main> in layout.tsx */}
       <Hero />
-      <Services />
+      <Services locale={locale as 'en' | 'ru'} />
       <About />
       <Partners />
       <Benefits />
       <Cases posts={normalizedPosts} locale={locale as 'en' | 'ru'} />
-      <CallToAction />
+      <CallToAction locale={locale as 'en' | 'ru'} />
     </>
   );
 }

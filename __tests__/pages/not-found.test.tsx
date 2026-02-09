@@ -154,7 +154,7 @@ describe('NotFound Page', () => {
   });
 
   describe('Design System Compliance', () => {
-    it('should use Berka font class', () => {
+    it('should use Manrope font class', () => {
       const { container } = renderNotFound();
       const title = screen.getByText('404 - Page Not Found');
       expect(title).toHaveClass('font-berka');

@@ -3,3 +3,4 @@ export { Header } from './Header';
 export { Logo } from './Logo';
 export { LanguageSwitcher } from './LanguageSwitcher';
 export { Footer } from './Footer';
+export { SiteBanner } from './SiteBanner';

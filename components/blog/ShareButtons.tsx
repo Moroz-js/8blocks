@@ -34,7 +34,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
 
   return (
     <div className="flex flex-col gap-[1.25rem]">
-      <p className="font-['Berka'] font-medium text-[0.8125rem] leading-[1.5] text-white opacity-50">
+      <p className="font-berka font-medium text-[0.8125rem] leading-[1.5] text-white opacity-50">
         Share
       </p>
       <div className="flex gap-[1.1875rem] items-center">

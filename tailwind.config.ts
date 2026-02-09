@@ -39,7 +39,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        berka: ['Berka', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        berka: ['Manrope', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       fontWeight: {
         regular: '400',
@@ -170,12 +170,16 @@ const config: Config = {
       keyframes: {
         marquee: {
           '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(-350%)' },
+        },
+        'marquee-mobile': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-700%)' },
         },
       },
       animation: {
-        marquee: 'marquee 30s linear infinite',
-        'marquee-mobile': 'marquee 15s linear infinite',
+        marquee: 'marquee 120s linear infinite',
+        'marquee-mobile': 'marquee-mobile 40s linear infinite',
       },
     },
   },

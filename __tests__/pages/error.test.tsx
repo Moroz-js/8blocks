@@ -215,7 +215,7 @@ describe('Error Page', () => {
       expect(mainDiv).toHaveClass('bg-black');
     });
 
-    it('should use Berka font', () => {
+    it('should use Manrope font', () => {
       renderErrorPage();
 
       const title = screen.getByText('Something went wrong');
