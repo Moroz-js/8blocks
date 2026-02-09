@@ -66,8 +66,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
     return (
       <div className="min-h-screen bg-black">
         {/* Breadcrumbs */}
-        <div className="w-full pt-[3.125rem] lg:pt-[7.125rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
-          <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
+        <div className="w-full pt-[6.25rem] lg:pt-[10rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
+          <div className="max-w-[77.5rem] mx-auto">
             <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
               <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
                 Home
@@ -165,7 +165,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
                     href={`/${locale}/blog/${category.slug}`}
                     className="backdrop-blur-[2px] bg-white flex items-center h-[2.25rem] lg:h-[3rem] px-[0.9375rem] lg:px-[1.25rem] py-[0.625rem] lg:py-[0.75rem] rounded-[0.5rem] lg:rounded-[0.375rem] font-berka font-medium text-[0.8125rem] lg:text-[0.9375rem] leading-[1.5] text-black hover:opacity-90 transition-opacity"
                   >
-                    See all articles
+                    {t('seeAllArticles')}
                   </Link>
                 </div>
               </div>
@@ -179,7 +179,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
     return (
       <div className="min-h-screen bg-black">
-        <section className="w-full pt-[3.125rem] lg:pt-[7.125rem] pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
+        <section className="w-full pt-[6.25rem] lg:pt-[10rem] pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
           <div className="max-w-[77.5rem] mx-auto text-center">
             <h1 className="font-berka font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.25rem]">
               {t('title')}

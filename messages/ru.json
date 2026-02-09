@@ -166,7 +166,8 @@
     "postsInCategory": "Статьи в категории",
     "postsWithTag": "Статьи с тегом",
     "tryAgainLater": "Пожалуйста, обновите страницу или вернитесь позже.",
-    "recentPosts": "Последние статьи"
+    "recentPosts": "Последние статьи",
+    "seeAllArticles": "Смотреть все статьи"
   },
   "notFound": {
     "title": "404 - Страница не найдена",

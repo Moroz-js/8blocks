@@ -166,7 +166,8 @@
     "postsInCategory": "Posts in",
     "postsWithTag": "Posts tagged with",
     "tryAgainLater": "Please try refreshing the page or come back later.",
-    "recentPosts": "Recent Posts"
+    "recentPosts": "Recent Posts",
+    "seeAllArticles": "See all articles"
   },
   "notFound": {
     "title": "404 - Page Not Found",
