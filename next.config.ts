@@ -3,15 +3,15 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
-  // Base path for all routes - required for assets to load correctly
-  basePath: '/new',
-  
-  // Asset prefix to ensure all assets use /new prefix
-  assetPrefix: '/new',
-  
-  // Trailing slash needed for basePath root to work with next-intl
-  trailingSlash: true,
+  // Base path only in production (for /new deployment)
+  ...(isProd && {
+    basePath: '/new',
+    assetPrefix: '/new',
+    trailingSlash: true,
+  }),
   
   // Output standalone for Docker
   output: 'standalone',
