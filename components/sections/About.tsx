@@ -6,7 +6,6 @@ import Image from 'next/image';
 
 export default function About() {
   const t = useTranslations('about');
-  const tc = useTranslations('common');
 
   const teamMembers = [
     { id: 1, image: '/assets/team/team-1.png' },
