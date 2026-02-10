@@ -73,6 +73,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Send thank you email to the user
+    console.log('📧 Attempting to send thank you email to:', body.email);
     try {
       await sendThankYouEmail({
         name: body.name,
@@ -80,13 +81,14 @@ export async function POST(request: NextRequest) {
         message: body.message,
         locale: body.locale,
       });
-      console.log('Thank you email sent to:', body.email);
+      console.log('✅ Thank you email sent to:', body.email);
     } catch (emailError) {
-      console.error('Failed to send thank you email:', emailError);
+      console.error('❌ Failed to send thank you email:', emailError);
       // Continue even if email fails - don't block the form submission
     }
 
     // Send notification to admin (optional)
+    console.log('📧 Attempting to send admin notification');
     try {
       await sendAdminNotification({
         name: body.name,
@@ -94,9 +96,9 @@ export async function POST(request: NextRequest) {
         message: body.message,
         locale: body.locale,
       });
-      console.log('Admin notification sent');
+      console.log('✅ Admin notification sent');
     } catch (emailError) {
-      console.error('Failed to send admin notification:', emailError);
+      console.error('❌ Failed to send admin notification:', emailError);
       // Continue even if admin notification fails
     }
 

@@ -60,26 +60,28 @@ export async function POST(request: NextRequest) {
     }
 
     // Send confirmation email to subscriber
+    console.log('📧 Attempting to send newsletter confirmation to:', body.email);
     try {
       await sendNewsletterConfirmation({
         email: body.email,
         locale: body.locale || 'en',
       });
-      console.log('Newsletter confirmation email sent to:', body.email);
+      console.log('✅ Newsletter confirmation email sent to:', body.email);
     } catch (emailError) {
-      console.error('Failed to send confirmation email:', emailError);
+      console.error('❌ Failed to send confirmation email:', emailError);
       // Continue even if email fails
     }
 
     // Notify admin
+    console.log('📧 Attempting to send admin notification');
     try {
       await sendAdminNewsletterNotification({
         email: body.email,
         locale: body.locale || 'en',
       });
-      console.log('Admin newsletter notification sent');
+      console.log('✅ Admin newsletter notification sent');
     } catch (emailError) {
-      console.error('Failed to send admin notification:', emailError);
+      console.error('❌ Failed to send admin notification:', emailError);
       // Continue even if admin notification fails
     }
 

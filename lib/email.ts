@@ -30,20 +30,36 @@ const createTransporter = () => {
 
   // Validate required config
   if (!config.host || !config.auth.user || !config.auth.pass) {
+    console.error('SMTP config validation failed:', {
+      hasHost: !!config.host,
+      hasUser: !!config.auth.user,
+      hasPass: !!config.auth.pass,
+      host: config.host,
+      user: config.auth.user,
+    });
     throw new Error('SMTP configuration is incomplete. Check your environment variables.');
   }
+
+  console.log('📬 Creating SMTP transporter:', {
+    host: config.host,
+    port: config.port,
+    secure: config.secure,
+    user: config.auth.user,
+  });
 
   return nodemailer.createTransport(config);
 };
 
 // Generic email sender
 export async function sendEmail(options: EmailOptions): Promise<void> {
+  console.log('📨 sendEmail called for:', options.to, 'subject:', options.subject);
   try {
     const transporter = createTransporter();
     
     const fromEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
     const fromName = '8 Blocks';
     
+    console.log('📤 Sending email from:', fromEmail, 'to:', options.to);
     await transporter.sendMail({
       from: `"${fromName}" <${fromEmail}>`,
       to: options.to,
@@ -52,9 +68,9 @@ export async function sendEmail(options: EmailOptions): Promise<void> {
       html: options.html,
     });
 
-    console.log('Email sent successfully to:', options.to);
+    console.log('✅ Email sent successfully to:', options.to);
   } catch (error) {
-    console.error('Failed to send email:', error);
+    console.error('❌ Failed to send email:', error);
     throw new Error('Failed to send email');
   }
 }
