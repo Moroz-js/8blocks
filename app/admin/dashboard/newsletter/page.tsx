@@ -151,8 +151,8 @@ export default function NewsletterPage() {
                       >
                         {subscriber.email}
                       </a>
-                      <span className="text-sm text-white/40 shrink-0">
-                        {subscriber.locale === 'ru' ? '🇷🇺 RU' : '🇬🇧 EN'}
+                      <span className="text-sm text-white/40 shrink-0 uppercase">
+                        {subscriber.locale}
                       </span>
                       {subscriber.unsubscribedAt && (
                         <span className="text-sm text-red-400 shrink-0">

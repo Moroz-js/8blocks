@@ -105,9 +105,7 @@ export default function About() {
                   <p className="font-berka font-normal text-[18.5px] leading-[1.2] text-white">+8</p>
                 </div>
               </div>
-              <button className="bg-[rgba(233,233,233,0.12)] h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center font-berka font-medium text-[13px] leading-[1.5] text-white hover:opacity-80 transition-opacity">
-                {tc('viewDetails')}
-              </button>
+             
             </div>
           </div>
         </div>

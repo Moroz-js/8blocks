@@ -99,7 +99,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
             {/* Breadcrumbs */}
             <div className="w-full pt-[6.25rem] lg:pt-[10rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
               <div className="max-w-[77.5rem] mx-auto">
-                <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
+                <div className="flex flex-wrap items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
                   <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
                     Home
                   </Link>
@@ -136,7 +136,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
           {/* Breadcrumbs */}
           <div className="w-full pt-[6.25rem] lg:pt-[10rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
             <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
-              <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
+              <div className="flex flex-wrap items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
                 <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
                   Home
                 </Link>
@@ -230,7 +230,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
           {/* Breadcrumbs */}
           <div className="w-full pt-[3.125rem] lg:pt-[7.375rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
             <div className="max-w-[77.5rem] mx-auto mt-[1.875rem]">
-              <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
+              <div className="flex flex-wrap items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
                 <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
                   Home
                 </Link>
@@ -266,7 +266,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                   {/* Meta Info and Featured Image Card */}
                   <div className="flex flex-col gap-[1.25rem] mb-[3.125rem]">
                     {/* Meta Row */}
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between gap-[1rem]">
                       {/* Date */}
                       {formattedDate && post.publishedAt && (
                         <time

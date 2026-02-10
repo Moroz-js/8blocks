@@ -68,7 +68,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
         {/* Breadcrumbs */}
         <div className="w-full pt-[6.25rem] lg:pt-[10rem] pb-[1.875rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
           <div className="max-w-[77.5rem] mx-auto">
-            <div className="flex items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
+            <div className="flex flex-wrap items-center gap-[1rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-40">
               <Link href={`/${locale}`} className="hover:opacity-100 transition-opacity">
                 Home
               </Link>
