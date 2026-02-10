@@ -25,6 +25,7 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
           ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
           GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
@@ -36,7 +37,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           command_timeout: 15m
           script_stop: true
-          envs: PROJECT_NAME,DOMAIN,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,SMTP_HOST,SMTP_PORT,SMTP_USER,SMTP_PASSWORD,SMTP_FROM,ADMIN_USERNAME,ADMIN_PASSWORD,GOOGLE_ANALYTICS_ID,DEPLOY_MODE
+          envs: PROJECT_NAME,DOMAIN,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,SMTP_HOST,SMTP_PORT,SMTP_USER,SMTP_PASSWORD,SMTP_FROM,ADMIN_EMAIL,ADMIN_USERNAME,ADMIN_PASSWORD,GOOGLE_ANALYTICS_ID,DEPLOY_MODE
           script: |
             set -euo pipefail
 
@@ -66,7 +67,7 @@ jobs:
             # ==========================================
             echo "⚙️  Generating .env"
             umask 077
-            printf '%s\n' "PROJECT_NAME=${PROJECT_NAME}" "NODE_ENV=production" "NEXT_PUBLIC_SITE_URL=https://${DOMAIN}/new" "POSTGRES_USER=${POSTGRES_USER}" "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" "POSTGRES_DB=${POSTGRES_DB}" "DATABASE_URL=postgresql://appuser:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public" "SMTP_HOST=${SMTP_HOST}" "SMTP_PORT=${SMTP_PORT}" "SMTP_USER=${SMTP_USER}" "SMTP_PASSWORD=${SMTP_PASSWORD}" "SMTP_FROM=${SMTP_FROM}" "ADMIN_USERNAME=${ADMIN_USERNAME}" "ADMIN_PASSWORD=${ADMIN_PASSWORD}" "GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}" "UPLOAD_DIR=public/uploads" > .env
+            printf '%s\n' "PROJECT_NAME=${PROJECT_NAME}" "NODE_ENV=production" "NEXT_PUBLIC_SITE_URL=https://${DOMAIN}" "POSTGRES_USER=${POSTGRES_USER}" "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" "POSTGRES_DB=${POSTGRES_DB}" "DATABASE_URL=postgresql://appuser:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public" "SMTP_HOST=${SMTP_HOST}" "SMTP_PORT=${SMTP_PORT}" "SMTP_USER=${SMTP_USER}" "SMTP_PASSWORD=${SMTP_PASSWORD}" "SMTP_FROM=${SMTP_FROM}" "ADMIN_EMAIL=${ADMIN_EMAIL}" "ADMIN_USERNAME=${ADMIN_USERNAME}" "ADMIN_PASSWORD=${ADMIN_PASSWORD}" "GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}" "UPLOAD_DIR=public/uploads" > .env
             chmod 600 .env
             echo "✓ .env created"
 
@@ -254,7 +255,7 @@ jobs:
             echo "🏥 Health Check"
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             sleep 3
-            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/new/ || echo "000")
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/ || echo "000")
             if echo "$HTTP_CODE" | grep -qE "^(200|301|302|307|308)$"; then
               echo "✅ App is responding (HTTP $HTTP_CODE)"
             else
@@ -264,5 +265,5 @@ jobs:
             echo ""
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             echo "✅ Deployment completed! (mode: ${DEPLOY_MODE})"
-            echo "🌐 Site: https://${DOMAIN}/new"
+            echo "🌐 Site: https://${DOMAIN}"
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

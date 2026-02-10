@@ -55,7 +55,7 @@ services:
     volumes:
       - uploads:/app/public/uploads
     healthcheck:
-      test: ['CMD-SHELL', 'wget --no-verbose --tries=1 --spider http://localhost:3000/new/ || exit 0']
+      test: ['CMD-SHELL', 'wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 0']
       interval: 30s
       timeout: 10s
       retries: 3

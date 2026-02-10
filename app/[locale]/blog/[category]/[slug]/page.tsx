@@ -14,6 +14,7 @@ import { Pagination } from '@/components/ui/Pagination';
 import { ShareButtons } from '@/components/blog/ShareButtons';
 import { TableOfContents } from '@/components/blog/TableOfContents';
 import { RelatedArticles } from '@/components/blog/RelatedArticles';
+import { BlogContactForm } from '@/components/forms/BlogContactForm';
 import { generateBlogPostMetadata, generateBlogPostStructuredData, generatePageMetadata } from '@/lib/seo/metadata';
 import { getUserFriendlyErrorMessage, isApiError } from '@/lib/errors';
 import { parseAndAddIdsToHeadings } from '@/lib/blog-utils';
@@ -327,8 +328,6 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                           className="object-cover"
                           priority
                           sizes="(max-width: 1024px) 100vw, 813px"
-                          placeholder="blur"
-                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg=="
                         />
                         {/* Category Tag Overlay */}
                         {post.category && (
@@ -404,51 +403,8 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                   {locale === 'ru' ? 'Давайте поговорим о вашем токене' : 'Let\'s talk about your token'}
                 </h2>
 
-                {/* Form */}
-<form className="flex flex-col gap-[1.0625rem] w-full max-w-[44.3125rem]">
-                  {/* Row 1: Name and Company */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-[0.9375rem]">
-                    <input
-                      type="text"
-                      placeholder={locale === 'ru' ? 'Ваше имя' : 'Your name'}
-                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
-                    />
-                    <input
-                      type="text"
-                      placeholder={locale === 'ru' ? 'Название компании' : 'Company name'}
-                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
-                    />
-                  </div>
-
-                  {/* Row 2: Messenger and Email */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-[0.9375rem]">
-                    <input
-                      type="text"
-                      placeholder={locale === 'ru' ? 'Предпочитаемый мессенджер' : 'Preferred messenger number'}
-                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
-                    />
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20"
-                    />
-                  </div>
-
-                  {/* Row 3: Message (full width, textarea) */}
-                  <textarea
-                    placeholder={locale === 'ru' ? 'Кратко опишите ваш проект или вопрос' : 'Briefly describe your project or question'}
-                    rows={5}
-                    className="!bg-[rgba(255,255,255,0.08)] min-h-[9.375rem] px-[1.5625rem] py-[0.75rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 w-full resize-none"
-                  />
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="backdrop-blur-[2px] bg-white h-[3rem] px-[1.25rem] py-[0.75rem] rounded-[0.375rem] font-berka font-medium text-[0.9375rem] leading-[1.5] text-black hover:bg-white/90 transition-colors mt-[1.875rem] w-[9rem]"
-                  >
-                    {locale === 'ru' ? 'Отправить' : 'Send message'}
-                  </button>
-                </form>
+                {/* Extended Blog Contact Form */}
+                <BlogContactForm locale={locale as Locale} />
               </div>
             </div>
           </section>

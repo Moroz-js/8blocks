@@ -1,6 +1,9 @@
+'use client';
+
 import { Button } from '@/components/ui';
 import Image from 'next/image';
 import type { Locale } from '@/i18n/routing';
+import { useState } from 'react';
 
 interface ServiceCardProps {
   title: string;
@@ -19,13 +22,39 @@ export default function ServiceCard({
   locale = 'en',
   buttonText
 }: ServiceCardProps) {
+  const [isLoading, setIsLoading] = useState(false);
   const btnLabel = buttonText || (cardType === 'audit' ? 'Start now' : 'View details');
   const isLarge = variant === 'large';
   
   // Encoded PDF URLs for proper download
   const pdfUrl = locale === 'ru' 
-    ? '/new/presentations/8Blocks%20%D0%A3%D1%81%D0%BB%D1%83%D0%B3%D0%B8.pdf' 
-    : '/new/presentations/8Blocks%20Services.pdf';
+    ? '/presentations/8Blocks%20%D0%A3%D1%81%D0%BB%D1%83%D0%B3%D0%B8.pdf' 
+    : '/presentations/8Blocks%20Services.pdf';
+
+  const handleDownload = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      // Fetch the PDF file
+      const response = await fetch(pdfUrl);
+      const blob = await response.blob();
+      
+      // Create a download link
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = pdfUrl.split('/').pop() || 'presentation.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Download failed:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   
   // Exact widths from Figma for text blocks (desktop only)
   const textWidths = {
@@ -74,7 +103,7 @@ export default function ServiceCard({
             width={400}
             height={400}
             className="w-full h-auto object-contain"
-            quality={95}
+            unoptimized
           />
         </div>
       )}
@@ -87,7 +116,7 @@ export default function ServiceCard({
             width={400}
             height={400}
             className="w-[80%] h-auto object-contain"
-            quality={95}
+            unoptimized
           />
         </div>
       )}
@@ -101,7 +130,7 @@ export default function ServiceCard({
             height={400}
             className="w-[23%] h-auto object-contain ml-auto"
             style={{ marginRight: '55px' }}
-            quality={95}
+            unoptimized
           />
         </div>
       )}
@@ -115,7 +144,7 @@ export default function ServiceCard({
             height={400}
             className="w-[87%] h-auto object-contain"
             style={{ marginBottom: '10px' }}
-            quality={95}
+            unoptimized
           />
         </div>
       )}
@@ -160,8 +189,8 @@ export default function ServiceCard({
         {/* Mobile tag button inside text block */}
         <a
           href={pdfUrl}
-          download
-          className={`bg-[rgba(233,233,233,0.12)] h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center w-fit font-berka font-medium text-[13px] leading-[1.5] text-white lg:hidden hover:opacity-80 transition-opacity`}
+          onClick={handleDownload}
+          className={`bg-[rgba(233,233,233,0.12)] h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center w-fit font-berka font-medium text-[13px] leading-[1.5] text-white lg:hidden hover:opacity-80 transition-opacity ${isLoading ? 'pointer-events-none animate-pulse' : ''}`}
         >
           {btnLabel}
         </a>
@@ -171,9 +200,10 @@ export default function ServiceCard({
       <div className={`mt-auto relative z-10 hidden lg:block ${cardType === 'audit' ? 'text-center' : ''}`}>
         <a
           href={pdfUrl}
-          download
+          onClick={handleDownload}
+          className={isLoading ? 'pointer-events-none' : ''}
         >
-          <Button variant="primary" className={`max-w-[125px] ${cardType === 'audit' ? 'mx-auto' : ''}`}>
+          <Button variant="primary" className={`max-w-[125px] ${cardType === 'audit' ? 'mx-auto' : ''} ${isLoading ? 'animate-pulse' : ''}`}>
             {btnLabel}
           </Button>
         </a>

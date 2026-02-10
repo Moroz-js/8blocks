@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-
+export const runtime = 'nodejs';
 interface EmailOptions {
   to: string;
   subject: string;
@@ -24,6 +24,8 @@ const createTransporter = () => {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASSWORD,
     },
+    requireTLS: true,
+
   };
 
   // Validate required config
@@ -266,8 +268,8 @@ export async function sendThankYouEmail(data: ThankYouEmailData): Promise<void> 
 
 // Optional: Send notification to admin about new contact form submission
 export async function sendAdminNotification(data: ThankYouEmailData): Promise<void> {
-  // Use SMTP_FROM as admin email if SMTP_ADMIN_EMAIL is not set
-  const adminEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
+  // Use dedicated admin email or fallbacks
+  const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_ADMIN_EMAIL || process.env.SMTP_FROM || process.env.SMTP_USER;
   
   if (!adminEmail) {
     console.log('Admin email not configured, skipping notification');
@@ -332,3 +334,207 @@ Submitted at ${new Date().toISOString()}
     text,
   });
 }
+
+// Newsletter confirmation email
+interface NewsletterData {
+  email: string;
+  locale: 'en' | 'ru';
+}
+
+export async function sendNewsletterConfirmation(data: NewsletterData): Promise<void> {
+  const translations = {
+    en: {
+      subject: 'Welcome to 8 Blocks Newsletter',
+      greeting: 'Hello!',
+      thankYou: 'Thank you for subscribing to our newsletter!',
+      whatToExpect: 'What to expect:',
+      bullet1: 'Latest insights on tokenomics and Web3 economics',
+      bullet2: 'Case studies and success stories',
+      bullet3: 'Exclusive content and early access to our articles',
+      frequency: 'We typically send 1-2 emails per month. No spam, we promise!',
+      signature: 'Best regards,',
+      team: 'The 8 Blocks Team',
+      footer: 'You can unsubscribe at any time by replying to this email.',
+    },
+    ru: {
+      subject: 'Добро пожаловать в рассылку 8 Blocks',
+      greeting: 'Здравствуйте!',
+      thankYou: 'Спасибо за подписку на нашу рассылку!',
+      whatToExpect: 'Что вас ждет:',
+      bullet1: 'Последние инсайты о токеномике и Web3 экономике',
+      bullet2: 'Кейсы и истории успеха',
+      bullet3: 'Эксклюзивный контент и ранний доступ к нашим статьям',
+      frequency: 'Обычно мы отправляем 1-2 письма в месяц. Без спама, обещаем!',
+      signature: 'С уважением,',
+      team: 'Команда 8 Blocks',
+      footer: 'Вы можете отписаться в любое время, ответив на это письмо.',
+    },
+  };
+
+  const t = data.locale === 'ru' ? translations.ru : translations.en;
+
+  const html = `
+<!DOCTYPE html>
+<html lang="${data.locale}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${t.subject}</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #000000; color: #ffffff;">
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #000000;">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 12px;">
+          
+          <!-- Header -->
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; border-bottom: 1px solid #1a1a1a;">
+              <h1 style="margin: 0; font-size: 32px; font-weight: bold; color: #75fb63;">8 Blocks</h1>
+            </td>
+          </tr>
+
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; font-size: 24px; font-weight: 600; color: #ffffff;">${t.greeting}</h2>
+              
+              <p style="margin: 0 0 30px; font-size: 16px; line-height: 1.6; color: #e0e0e0;">
+                ${t.thankYou}
+              </p>
+
+              <!-- What to Expect -->
+              <div style="margin: 0 0 30px;">
+                <h3 style="margin: 0 0 15px; font-size: 18px; font-weight: 600; color: #ffffff;">${t.whatToExpect}</h3>
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr>
+                    <td style="padding: 8px 0; font-size: 15px; line-height: 1.6; color: #e0e0e0;">
+                      ✓ ${t.bullet1}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px 0; font-size: 15px; line-height: 1.6; color: #e0e0e0;">
+                      ✓ ${t.bullet2}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px 0; font-size: 15px; line-height: 1.6; color: #e0e0e0;">
+                      ✓ ${t.bullet3}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <p style="margin: 0 0 30px; font-size: 15px; line-height: 1.6; color: #999999; font-style: italic;">
+                ${t.frequency}
+              </p>
+
+              <p style="margin: 0 0 5px; font-size: 16px; line-height: 1.6; color: #e0e0e0;">
+                ${t.signature}
+              </p>
+              <p style="margin: 0; font-size: 16px; font-weight: 600; color: #75fb63;">
+                ${t.team}
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 30px 40px; text-align: center; border-top: 1px solid #1a1a1a;">
+              <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #666666;">
+                ${t.footer}
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `.trim();
+
+  const text = `
+${t.greeting}
+
+${t.thankYou}
+
+${t.whatToExpect}
+- ${t.bullet1}
+- ${t.bullet2}
+- ${t.bullet3}
+
+${t.frequency}
+
+${t.signature}
+${t.team}
+
+---
+${t.footer}
+  `.trim();
+
+  await sendEmail({
+    to: data.email,
+    subject: t.subject,
+    html,
+    text,
+  });
+}
+
+// Notify admin about new newsletter subscription
+export async function sendAdminNewsletterNotification(data: NewsletterData): Promise<void> {
+  const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_ADMIN_EMAIL || process.env.SMTP_FROM || process.env.SMTP_USER;
+  
+  if (!adminEmail) {
+    console.log('Admin email not configured, skipping newsletter notification');
+    return;
+  }
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>New Newsletter Subscription</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
+  <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h2 style="margin: 0 0 20px; color: #333333;">New Newsletter Subscription</h2>
+    
+    <table style="width: 100%; border-collapse: collapse;">
+      <tr>
+        <td style="padding: 12px; border-bottom: 1px solid #e0e0e0; font-weight: 600; color: #666666; width: 120px;">Email:</td>
+        <td style="padding: 12px; border-bottom: 1px solid #e0e0e0; color: #333333;"><a href="mailto:${data.email}" style="color: #007bff; text-decoration: none;">${data.email}</a></td>
+      </tr>
+      <tr>
+        <td style="padding: 12px; border-bottom: 1px solid #e0e0e0; font-weight: 600; color: #666666;">Language:</td>
+        <td style="padding: 12px; border-bottom: 1px solid #e0e0e0; color: #333333;">${data.locale === 'ru' ? 'Русский' : 'English'}</td>
+      </tr>
+    </table>
+    
+    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0; text-align: center; color: #999999; font-size: 13px;">
+      Subscribed at ${new Date().toLocaleString('en-US', { timeZone: 'UTC' })} UTC
+    </div>
+  </div>
+</body>
+</html>
+  `.trim();
+
+  const text = `
+New Newsletter Subscription
+
+Email: ${data.email}
+Language: ${data.locale === 'ru' ? 'Русский' : 'English'}
+
+Subscribed at ${new Date().toISOString()}
+  `.trim();
+
+  await sendEmail({
+    to: adminEmail,
+    subject: `New Newsletter Subscription: ${data.email}`,
+    html,
+    text,
+  });
+}
+

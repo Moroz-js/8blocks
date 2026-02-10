@@ -1,9 +1,6 @@
-# Block all crawlers from indexing /new path
+# Allow all crawlers
 User-agent: *
-Disallow: /new/
-
-# Allow crawling of the root site
 Allow: /
 
-# Sitemap for the main site (when ready)
+# Sitemap (when ready)
 # Sitemap: https://8blocks.io/sitemap.xml

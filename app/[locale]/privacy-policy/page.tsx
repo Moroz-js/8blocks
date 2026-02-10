@@ -31,7 +31,7 @@ export default async function PrivacyPolicyPage({
   setRequestLocale(locale);
 
   return (
-    <section className="w-full bg-background-primary py-[clamp(2.5rem,5vw,5rem)]">
+    <section className="w-full lg:pt-[10rem] bg-background-primary py-[clamp(2.5rem,5vw,5rem)]">
       <div className="container-fluid content-width">
         <article className="prose max-w-none text-body leading-[1.7] text-text-secondary">
           {locale === 'ru' ? <ContentRu /> : <ContentEn />}

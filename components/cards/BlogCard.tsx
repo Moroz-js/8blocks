@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import { NormalizedBlogPost } from '@/lib/types';
 
 interface BlogCardProps {
@@ -17,6 +18,7 @@ export default function BlogCard({
   locale,
 }: BlogCardProps) {
   const tc = useTranslations('common');
+  const [imageError, setImageError] = useState(false);
   // Format date with fallback for invalid dates
   const formattedDate = post.publishedAt && post.publishedAt instanceof Date && !isNaN(post.publishedAt.getTime())
     ? new Intl.DateTimeFormat(locale, {
@@ -34,7 +36,7 @@ export default function BlogCard({
       >
         <article className="flex flex-col lg:flex-row gap-[1.25rem] lg:gap-[2.5rem]">
           {/* Image - Left side, flex-1 */}
-          {post.featuredImage && (
+          {post.featuredImage && !imageError && (
             <div className="relative w-full lg:flex-1 lg:aspect-[8/5] lg:min-h-[250px] bg-black border border-[rgba(255,255,255,0.2)] rounded-[0.5rem] overflow-hidden group-hover:border-[rgba(255,255,255,0.3)] transition-colors">
               {/* Mobile: normal image */}
               <Image
@@ -45,8 +47,7 @@ export default function BlogCard({
                 className="object-cover w-full h-auto lg:hidden"
                 sizes="100vw"
                 loading="lazy"
-                placeholder="blur"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg=="
+                onError={() => setImageError(true)}
               />
               {/* Desktop: fill image */}
               <Image
@@ -56,8 +57,7 @@ export default function BlogCard({
                 className="object-cover hidden lg:block"
                 sizes="60vw"
                 loading="lazy"
-                placeholder="blur"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg=="
+                onError={() => setImageError(true)}
               />
               {/* Category Tag Overlay */}
               {post.category && (
@@ -136,7 +136,7 @@ export default function BlogCard({
         {/* Cover and Date */}
         <div className="flex flex-col gap-[0.625rem] items-start w-full">
           {/* Cover Image with Category Tag */}
-          {post.featuredImage && (
+          {post.featuredImage && !imageError && (
             <div className="relative w-full aspect-[267/167] lg:aspect-[397.67/250] bg-black border border-[rgba(255,255,255,0.2)] rounded-[0.5rem] overflow-hidden group-hover:border-[rgba(255,255,255,0.3)] transition-colors">
               <Image
                 src={post.featuredImage.url}
@@ -145,8 +145,7 @@ export default function BlogCard({
                 className="object-cover"
                 sizes="(max-width: 1024px) 50vw, 370px"
                 loading="lazy"
-                placeholder="blur"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg=="
+                onError={() => setImageError(true)}
               />
               {/* Category Tag overlay */}
               {post.category && (

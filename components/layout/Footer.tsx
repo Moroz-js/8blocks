@@ -13,18 +13,46 @@ interface FooterProps {
 export function Footer({ locale }: FooterProps) {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [error, setError] = useState('');
   const t = useTranslations('footer');
 
   const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError('');
+    setSubmitSuccess(false);
     
-    console.log('Newsletter subscription:', email);
-    
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          locale,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (response.status === 409) {
+          setError(locale === 'ru' ? 'Этот email уже подписан' : 'This email is already subscribed');
+        } else {
+          throw new Error(data.error || 'Failed to subscribe');
+        }
+        return;
+      }
+
+      setSubmitSuccess(true);
       setEmail('');
-    }, 1000);
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    } catch (err) {
+      console.error('Newsletter subscription error:', err);
+      setError(locale === 'ru' ? 'Ошибка подписки. Попробуйте снова.' : 'Failed to subscribe. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -77,7 +105,7 @@ export function Footer({ locale }: FooterProps) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex size-[3.125rem] shrink-0 items-center justify-center rounded-[0.5rem] bg-[#29292A] hover:bg-[#3A3A3B] transition-colors"
+                  className={`flex size-[3.125rem] shrink-0 items-center justify-center rounded-[0.5rem] bg-[#29292A] hover:bg-[#3A3A3B] transition-colors ${isSubmitting ? 'animate-pulse opacity-70' : ''}`}
                   aria-label={t('newsletter.subscribe') || 'Subscribe'}
                 >
                   <svg width="18" height="17" viewBox="0 0 18 17" fill="none">
@@ -85,6 +113,23 @@ export function Footer({ locale }: FooterProps) {
                   </svg>
                 </button>
               </form>
+              
+              {/* Success Message */}
+              {submitSuccess && (
+                <div className="rounded-lg bg-[#75fb63]/10 border border-[#75fb63] p-3">
+                  <p className="text-sm text-[#75fb63] font-berka">
+                    {locale === 'ru' ? '✓ Спасибо за подписку!' : '✓ Thank you for subscribing!'}
+                  </p>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {error && (
+                <div className="rounded-lg bg-[#ff0300]/10 border border-[#ff0300] p-3">
+                  <p className="text-sm text-[#ff0300] font-berka">{error}</p>
+                </div>
+              )}
+              
               <p className="font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50">
                 {t('newsletter.subscribeText')}
               </p>
@@ -168,7 +213,7 @@ export function Footer({ locale }: FooterProps) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex size-[3.125rem] shrink-0 items-center justify-center rounded-[0.5rem] bg-[#29292A] hover:bg-[#3A3A3B] transition-colors"
+                  className={`flex size-[3.125rem] shrink-0 items-center justify-center rounded-[0.5rem] bg-[#29292A] hover:bg-[#3A3A3B] transition-colors ${isSubmitting ? 'animate-pulse opacity-70' : ''}`}
                   aria-label={t('newsletter.subscribe') || 'Subscribe'}
                 >
                   <svg width="18" height="17" viewBox="0 0 18 17" fill="none">
@@ -176,6 +221,23 @@ export function Footer({ locale }: FooterProps) {
                   </svg>
                 </button>
               </form>
+              
+              {/* Success Message */}
+              {submitSuccess && (
+                <div className="rounded-lg bg-[#75fb63]/10 border border-[#75fb63] p-3">
+                  <p className="text-sm text-[#75fb63] font-berka">
+                    {locale === 'ru' ? '✓ Спасибо за подписку!' : '✓ Thank you for subscribing!'}
+                  </p>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {error && (
+                <div className="rounded-lg bg-[#ff0300]/10 border border-[#ff0300] p-3">
+                  <p className="text-sm text-[#ff0300] font-berka">{error}</p>
+                </div>
+              )}
+              
               <p className="font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50">
                 {t('newsletter.subscribeText')}
               </p>
@@ -213,7 +275,6 @@ export function Footer({ locale }: FooterProps) {
                   <p className="font-berka font-medium text-[0.9375rem] leading-[1.5] text-white">{t('navigation.title')}</p>
                   <nav className="flex flex-col gap-[0.9375rem] font-berka font-normal text-[0.9375rem] leading-[1.7]">
                     <a href={locale === 'en' ? '/#services' : `/${locale}#services`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.services')}</a>
-                    <a href={locale === 'en' ? '/#cases' : `/${locale}#cases`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.cases')}</a>
                     <a href={locale === 'en' ? '/#benefits' : `/${locale}#benefits`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.benefits')}</a>
                     <a href={locale === 'en' ? '/blog' : `/${locale}/blog`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.blog')}</a>
                   </nav>

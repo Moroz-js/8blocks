@@ -86,3 +86,14 @@ model ContactSubmission {
   
   @@index([submittedAt])
 }
+
+model NewsletterSubscription {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  locale        String   @default("en")
+  subscribedAt  DateTime @default(now())
+  unsubscribedAt DateTime?
+  
+  @@index([email])
+  @@index([subscribedAt])
+}

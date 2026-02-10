@@ -6,19 +6,15 @@ const withNextIntl = createNextIntlPlugin('./i18n.ts');
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig: NextConfig = {
-  // Base path only in production (for /new deployment)
-  ...(isProd && {
-    basePath: '/new',
-    assetPrefix: '/new',
-    trailingSlash: true,
-  }),
-  
   // Output standalone for Docker
   output: 'standalone',
   
+  // Trailing slash for consistent routing
+  trailingSlash: true,
+  
   images: {
-    // Disable optimization for SVG files (serve them directly)
-    unoptimized: process.env.NODE_ENV === 'production',
+    // Loader configuration
+    loader: 'default',
     
     // Remote patterns for external images
     remotePatterns: [
@@ -38,7 +34,19 @@ const nextConfig: NextConfig = {
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '*.unsplash.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
+    
+    // Domains (deprecated but may help with compatibility)
+    domains: ['localhost', 'images.unsplash.com'],
     
     // Image formats - WebP and AVIF for better compression
     formats: ['image/avif', 'image/webp'],

@@ -29,7 +29,7 @@ export default function CallToAction({ locale = 'en' }: CallToActionProps) {
           {/* Right Column: Contact Button */}
           <div className="flex items-center justify-center w-full lg:w-auto lg:justify-end">
             <a
-              href={locale === 'en' ? 'https://t.me/eightblocks' : 'https://t.me/Eight_Blocks'}
+              href={locale === 'en' ? 'https://t.me/Eight_Blocks' : 'https://t.me/Eight_Blocks'}
               target="_blank"
               rel="noopener noreferrer"
               className="relative w-[165px] h-[165px]"
