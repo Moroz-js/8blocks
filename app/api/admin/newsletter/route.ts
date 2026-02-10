@@ -1,15 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { verifyAuth } from '@/lib/admin-auth';
+import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { prisma } from '@/lib/prisma';
 
 // GET - Fetch all newsletter subscribers
-export async function GET(request: NextRequest) {
-  const authResult = await verifyAuth(request);
-  if (!authResult.authenticated) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
+export async function GET() {
   try {
+    await requireAdmin();
+
     const subscribers = await prisma.newsletterSubscription.findMany({
       orderBy: {
         subscribedAt: 'desc',
@@ -18,6 +15,9 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(subscribers);
   } catch (error) {
+    if (error instanceof Error && error.message === 'Unauthorized') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     console.error('Failed to fetch newsletter subscribers:', error);
     return NextResponse.json(
       { error: 'Failed to fetch subscribers' },
@@ -27,13 +27,10 @@ export async function GET(request: NextRequest) {
 }
 
 // DELETE - Delete a subscriber
-export async function DELETE(request: NextRequest) {
-  const authResult = await verifyAuth(request);
-  if (!authResult.authenticated) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
+export async function DELETE(request: Request) {
   try {
+    await requireAdmin();
+
     const body = await request.json();
     const { id } = body;
 
@@ -47,6 +44,9 @@ export async function DELETE(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
+    if (error instanceof Error && error.message === 'Unauthorized') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     console.error('Failed to delete subscriber:', error);
     return NextResponse.json(
       { error: 'Failed to delete subscriber' },
