@@ -147,12 +147,28 @@ export async function getParentCategories(locale: string): Promise<NormalizedCat
     where: {
       parentId: null,
     },
+    include: {
+      children: {
+        orderBy: {
+          name: 'asc',
+        },
+      },
+    },
     orderBy: {
       name: 'asc',
     },
   });
 
-  return categories.map((cat) => normalizeCategory(cat, locale));
+  return categories.map((cat) => ({
+    id: cat.id,
+    name: locale === 'ru' ? (cat.nameRu || cat.name) : cat.name,
+    slug: cat.slug,
+    description: locale === 'ru' ? (cat.descriptionRu || cat.description) : cat.description,
+    parentId: cat.parentId || null,
+    children: cat.children && cat.children.length > 0 
+      ? cat.children.map((child) => normalizeCategory(child, locale))
+      : undefined,
+  }));
 }
 
 /**

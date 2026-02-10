@@ -259,7 +259,8 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                 {/* Main Content */}
                 <article className="w-full order-1">
                   {/* Title */}
-                  <h1 className="font-berka font-normal text-[clamp(2.5rem,3.4375rem,3.4375rem)] leading-[1.1] text-white mb-[1.875rem]">
+                  <h1 className="font-berka font-normal text-[1.875rem] sm:text-[clamp(2.5rem,3.4375rem,3.4375rem)]
+ leading-[1.1] text-white mb-[1.875rem]">
                     {post.title}
                   </h1>
 

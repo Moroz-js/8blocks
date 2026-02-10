@@ -130,7 +130,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           {/* Posts Grid */}
           <section className="w-full pb-[3.125rem] lg:pb-[6.25rem] px-[clamp(1.25rem,6.25vw,6.25rem)]">
             <div className="max-w-[77.5rem] mx-auto">
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-[0.625rem] lg:gap-[1.5625rem]">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-[2.5rem] lg:gap-[1.5625rem]">
                 {posts.map((post) => (
                   <BlogCard key={post.id} post={post} variant="default" locale={locale as Locale} />
                 ))}

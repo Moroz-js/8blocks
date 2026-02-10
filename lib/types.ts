@@ -34,6 +34,7 @@ export interface NormalizedCategory {
   slug: string;
   description: string | null;
   parentId: string | null;
+  children?: NormalizedCategory[];
 }
 
 export interface NormalizedTag {

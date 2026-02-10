@@ -94,15 +94,17 @@ export default async function BlogPage({ params }: BlogPageProps) {
               </div>
 
               {/* Category Filters - horizontal scroll on mobile, flex on desktop */}
-              <div className="-mx-[clamp(1.25rem,6.25vw,6.25rem)] px-[clamp(1.25rem,6.25vw,6.25rem)] lg:mx-0 lg:px-0 overflow-hidden">
-                <div className="flex items-center gap-[0.625rem] overflow-x-auto pb-2 scrollbar-hide lg:overflow-visible lg:pb-0">
-                  {categories.map((category) => (
-                    <CategoryDropdown
-                      key={category.id}
-                      category={category}
-                      locale={locale}
-                    />
-                  ))}
+              <div className="relative">
+                <div className="-mx-[clamp(1.25rem,6.25vw,6.25rem)] px-[clamp(1.25rem,6.25vw,6.25rem)] lg:mx-0 lg:px-0 overflow-x-auto lg:overflow-visible scrollbar-hide">
+                  <div className="flex items-center gap-[0.625rem] pb-2 lg:pb-0">
+                    {categories.map((category) => (
+                      <CategoryDropdown
+                        key={category.id}
+                        category={category}
+                        locale={locale}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
