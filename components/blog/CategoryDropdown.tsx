@@ -80,7 +80,7 @@ export default function CategoryDropdown({ category, locale }: CategoryDropdownP
           }}
         >
           {category.children && category.children.length > 0 ? (
-            category.children.map((child, index) => (
+            category.children.map((child) => (
               <div key={child.id}>
                 
                 <Link
