@@ -44,10 +44,18 @@ jobs:
 
             # Error handler
             error_exit() {
+              local line_no=$1
+              local last_cmd="${BASH_COMMAND}"
               echo ""
               echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-              echo "❌ Deployment failed at line $1"
+              echo "❌ Deployment failed at line $line_no"
+              echo "Last command: $last_cmd"
               echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+              # Show recent docker logs if available
+              if command -v docker &> /dev/null; then
+                echo "Recent Docker containers:"
+                docker ps -a --format "table {{.Names}}\t{{.Status}}" 2>/dev/null || true
+              fi
               exit 1
             }
             trap 'error_exit $LINENO' ERR
@@ -129,7 +137,10 @@ jobs:
             # ==========================================
             echo "🧹 Cleaning old artifacts"
             rm -rf .next 2>/dev/null || true
+            echo "✓ Cleanup completed"
 
+            echo "🔀 Deployment mode: ${DEPLOY_MODE}"
+            
             if [ "$DEPLOY_MODE" = "hard" ]; then
               echo "🔴 HARD RESET: wiping all containers, volumes, networks"
 
@@ -201,7 +212,11 @@ jobs:
               echo "🟢 SOFT DEPLOY: zero-downtime — old app stays up during build"
 
               # Ensure postgres is running (don't touch it)
-              if ! docker compose ps postgres 2>/dev/null | grep -q "Up"; then
+              echo "🔍 Checking PostgreSQL status..."
+              POSTGRES_STATUS=$(docker compose ps postgres 2>/dev/null || echo "not_found")
+              echo "PostgreSQL status: $POSTGRES_STATUS"
+              
+              if ! echo "$POSTGRES_STATUS" | grep -q "Up"; then
                 echo "🐘 PostgreSQL not running, starting it"
                 docker compose up -d postgres
                 for i in $(seq 1 60); do
