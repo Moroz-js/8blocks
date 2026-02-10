@@ -19,9 +19,9 @@ docker compose ps
 echo ""
 
 # Check app is responding locally
-echo "🌐 Testing app locally (http://127.0.0.1:3000/new):"
+echo "🌐 Testing app locally (http://127.0.0.1:3000/):"
 echo "─────────────────────────────────────────────"
-HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/new)
+HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/)
 if [ "$HTTP_CODE" == "200" ] || [ "$HTTP_CODE" == "301" ] || [ "$HTTP_CODE" == "302" ]; then
   echo -e "${GREEN}✓ App responds: HTTP $HTTP_CODE${NC}"
 else
@@ -30,20 +30,20 @@ fi
 echo ""
 
 # Check static files
-echo "📂 Testing static files (http://127.0.0.1:3000/new/_next/static):"
+echo "📂 Testing static files (http://127.0.0.1:3000/_next/static):"
 echo "─────────────────────────────────────────────"
-HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/new/_next/static/)
+HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/_next/static/)
 echo "HTTP Status: $HTTP_CODE"
 echo ""
 
 # Check Nginx config
-echo "⚙️  Nginx Configuration for /new:"
+echo "⚙️  Nginx Configuration:"
 echo "─────────────────────────────────────────────"
-if grep -q "location /new" /etc/nginx/sites-available/8blocks.io; then
-  echo -e "${GREEN}✓ Nginx has /new location block${NC}"
-  grep -A 10 "location /new" /etc/nginx/sites-available/8blocks.io | head -15
+if grep -q "location /" /etc/nginx/sites-available/8blocks.io; then
+  echo -e "${GREEN}✓ Nginx has root location block${NC}"
+  grep -A 10 "location /" /etc/nginx/sites-available/8blocks.io | head -15
 else
-  echo -e "${RED}✗ No /new location block in Nginx config${NC}"
+  echo -e "${RED}✗ No root location block in Nginx config${NC}"
 fi
 echo ""
 
@@ -54,9 +54,9 @@ systemctl is-active nginx && echo -e "${GREEN}✓ Nginx is running${NC}" || echo
 echo ""
 
 # Test through Nginx
-echo "🌍 Testing through Nginx (https://8blocks.io/new):"
+echo "🌍 Testing through Nginx (https://8blocks.io/):"
 echo "─────────────────────────────────────────────"
-HTTP_CODE=$(curl -k -s -o /dev/null -w "%{http_code}" https://localhost/new -H "Host: 8blocks.io")
+HTTP_CODE=$(curl -k -s -o /dev/null -w "%{http_code}" https://localhost/ -H "Host: 8blocks.io")
 if [ "$HTTP_CODE" == "200" ] || [ "$HTTP_CODE" == "301" ] || [ "$HTTP_CODE" == "302" ]; then
   echo -e "${GREEN}✓ Nginx proxies successfully: HTTP $HTTP_CODE${NC}"
 else
