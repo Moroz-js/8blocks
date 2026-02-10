@@ -51,6 +51,12 @@ export default async function AdminDashboard() {
             <h2 className="text-2xl font-medium mb-2">Submissions</h2>
             <p className="text-white/50">View contact form submissions</p>
           </Link>
+
+          <Link href="/admin/dashboard/newsletter" className="dashboard-card">
+            <div className="text-4xl mb-4">📧</div>
+            <h2 className="text-2xl font-medium mb-2">Newsletter</h2>
+            <p className="text-white/50">Manage newsletter subscribers</p>
+          </Link>
         </div>
       </div>
     </div>

@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {error && (
-            <div className="p-4 bg-red-500/10 border border-red-500/20 rounded text-red-500 text-sm">
+            <div className="p-1 bg-red-500/10 border border-red-500/20 rounded text-red-500 text-sm">
               {error}
             </div>
           )}
