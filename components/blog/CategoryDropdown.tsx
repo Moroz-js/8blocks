@@ -62,7 +62,7 @@ export default function CategoryDropdown({ category, locale }: CategoryDropdownP
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-[0.3125rem] h-[2.25rem] px-[0.9375rem] py-[0.625rem] rounded-[0.5rem] font-berka font-medium text-[0.8125rem] leading-[1.5] text-white  transition-colors whitespace-nowrap flex-shrink-0"
-      >
+      > 
         <span>{category.name}</span>
         <ChevronDown 
           className={`w-[1.25rem] h-[1.25rem] opacity-50 transition-transform ${isOpen ? 'rotate-180' : ''}`} 
