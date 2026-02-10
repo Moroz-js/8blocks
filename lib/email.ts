@@ -132,7 +132,7 @@ function generateThankYouEmailTemplate(data: ThankYouEmailData): { html: string;
           <!-- Header -->
           <tr>
             <td style="padding: 40px 40px 20px; text-align: center; border-bottom: 1px solid #1a1a1a;">
-              <h1 style="margin: 0; font-size: 32px; font-weight: bold; color: #75fb63;">8 Blocks</h1>
+              <h1 style="margin: 0; font-size: 32px; font-weight: bold; color: #ffffff;">8 Blocks</h1>
             </td>
           </tr>
 
@@ -149,16 +149,6 @@ function generateThankYouEmailTemplate(data: ThankYouEmailData): { html: string;
                 ${t.received}
               </p>
 
-              <!-- Message Block -->
-              <div style="background-color: #141414; border-left: 4px solid #75fb63; padding: 20px; margin: 0 0 30px; border-radius: 4px;">
-                <p style="margin: 0 0 10px; font-size: 14px; font-weight: 600; color: #75fb63; text-transform: uppercase; letter-spacing: 0.5px;">
-                  ${t.yourMessage}
-                </p>
-                <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #cccccc; white-space: pre-wrap;">
-                  ${data.message}
-                </p>
-              </div>
-
               <!-- Next Steps -->
               <div style="margin: 0 0 30px;">
                 <h3 style="margin: 0 0 15px; font-size: 18px; font-weight: 600; color: #ffffff;">${t.nextSteps}</h3>
@@ -168,7 +158,7 @@ function generateThankYouEmailTemplate(data: ThankYouEmailData): { html: string;
                       <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
                           <td style="width: 30px; vertical-align: top; padding-top: 2px;">
-                            <div style="width: 24px; height: 24px; background-color: #75fb63; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #000000;">1</div>
+                            <div style="width: 24px; height: 24px; background-color: rgba(142, 74, 189, 1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #000000;">1</div>
                           </td>
                           <td style="font-size: 15px; line-height: 1.6; color: #e0e0e0; padding-left: 12px;">
                             ${t.step1}
@@ -182,7 +172,7 @@ function generateThankYouEmailTemplate(data: ThankYouEmailData): { html: string;
                       <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
                           <td style="width: 30px; vertical-align: top; padding-top: 2px;">
-                            <div style="width: 24px; height: 24px; background-color: #75fb63; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #000000;">2</div>
+                            <div style="width: 24px; height: 24px; background-color: rgba(142, 74, 189, 1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #000000;">2</div>
                           </td>
                           <td style="font-size: 15px; line-height: 1.6; color: #e0e0e0; padding-left: 12px;">
                             ${t.step2}
@@ -196,7 +186,7 @@ function generateThankYouEmailTemplate(data: ThankYouEmailData): { html: string;
                       <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
                           <td style="width: 30px; vertical-align: top; padding-top: 2px;">
-                            <div style="width: 24px; height: 24px; background-color: #75fb63; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #000000;">3</div>
+                            <div style="width: 24px; height: 24px; background-color: rgba(142, 74, 189, 1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #000000;">3</div>
                           </td>
                           <td style="font-size: 15px; line-height: 1.6; color: #e0e0e0; padding-left: 12px;">
                             ${t.step3}
@@ -215,7 +205,7 @@ function generateThankYouEmailTemplate(data: ThankYouEmailData): { html: string;
               <p style="margin: 0 0 5px; font-size: 16px; line-height: 1.6; color: #e0e0e0;">
                 ${t.signature}
               </p>
-              <p style="margin: 0; font-size: 16px; font-weight: 600; color: #75fb63;">
+              <p style="margin: 0; font-size: 16px; font-weight: 600; color: rgba(142, 74, 189, 1);">
                 ${t.team}
               </p>
             </td>
@@ -406,7 +396,7 @@ export async function sendNewsletterConfirmation(data: NewsletterData): Promise<
           <!-- Header -->
           <tr>
             <td style="padding: 40px 40px 20px; text-align: center; border-bottom: 1px solid #1a1a1a;">
-              <h1 style="margin: 0; font-size: 32px; font-weight: bold; color: #75fb63;">8 Blocks</h1>
+              <h1 style="margin: 0; font-size: 32px; font-weight: bold; color: #ffffff;">8 Blocks</h1>
             </td>
           </tr>
 
@@ -448,7 +438,7 @@ export async function sendNewsletterConfirmation(data: NewsletterData): Promise<
               <p style="margin: 0 0 5px; font-size: 16px; line-height: 1.6; color: #e0e0e0;">
                 ${t.signature}
               </p>
-              <p style="margin: 0; font-size: 16px; font-weight: 600; color: #75fb63;">
+              <p style="margin: 0; font-size: 16px; font-weight: 600; color: rgba(142, 74, 189, 1);">
                 ${t.team}
               </p>
             </td>
