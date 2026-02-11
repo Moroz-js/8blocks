@@ -65,7 +65,10 @@ COPY --from=builder /app/node_modules/.bin ./node_modules/.bin
 COPY --from=builder /app/prisma/seed.js ./prisma/seed.js
 
 # Create uploads directory with proper permissions
-RUN mkdir -p ./public/uploads && chown -R nextjs:nodejs ./public/uploads
+# Note: If using bind mount, host permissions take precedence
+RUN mkdir -p ./public/uploads && \
+    chown -R nextjs:nodejs ./public && \
+    chmod -R 755 ./public/uploads
 
 USER nextjs
 

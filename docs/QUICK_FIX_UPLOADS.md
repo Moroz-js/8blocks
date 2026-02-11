@@ -9,8 +9,14 @@ cd /var/www/8blocks.io
 # 2. Обновить код
 git pull origin main
 
-# 3. Создать директорию uploads (если её нет)
+# 3. Создать директорию uploads с правильными правами
 mkdir -p public/uploads
+
+# ВАЖНО: Установить владельца UID 1001 (nextjs пользователь в контейнере)
+sudo chown -R 1001:1001 public/uploads
+# ИЛИ если не работает, дать полные права (менее безопасно):
+# chmod -R 777 public/uploads
+
 chmod -R 755 public/uploads
 
 # 4. Обновить nginx конфигурацию
@@ -25,6 +31,9 @@ docker compose up -d --build
 # 6. Проверить
 docker compose ps
 ls -la public/uploads/
+
+# 7. Проверить логи если не работает
+docker compose logs app --tail=50
 ```
 
 ## Проверка работы
@@ -40,13 +49,25 @@ ls -la public/uploads/
 
 ## Если не работает
 
-### Проверить права
+### Проверить права (САМАЯ ЧАСТАЯ ПРОБЛЕМА)
 ```bash
 ls -la /var/www/8blocks.io/public/
-# uploads должен быть доступен для чтения (755)
+# uploads должен принадлежать UID 1001 (nextjs в контейнере)
 
-# Если нет доступа:
+# Если владелец не 1001:
+sudo chown -R 1001:1001 /var/www/8blocks.io/public/uploads
+
+# Если всё ещё не работает, используйте 777 (временно):
+chmod -R 777 /var/www/8blocks.io/public/uploads
+
+# После загрузки файла можно вернуть 755:
 chmod -R 755 /var/www/8blocks.io/public/uploads
+```
+
+### Проверить логи Docker
+```bash
+docker compose logs app --tail=50 -f
+# Смотрите на ошибки типа "EACCES" или "Permission denied"
 ```
 
 ### Проверить bind mount

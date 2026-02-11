@@ -291,10 +291,34 @@ jobs:
             # ==========================================
             echo "📂 Ensuring uploads directory on host"
             mkdir -p "${PROJECT_DIR}/public/uploads"
+            
+            # Set permissions for bind mount
+            # Docker container runs as UID 1001 (nextjs user)
+            # Option 1: Change ownership to UID 1001
+            # Option 2: Make writable by all (less secure but works)
+            
+            # Try to set ownership to container user (UID 1001)
+            if command -v chown &> /dev/null; then
+              echo "Setting ownership to UID 1001 (nextjs in container)"
+              chown -R 1001:1001 "${PROJECT_DIR}/public/uploads" 2>/dev/null || {
+                echo "⚠️  Could not chown to 1001:1001, trying current user"
+                chown -R $(id -u):$(id -g) "${PROJECT_DIR}/public/uploads" 2>/dev/null || true
+              }
+            fi
+            
+            # Ensure directory is writable
             chmod -R 755 "${PROJECT_DIR}/public/uploads"
-            # Set ownership to user running docker (usually same as deploy user)
-            chown -R $(id -u):$(id -g) "${PROJECT_DIR}/public/uploads" 2>/dev/null || true
+            
+            # Test write permissions
+            if [ -w "${PROJECT_DIR}/public/uploads" ]; then
+              echo "✓ Uploads directory is writable"
+            else
+              echo "⚠️  Uploads directory may not be writable, using broader permissions"
+              chmod -R 777 "${PROJECT_DIR}/public/uploads"
+            fi
+            
             echo "✓ Uploads directory ready at ${PROJECT_DIR}/public/uploads"
+            ls -la "${PROJECT_DIR}/public/uploads" || true
 
             # ==========================================
             # 9. Database seed (mode-dependent, runs LAST)

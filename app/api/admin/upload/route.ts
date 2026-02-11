@@ -43,13 +43,28 @@ export async function POST(request: NextRequest) {
 
     // Create uploads directory if it doesn't exist
     const uploadDir = join(process.cwd(), 'public', 'uploads');
-    if (!existsSync(uploadDir)) {
-      await mkdir(uploadDir, { recursive: true });
+    
+    try {
+      if (!existsSync(uploadDir)) {
+        console.log('Creating uploads directory:', uploadDir);
+        await mkdir(uploadDir, { recursive: true, mode: 0o755 });
+      }
+    } catch (mkdirError) {
+      console.error('Failed to create uploads directory:', mkdirError);
+      // Continue anyway - directory might exist but existsSync failed
     }
 
     // Save file
     const filepath = join(uploadDir, filename);
-    await writeFile(filepath, buffer);
+    console.log('Saving file to:', filepath);
+    
+    try {
+      await writeFile(filepath, buffer, { mode: 0o644 });
+      console.log('File saved successfully');
+    } catch (writeError) {
+      console.error('Failed to write file:', writeError);
+      throw new Error(`Failed to write file: ${writeError instanceof Error ? writeError.message : 'Unknown error'}`);
+    }
 
     // Return public URL
     const url = `/uploads/${filename}`;
@@ -57,8 +72,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ url }, { status: 201 });
   } catch (error) {
     console.error('Upload error:', error);
+    
+    // Return more detailed error in development
+    const errorMessage = error instanceof Error ? error.message : 'Failed to upload file';
+    const detailedError = process.env.NODE_ENV === 'development' 
+      ? errorMessage 
+      : 'Failed to upload file';
+    
     return NextResponse.json(
-      { error: 'Failed to upload file' },
+      { error: detailedError },
       { status: 500 }
     );
   }
