@@ -287,11 +287,14 @@ jobs:
             fi
 
             # ==========================================
-            # 8. Ensure uploads directory
+            # 8. Ensure uploads directory (bind mount)
             # ==========================================
-            echo "📂 Ensuring uploads directory"
-            docker compose exec -T app mkdir -p /app/public/uploads 2>/dev/null || true
-            docker compose exec -T app chmod -R 755 /app/public/uploads 2>/dev/null || true
+            echo "📂 Ensuring uploads directory on host"
+            mkdir -p "${PROJECT_DIR}/public/uploads"
+            chmod -R 755 "${PROJECT_DIR}/public/uploads"
+            # Set ownership to user running docker (usually same as deploy user)
+            chown -R $(id -u):$(id -g) "${PROJECT_DIR}/public/uploads" 2>/dev/null || true
+            echo "✓ Uploads directory ready at ${PROJECT_DIR}/public/uploads"
 
             # ==========================================
             # 9. Database seed (mode-dependent, runs LAST)
