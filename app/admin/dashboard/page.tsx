@@ -40,12 +40,6 @@ export default async function AdminDashboard() {
             <p className="text-white/50">Organize posts into categories</p>
           </Link>
 
-          <Link href="/admin/dashboard/tags" className="dashboard-card">
-            <div className="text-4xl mb-4">🏷️</div>
-            <h2 className="text-2xl font-medium mb-2">Tags</h2>
-            <p className="text-white/50">Add tags to your posts</p>
-          </Link>
-
           <Link href="/admin/dashboard/submissions" className="dashboard-card">
             <div className="text-4xl mb-4">📩</div>
             <h2 className="text-2xl font-medium mb-2">Submissions</h2>

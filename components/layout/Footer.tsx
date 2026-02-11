@@ -69,7 +69,7 @@ export function Footer({ locale }: FooterProps) {
                 <a href={locale === 'en' ? '/#services' : `/${locale}#services`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.services')}</a>
                 <a href={locale === 'en' ? '/#cases' : `/${locale}#cases`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.cases')}</a>
                 <a href={locale === 'en' ? '/#benefits' : `/${locale}#benefits`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.benefits')}</a>
-                <a href={locale === 'en' ? '/blog' : `/${locale}/blog`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.blog')}</a>
+                {/* <a href={locale === 'en' ? '/blog' : `/${locale}/blog`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.blog')}</a> */}
               </nav>
             </div>
 
@@ -276,7 +276,7 @@ export function Footer({ locale }: FooterProps) {
                   <nav className="flex flex-col gap-[0.9375rem] font-berka font-normal text-[0.9375rem] leading-[1.7]">
                     <a href={locale === 'en' ? '/#services' : `/${locale}#services`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.services')}</a>
                     <a href={locale === 'en' ? '/#benefits' : `/${locale}#benefits`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.benefits')}</a>
-                    <a href={locale === 'en' ? '/blog' : `/${locale}/blog`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.blog')}</a>
+                    {/* <a href={locale === 'en' ? '/blog' : `/${locale}/blog`} className="text-white opacity-50 hover:opacity-100 transition-opacity">{t('navigation.blog')}</a> */}
                   </nav>
                 </div>
 

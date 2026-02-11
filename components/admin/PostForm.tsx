@@ -4,15 +4,14 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import TiptapEditor from './TiptapEditor';
 import ImageUpload from './ImageUpload';
-import type { BlogPost, Category, Tag } from '@prisma/client';
+import type { BlogPost, Category } from '@prisma/client';
 
 interface PostFormProps {
-  post?: BlogPost & { tags: Tag[] };
+  post?: BlogPost;
   categories: Category[];
-  allTags: Tag[];
 }
 
-export default function PostForm({ post, categories, allTags }: PostFormProps) {
+export default function PostForm({ post, categories }: PostFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -28,7 +27,7 @@ export default function PostForm({ post, categories, allTags }: PostFormProps) {
     featuredImage: post?.featuredImage || '',
     categoryId: post?.categoryId || '',
     published: post?.published || false,
-    selectedTags: post?.tags.map(t => t.id) || [],
+    noindex: post?.noindex || false,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -43,16 +42,10 @@ export default function PostForm({ post, categories, allTags }: PostFormProps) {
       
       const method = post ? 'PUT' : 'POST';
 
-      const payload = {
-        ...formData,
-        tagIds: formData.selectedTags,
-      };
-      delete (payload as any).selectedTags;
-
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
@@ -197,47 +190,23 @@ export default function PostForm({ post, categories, allTags }: PostFormProps) {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm font-medium mb-2">Category</label>
-          <select
-            value={formData.categoryId}
-            onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-            className="w-full px-4 py-3 bg-white/8 border border-white/20 rounded-lg focus:border-purple-500 focus:outline-none"
-          >
-            <option value="">No category</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-2">Tags</label>
-          <div className="flex flex-wrap gap-2 p-3 bg-white/8 border border-white/20 rounded-lg">
-            {allTags.map((tag) => (
-              <label key={tag.id} className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={formData.selectedTags.includes(tag.id)}
-                  onChange={(e) => {
-                    const newTags = e.target.checked
-                      ? [...formData.selectedTags, tag.id]
-                      : formData.selectedTags.filter(id => id !== tag.id);
-                    setFormData({ ...formData, selectedTags: newTags });
-                  }}
-                  className="rounded"
-                />
-                <span className="text-sm">{tag.name}</span>
-              </label>
-            ))}
-          </div>
-        </div>
+      <div>
+        <label className="block text-sm font-medium mb-2">Category</label>
+        <select
+          value={formData.categoryId}
+          onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
+          className="w-full px-4 py-3 bg-white/8 border border-white/20 rounded-lg focus:border-purple-500 focus:outline-none"
+        >
+          <option value="">No category</option>
+          {categories.map((cat) => (
+            <option key={cat.id} value={cat.id}>
+              {cat.name}
+            </option>
+          ))}
+        </select>
       </div>
 
-      <div>
+      <div className="flex gap-6">
         <label className="flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
@@ -246,6 +215,16 @@ export default function PostForm({ post, categories, allTags }: PostFormProps) {
             className="rounded"
           />
           <span className="text-sm font-medium">Published</span>
+        </label>
+
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={formData.noindex}
+            onChange={(e) => setFormData({ ...formData, noindex: e.target.checked })}
+            className="rounded"
+          />
+          <span className="text-sm font-medium">NoIndex (hide from search engines)</span>
         </label>
       </div>
 

@@ -62,16 +62,7 @@ function ContentEn() {
       <p>
         We use Your Personal Data to provide and improve the Service. By using
         the Service, You agree to the collection and use of information in
-        accordance with this Privacy Policy. This Privacy Policy has been
-        created with the help of the{' '}
-        <a
-          href="https://www.termsfeed.com/privacy-policy-generator/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Privacy Policy Generator
-        </a>
-        .
+        accordance with this Privacy Policy.
       </p>
 
       <h2>Interpretation and Definitions</h2>
@@ -656,15 +647,6 @@ function ContentRu() {
         Мы используем Ваши Персональные данные для предоставления и улучшения
         Сервиса. Используя Сервис, Вы соглашаетесь со сбором и использованием
         информации в соответствии с настоящей Политикой конфиденциальности.
-        Настоящая Политика конфиденциальности была создана с помощью{' '}
-        <a
-          href="https://www.termsfeed.com/privacy-policy-generator/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Privacy Policy Generator
-        </a>
-        .
       </p>
 
       <h2>Толкование и определения</h2>
@@ -736,17 +718,6 @@ function ContentRu() {
           собираемым автоматически, генерируемым в результате использования
           Сервиса или из инфраструктуры Сервиса (например, продолжительность
           посещения страницы).
-        </li>
-        <li>
-          <strong>Веб-сайт</strong> относится к 8blocks, доступному по адресу{' '}
-          <a
-            href="https://8blocks.io"
-            rel="external nofollow noopener"
-            target="_blank"
-          >
-            8blocks.io
-          </a>
-          .
         </li>
         <li>
           <strong>Вы</strong> означает физическое лицо, получающее доступ к

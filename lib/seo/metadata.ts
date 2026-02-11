@@ -113,7 +113,7 @@ export function generateBlogPostMetadata(
   // Construct full title
   const fullTitle = `${post.title} | ${SITE_NAME}`;
 
-  return {
+  const metadata: Metadata = {
     title: fullTitle,
     description: post.excerpt || undefined,
     alternates: {
@@ -148,6 +148,16 @@ export function generateBlogPostMetadata(
       images: [imageUrl],
     },
   };
+
+  // Add noindex/nofollow if the post is marked as noindex
+  if (post.noindex) {
+    metadata.robots = {
+      index: false,
+      follow: false,
+    };
+  }
+
+  return metadata;
 }
 
 /**

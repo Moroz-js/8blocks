@@ -43,6 +43,7 @@ export async function POST(request: NextRequest) {
       contentRu,
       featuredImage,
       published,
+      noindex,
       categoryId,
       tagIds,
     } = body;
@@ -58,6 +59,7 @@ export async function POST(request: NextRequest) {
         contentRu,
         featuredImage,
         published: published || false,
+        noindex: noindex || false,
         publishedAt: published ? new Date() : null,
         categoryId: categoryId || null,
         tags: tagIds

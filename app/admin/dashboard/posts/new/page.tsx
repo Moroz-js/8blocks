@@ -11,10 +11,7 @@ export default async function NewPostPage() {
     redirect('/admin/login');
   }
 
-  const [categories, tags] = await Promise.all([
-    prisma.category.findMany({ orderBy: { name: 'asc' } }),
-    prisma.tag.findMany({ orderBy: { name: 'asc' } }),
-  ]);
+  const categories = await prisma.category.findMany({ orderBy: { name: 'asc' } });
 
   return (
     <div className="min-h-screen bg-black text-white p-8">
@@ -29,7 +26,7 @@ export default async function NewPostPage() {
           </Link>
         </div>
 
-        <PostForm categories={categories} allTags={tags} />
+        <PostForm categories={categories} />
       </div>
     </div>
   );

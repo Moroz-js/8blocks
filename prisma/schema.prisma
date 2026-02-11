@@ -22,6 +22,7 @@ model BlogPost {
   featuredImage String?
   
   published Boolean  @default(false)
+  noindex   Boolean  @default(false)
   
   // Meta fields
   views     Int      @default(0)

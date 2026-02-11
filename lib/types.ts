@@ -11,6 +11,7 @@ export interface NormalizedBlogPost {
     alt: string;
   } | null;
   published: boolean;
+  noindex?: boolean;
   publishedAt: Date | null;
   category: {
     id: string;

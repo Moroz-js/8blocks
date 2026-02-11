@@ -30,7 +30,7 @@ export function Header({ locale }: HeaderProps) {
     { href: locale === 'en' ? '/#services' : `/${locale}#services`, label: t('services') },
     { href: locale === 'en' ? '/#cases' : `/${locale}#cases`, label: t('cases') },
     { href: locale === 'en' ? '/#benefits' : `/${locale}#benefits`, label: t('benefits') },
-    { href: locale === 'en' ? '/blog' : `/${locale}/blog`, label: t('blog') },
+    // { href: locale === 'en' ? '/blog' : `/${locale}/blog`, label: t('blog') },
   ];
 
   const servicesLinks = [

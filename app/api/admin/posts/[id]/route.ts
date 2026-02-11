@@ -53,6 +53,7 @@ export async function PUT(
       contentRu,
       featuredImage,
       published,
+      noindex,
       categoryId,
       tagIds,
     } = body;
@@ -78,6 +79,7 @@ export async function PUT(
         contentRu,
         featuredImage,
         published,
+        noindex,
         publishedAt: published && !existingPost.published ? new Date() : existingPost.publishedAt,
         categoryId: categoryId || null,
         tags: tagIds

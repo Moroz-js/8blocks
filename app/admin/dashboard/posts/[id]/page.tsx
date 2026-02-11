@@ -13,13 +13,11 @@ export default async function EditPostPage({ params }: { params: Promise<{ id: s
     redirect('/admin/login');
   }
 
-  const [post, categories, tags] = await Promise.all([
+  const [post, categories] = await Promise.all([
     prisma.blogPost.findUnique({
       where: { id },
-      include: { tags: true },
     }),
     prisma.category.findMany({ orderBy: { name: 'asc' } }),
-    prisma.tag.findMany({ orderBy: { name: 'asc' } }),
   ]);
 
   if (!post) {
@@ -39,7 +37,7 @@ export default async function EditPostPage({ params }: { params: Promise<{ id: s
           </Link>
         </div>
 
-        <PostForm post={post} categories={categories} allTags={tags} />
+        <PostForm post={post} categories={categories} />
       </div>
     </div>
   );
