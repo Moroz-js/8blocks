@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { NormalizedBlogPost } from '@/lib/types';
@@ -38,24 +37,10 @@ export default function BlogCard({
           {/* Image - Left side, flex-1 */}
           {post.featuredImage && !imageError && (
             <div className="relative w-full lg:flex-1 lg:aspect-[8/5] lg:min-h-[250px] bg-black border border-[rgba(255,255,255,0.2)] rounded-[0.5rem] overflow-hidden group-hover:border-[rgba(255,255,255,0.3)] transition-colors">
-              {/* Mobile: normal image */}
-              <Image
+              <img
                 src={post.featuredImage.url}
                 alt={post.featuredImage.alt}
-                width={800}
-                height={500}
-                className="object-cover w-full h-auto lg:hidden"
-                sizes="100vw"
-                loading="lazy"
-                onError={() => setImageError(true)}
-              />
-              {/* Desktop: fill image */}
-              <Image
-                src={post.featuredImage.url}
-                alt={post.featuredImage.alt}
-                fill
-                className="object-cover hidden lg:block"
-                sizes="60vw"
+                className="object-cover w-full h-full absolute inset-0"
                 loading="lazy"
                 onError={() => setImageError(true)}
               />
@@ -110,7 +95,7 @@ export default function BlogCard({
                 <span className="font-medium">{post.readTime || 10} min</span>
               </div>
               <div className="flex items-center gap-[0.4375rem]">
-                <Image
+                <img
                   src="/assets/8-blocks.svg"
                   alt="8Blocks"
                   width={16}
@@ -138,12 +123,10 @@ export default function BlogCard({
           {/* Cover Image with Category Tag */}
           {post.featuredImage && !imageError && (
             <div className="relative w-full aspect-[267/167] lg:aspect-[397.67/250] bg-black border border-[rgba(255,255,255,0.2)] rounded-[0.5rem] overflow-hidden group-hover:border-[rgba(255,255,255,0.3)] transition-colors">
-              <Image
+              <img
                 src={post.featuredImage.url}
                 alt={post.featuredImage.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 50vw, 370px"
+                className="object-cover w-full h-full absolute inset-0"
                 loading="lazy"
                 onError={() => setImageError(true)}
               />
@@ -194,7 +177,7 @@ export default function BlogCard({
             <span>{post.readTime || 10} min</span>
           </div>
           <div className="flex items-center gap-[0.375rem]">
-            <Image
+            <img
               src="/assets/8-blocks.svg"
               alt="8Blocks"
               width={16}

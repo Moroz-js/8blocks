@@ -2,7 +2,6 @@ import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import { 
   getBlogPostBySlug, 
   getCategoryBySlug, 
@@ -304,7 +303,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                         {/* Author */}
                         <div className="flex items-center gap-[0.4375rem]">
                           <div className="relative size-[1rem]">
-                            <Image
+                            <img
                               src="/assets/8-blocks.svg"
                               alt="8Blocks"
                               width={16}
@@ -322,13 +321,11 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                     {/* Featured Image with Category Tag */}
                     {post.featuredImage && (
                       <div className="relative w-full aspect-[397.67/250] rounded-[0.5rem] overflow-hidden border border-[rgba(255,255,255,0.2)]">
-                        <Image
+                        <img
                           src={post.featuredImage.url}
                           alt={post.featuredImage.alt}
-                          fill
-                          className="object-cover"
-                          priority
-                          sizes="(max-width: 1024px) 100vw, 813px"
+                          className="object-cover w-full h-full absolute inset-0"
+                          loading="eager"
                         />
                         {/* Category Tag Overlay */}
                         {post.category && (
