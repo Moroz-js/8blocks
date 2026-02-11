@@ -17,6 +17,17 @@ const nextConfig: NextConfig = {
     // Remote patterns for external images
     remotePatterns: [
       {
+        protocol: 'https',
+        hostname: '8blocks.io',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/uploads/**',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '1337',
@@ -44,7 +55,7 @@ const nextConfig: NextConfig = {
     ],
     
     // Domains (deprecated but may help with compatibility)
-    domains: ['localhost', 'images.unsplash.com'],
+    domains: ['localhost', '8blocks.io', 'images.unsplash.com'],
     
     // Image formats - WebP and AVIF for better compression
     formats: ['image/avif', 'image/webp'],
