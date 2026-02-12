@@ -19,7 +19,6 @@ export async function getBlogPosts(
       },
       include: {
         category: true,
-        tags: true,
       },
       orderBy: {
         publishedAt: 'desc',
@@ -64,7 +63,6 @@ export async function getBlogPostBySlug(
     },
     include: {
       category: true,
-      tags: true,
     },
   });
 
@@ -92,7 +90,6 @@ export async function getBlogPostsByCategory(
       },
       include: {
         category: true,
-        tags: true,
       },
       orderBy: {
         publishedAt: 'desc',
@@ -214,7 +211,6 @@ export async function getBlogPostsBySubcategory(
       },
       include: {
         category: true,
-        tags: true,
       },
       orderBy: {
         publishedAt: 'desc',
@@ -275,7 +271,6 @@ export async function getBlogPostsByParentCategory(
     },
     include: {
       category: true,
-      tags: true,
     },
     orderBy: {
       publishedAt: 'desc',
@@ -320,10 +315,6 @@ function normalizeBlogPost(post: any, locale: string): NormalizedBlogPost {
       name: locale === 'ru' ? (post.category.nameRu || post.category.name) : post.category.name,
       slug: post.category.slug,
     } : null,
-    tags: post.tags.map((tag: any) => ({
-      id: tag.id,
-      name: locale === 'ru' ? (tag.nameRu || tag.name) : tag.name,
-    })),
     views: post.views || 0,
     author: post.author || '8 Blocks',
     createdAt: post.createdAt,
@@ -350,7 +341,6 @@ export async function getRelatedBlogPosts(
     },
     include: {
       category: true,
-      tags: true,
     },
     orderBy: {
       publishedAt: 'desc',

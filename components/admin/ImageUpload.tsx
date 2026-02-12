@@ -59,10 +59,10 @@ export default function ImageUpload({ value, onChange, label = 'Upload Image' }:
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       <label className="block text-sm font-medium">{label}</label>
       
-      <div className="flex gap-3">
+      <div className="flex gap-2">
         <input
           ref={fileInputRef}
           type="file"
@@ -74,7 +74,7 @@ export default function ImageUpload({ value, onChange, label = 'Upload Image' }:
         />
         <label
           htmlFor="image-upload"
-          className={`px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition cursor-pointer ${
+          className={`admin-btn-secondary cursor-pointer ${
             uploading ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >
@@ -85,7 +85,7 @@ export default function ImageUpload({ value, onChange, label = 'Upload Image' }:
           <button
             type="button"
             onClick={() => onChange('')}
-            className="px-4 py-2 bg-red-500/20 border border-red-500 rounded-lg hover:bg-red-500/30 transition"
+            className="admin-btn-danger"
           >
             Remove
           </button>

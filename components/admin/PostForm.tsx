@@ -94,80 +94,80 @@ export default function PostForm({ post, categories }: PostFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-5">
       {error && (
-        <div className="p-4 bg-red-500/20 border border-red-500 rounded-lg text-red-200">
+        <div className="p-3 bg-red-500/20 border border-red-500 rounded-lg text-red-200 text-sm">
           {error}
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium mb-2">Title (EN)</label>
+          <label className="block text-sm font-medium mb-1.5">Title (EN)</label>
           <input
             type="text"
             required
             value={formData.title}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            className="w-full px-4 py-3 bg-white/8 border border-white/20 rounded-lg focus:border-purple-500 focus:outline-none"
+            className="admin-input"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Title (RU)</label>
+          <label className="block text-sm font-medium mb-1.5">Title (RU)</label>
           <input
             type="text"
             value={formData.titleRu}
             onChange={(e) => setFormData({ ...formData, titleRu: e.target.value })}
-            className="w-full px-4 py-3 bg-white/8 border border-white/20 rounded-lg focus:border-purple-500 focus:outline-none"
+            className="admin-input"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">Slug</label>
+        <label className="block text-sm font-medium mb-1.5">Slug</label>
         <div className="flex gap-2">
           <input
             type="text"
             required
             value={formData.slug}
             onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-            className="flex-1 px-4 py-3 bg-white/8 border border-white/20 rounded-lg focus:border-purple-500 focus:outline-none"
+            className="admin-input"
           />
           <button
             type="button"
             onClick={generateSlug}
-            className="px-4 py-3 bg-white/10 rounded-lg hover:bg-white/20 transition"
+            className="admin-btn-secondary shrink-0"
           >
             Generate
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium mb-2">Excerpt (EN)</label>
+          <label className="block text-sm font-medium mb-1.5">Excerpt (EN)</label>
           <textarea
             value={formData.excerpt}
             onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
             rows={3}
-            className="w-full px-4 py-3 bg-white/8 border border-white/20 rounded-lg focus:border-purple-500 focus:outline-none"
+            className="admin-input resize-none"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Excerpt (RU)</label>
+          <label className="block text-sm font-medium mb-1.5">Excerpt (RU)</label>
           <textarea
             value={formData.excerptRu}
             onChange={(e) => setFormData({ ...formData, excerptRu: e.target.value })}
             rows={3}
-            className="w-full px-4 py-3 bg-white/8 border border-white/20 rounded-lg focus:border-purple-500 focus:outline-none"
+            className="admin-input resize-none"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">Content (EN)</label>
+        <label className="block text-sm font-medium mb-1.5">Content (EN)</label>
         <TiptapEditor
           content={formData.content}
           onChange={(content) => setFormData({ ...formData, content })}
@@ -175,7 +175,7 @@ export default function PostForm({ post, categories }: PostFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">Content (RU)</label>
+        <label className="block text-sm font-medium mb-1.5">Content (RU)</label>
         <TiptapEditor
           content={formData.contentRu}
           onChange={(contentRu) => setFormData({ ...formData, contentRu })}
@@ -191,11 +191,11 @@ export default function PostForm({ post, categories }: PostFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">Category</label>
+        <label className="block text-sm font-medium mb-1.5">Category</label>
         <select
           value={formData.categoryId}
           onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-          className="w-full px-4 py-3 bg-white/8 border border-white/20 rounded-lg focus:border-purple-500 focus:outline-none"
+          className="admin-input cursor-pointer"
         >
           <option value="">No category</option>
           {categories.map((cat) => (
@@ -228,11 +228,11 @@ export default function PostForm({ post, categories }: PostFormProps) {
         </label>
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex gap-3">
         <button
           type="submit"
           disabled={loading}
-          className="px-6 py-1 bg-purple-500 rounded-lg hover:bg-purple-600 transition disabled:opacity-50"
+          className="admin-btn-primary disabled:opacity-50"
         >
           {loading ? 'Saving...' : post ? 'Update Post' : 'Create Post'}
         </button>
@@ -242,7 +242,7 @@ export default function PostForm({ post, categories }: PostFormProps) {
             type="button"
             onClick={handleDelete}
             disabled={loading}
-            className="px-6 py-3 bg-red-500/20 border border-red-500 rounded-lg hover:bg-red-500/30 transition disabled:opacity-50"
+            className="admin-btn-danger disabled:opacity-50"
           >
             Delete Post
           </button>

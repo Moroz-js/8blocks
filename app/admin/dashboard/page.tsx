@@ -10,11 +10,11 @@ export default async function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen bg-black text-white pt-5 px-6 pb-6">
       <div className="max-w-7xl mx-auto">
         <div className="admin-card-header">
           <div>
-            <h1 className="text-4xl font-medium mb-2">Admin Dashboard</h1>
+            <h1 className="text-2xl font-medium mb-1">Admin Dashboard</h1>
             <p className="text-white/50">Manage your blog content</p>
           </div>
           <form action="/api/admin/logout" method="POST">
@@ -29,26 +29,26 @@ export default async function AdminDashboard() {
 
         <div className="dashboard-grid mt-8">
           <Link href="/admin/dashboard/posts" className="dashboard-card">
-            <div className="text-4xl mb-4">📝</div>
-            <h2 className="text-2xl font-medium mb-2">Blog Posts</h2>
+            <div className="text-2xl mb-3">📝</div>
+            <h2 className="text-lg font-medium mb-1">Blog Posts</h2>
             <p className="text-white/50">Create and manage blog posts</p>
           </Link>
 
           <Link href="/admin/dashboard/categories" className="dashboard-card">
-            <div className="text-4xl mb-4">📁</div>
-            <h2 className="text-2xl font-medium mb-2">Categories</h2>
+            <div className="text-2xl mb-3">📁</div>
+            <h2 className="text-lg font-medium mb-1">Categories</h2>
             <p className="text-white/50">Organize posts into categories</p>
           </Link>
 
           <Link href="/admin/dashboard/submissions" className="dashboard-card">
-            <div className="text-4xl mb-4">📩</div>
-            <h2 className="text-2xl font-medium mb-2">Submissions</h2>
+            <div className="text-2xl mb-3">📩</div>
+            <h2 className="text-lg font-medium mb-1">Submissions</h2>
             <p className="text-white/50">View contact form submissions</p>
           </Link>
 
           <Link href="/admin/dashboard/newsletter" className="dashboard-card">
-            <div className="text-4xl mb-4">📧</div>
-            <h2 className="text-2xl font-medium mb-2">Newsletter</h2>
+            <div className="text-2xl mb-3">📧</div>
+            <h2 className="text-lg font-medium mb-1">Newsletter</h2>
             <p className="text-white/50">Manage newsletter subscribers</p>
           </Link>
         </div>

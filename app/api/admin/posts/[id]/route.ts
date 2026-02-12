@@ -15,7 +15,6 @@ export async function GET(
       where: { id },
       include: {
         category: true,
-        tags: true,
       },
     });
 
@@ -55,7 +54,6 @@ export async function PUT(
       published,
       noindex,
       categoryId,
-      tagIds,
     } = body;
 
     // Check if post exists
@@ -82,15 +80,9 @@ export async function PUT(
         noindex,
         publishedAt: published && !existingPost.published ? new Date() : existingPost.publishedAt,
         categoryId: categoryId || null,
-        tags: tagIds
-          ? {
-              set: tagIds.map((tagId: string) => ({ id: tagId })),
-            }
-          : undefined,
       },
       include: {
         category: true,
-        tags: true,
       },
     });
 

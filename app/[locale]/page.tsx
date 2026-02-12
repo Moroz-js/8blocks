@@ -42,7 +42,6 @@ export default async function Home({ params }: HomePageProps) {
   //   },
   //   include: {
   //     category: true,
-  //     tags: true,
   //   },
   //   orderBy: {
   //     publishedAt: 'desc',
@@ -69,10 +68,6 @@ export default async function Home({ params }: HomePageProps) {
   //     name: locale === 'ru' && post.category.nameRu ? post.category.nameRu : post.category.name,
   //     slug: post.category.slug,
   //   } : null,
-  //   tags: post.tags.map((tag: any) => ({
-  //     id: tag.id,
-  //     name: locale === 'ru' && tag.nameRu ? tag.nameRu : tag.name,
-  //   })),
   //   views: post.views || 0,
   //   readTime: post.readTime ?? undefined,
   //   author: post.author || '8Blocks',

@@ -93,18 +93,18 @@ export default function NewsletterPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black text-white p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white pt-5 px-6 pb-6 flex items-center justify-center">
         <div className="loading-spinner" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen bg-black text-white pt-5 px-6 pb-6">
       <div className="max-w-7xl mx-auto">
         <div className="admin-card-header">
           <div>
-            <h1 className="text-4xl font-medium mb-2">Newsletter Subscribers</h1>
+            <h1 className="text-2xl font-medium mb-1">Newsletter Subscribers</h1>
             <p className="text-white/50">
               {activeSubscribers.length} active, {subscribers.length} total
             </p>
@@ -131,7 +131,7 @@ export default function NewsletterPage() {
           <div className="error-message mb-6">{error}</div>
         )}
 
-        <div className="space-y-4">
+        <div className="space-y-8">
           {subscribers.length === 0 ? (
             <div className="text-center py-12 text-white/50">
               No subscribers yet.
@@ -144,10 +144,10 @@ export default function NewsletterPage() {
               >
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-2">
+                    <div className="flex items-center gap-3 mb-1">
                       <a
                         href={`mailto:${subscriber.email}`}
-                        className="text-xl font-medium text-purple-400 hover:text-purple-300 truncate"
+                        className="text-base font-medium text-purple-400 hover:text-purple-300 truncate"
                       >
                         {subscriber.email}
                       </a>

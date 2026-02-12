@@ -5,15 +5,15 @@
 
   /* Button Styles */
   .admin-btn {
-    @apply px-6 py-2.5 rounded-lg font-medium transition-all duration-200;
+    @apply px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-200;
   }
 
   .admin-btn-primary {
-    @apply admin-btn bg-purple-500 hover:bg-purple-600 text-white shadow-lg shadow-purple-500/20 py-1 px-3 w-full;
+    @apply admin-btn bg-purple-500 hover:bg-purple-600 text-white shadow-lg shadow-purple-500/20;
   }
 
   .admin-btn-secondary {
-    @apply admin-btn bg-white/10 hover:bg-white/15 text-white py-1 px-3;
+    @apply admin-btn bg-white/10 hover:bg-white/15 text-white;
   }
 
   .admin-btn-danger {
@@ -21,15 +21,16 @@
   }
 
   .admin-btn-sm {
-    @apply px-4 py-1.5 text-sm;
+    @apply px-3 py-1 text-xs;
   }
 
   /* Input Styles */
   .admin-input {
-    @apply w-full px-4 py-2.5 border border-white/10 rounded-lg;
+    @apply w-full text-sm border border-white/10 rounded-lg;
     @apply focus:border-purple-500 focus:outline-none;
     @apply text-white placeholder-white/40;
     @apply transition-all duration-200;
+    padding: 1rem;
     background-color: rgba(255, 255, 255, 0.05);
   }
 
@@ -52,12 +53,12 @@
 
   /* Card Styles */
   .admin-card {
-    @apply p-6 bg-[#0B0B0B] border border-white/10 rounded-xl;
+    @apply p-2 bg-[#0B0B0B] border border-white/10 rounded-lg;
     @apply hover:border-white/20 transition-all duration-200;
   }
 
   .admin-card-header {
-    @apply flex justify-between items-center mb-6;
+    @apply flex justify-between items-center mb-4;
   }
 
   /* Label Styles */
@@ -72,7 +73,8 @@
 
   /* Editor Toolbar */
   .editor-toolbar {
-    @apply flex flex-wrap gap-1 p-2 border-b border-white/10;
+    @apply flex flex-wrap gap-1 border-b border-white/10;
+    padding: 1rem;
     background-color: rgba(0, 0, 0, 0.2);
   }
 
@@ -92,27 +94,34 @@
 
   /* Content Area */
   .editor-content {
-    @apply max-w-none min-h-[300px] p-4;
+    @apply max-w-none min-h-[300px];
     @apply focus:outline-none;
     @apply text-white;
+    padding: 1rem;
     line-height: 1.7;
   }
 
   .editor-content h2 {
-    @apply text-2xl font-medium mt-6 mb-4;
+    @apply text-2xl font-medium;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .editor-content h3 {
-    @apply text-xl font-medium mt-4 mb-3;
+    @apply text-xl font-medium;
+    margin-top: 0;
+    margin-bottom: 1rem;
   }
 
   .editor-content p {
-    @apply mb-4 leading-relaxed;
+    @apply leading-relaxed;
+    margin-bottom: 1rem;
   }
 
   .editor-content ul,
   .editor-content ol {
-    @apply mb-4 pl-6;
+    @apply pl-6;
+    margin-bottom: 1rem;
   }
 
   .editor-content li {
@@ -125,6 +134,52 @@
 
   .editor-content img {
     @apply max-w-full h-auto rounded-lg my-4;
+  }
+
+  /* Embed blocks in editor */
+  .editor-embed-wrapper {
+    @apply my-4 rounded-lg overflow-hidden;
+    border: 1px dashed rgba(197, 61, 255, 0.4);
+    background-color: rgba(197, 61, 255, 0.05);
+  }
+
+  .editor-embed-header {
+    @apply flex items-center justify-between px-3 py-1.5;
+    background-color: rgba(197, 61, 255, 0.1);
+  }
+
+  .editor-embed-label {
+    @apply text-xs font-medium;
+    color: rgba(197, 61, 255, 0.7);
+  }
+
+  .editor-embed-actions {
+    @apply flex gap-1;
+  }
+
+  .editor-embed-action-btn {
+    @apply text-xs px-2 py-0.5 rounded cursor-pointer;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: all 0.15s;
+  }
+
+  .editor-embed-action-btn:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .editor-embed-action-delete:hover {
+    color: rgba(239, 68, 68, 0.9);
+    background-color: rgba(239, 68, 68, 0.15);
+  }
+
+  .editor-embed-preview {
+    @apply p-3;
+  }
+
+  .editor-embed-preview iframe {
+    @apply max-w-full rounded;
   }
 
   /* Dashboard Grid */

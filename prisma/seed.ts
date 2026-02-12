@@ -108,29 +108,8 @@ async function main() {
     },
   });
 
-  // Create tags
-  const nextjsTag = await prisma.tag.upsert({
-    where: { slug: 'nextjs' },
-    update: {},
-    create: {
-      name: 'Next.js',
-      nameRu: 'Next.js',
-      slug: 'nextjs',
-    },
-  });
-
-  const reactTag = await prisma.tag.upsert({
-    where: { slug: 'react' },
-    update: {},
-    create: {
-      name: 'React',
-      nameRu: 'React',
-      slug: 'react',
-    },
-  });
-
   console.log('✅ Database seeded successfully!');
-  console.log({ webDev, blockchain, gamefi, finance, gamesReviews, nftAssets, defi, trading, nextjsTag, reactTag });
+  console.log({ webDev, blockchain, gamefi, finance, gamesReviews, nftAssets, defi, trading });
 
   // Check if posts already exist (skip seeding if they do)
   const existingPosts = await prisma.blogPost.count();
@@ -233,7 +212,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: gamesReviews.id,
-      tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
     },
     {
@@ -245,7 +223,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: gamesReviews.id,
-      tags: [nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80',
     },
     {
@@ -257,7 +234,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: gamesReviews.id,
-      tags: [reactTag.id, nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200&q=80',
     },
     {
@@ -269,7 +245,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: gamesReviews.id,
-      tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=1200&q=80',
     },
     // NFT & Assets posts (4 posts)
@@ -282,7 +257,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: nftAssets.id,
-      tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=1200&q=80',
     },
     {
@@ -294,7 +268,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: nftAssets.id,
-      tags: [nextjsTag.id, reactTag.id],
       image: 'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=1200&q=80',
     },
     {
@@ -306,7 +279,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: nftAssets.id,
-      tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1200&q=80',
     },
     {
@@ -318,7 +290,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: nftAssets.id,
-      tags: [nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
     },
     // DeFi posts (4 posts)
@@ -331,7 +302,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: defi.id,
-      tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
     },
     {
@@ -343,7 +313,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: defi.id,
-      tags: [nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
     },
     {
@@ -355,7 +324,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: defi.id,
-      tags: [reactTag.id, nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=1200&q=80',
     },
     {
@@ -367,7 +335,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: defi.id,
-      tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80',
     },
     // Trading posts (4 posts)
@@ -380,7 +347,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: trading.id,
-      tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
     },
     {
@@ -392,7 +358,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: trading.id,
-      tags: [nextjsTag.id, reactTag.id],
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
     },
     {
@@ -404,7 +369,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: trading.id,
-      tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=80',
     },
     {
@@ -416,7 +380,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: trading.id,
-      tags: [nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=1200&q=80',
     },
     // Blockchain category posts (4 posts)
@@ -429,7 +392,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: blockchain.id,
-      tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
     },
     {
@@ -441,7 +403,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: blockchain.id,
-      tags: [nextjsTag.id, reactTag.id],
       image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&q=80',
     },
     {
@@ -453,7 +414,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: blockchain.id,
-      tags: [reactTag.id],
       image: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=1200&q=80',
     },
     {
@@ -465,7 +425,6 @@ async function main() {
       content: richContentEn,
       contentRu: richContentRu,
       categoryId: blockchain.id,
-      tags: [nextjsTag.id],
       image: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1200&q=80',
     },
   ];
@@ -484,9 +443,6 @@ async function main() {
         published: true,
         publishedAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000),
         categoryId: postData.categoryId,
-        tags: {
-          connect: postData.tags.map(id => ({ id })),
-        },
       },
     });
   }

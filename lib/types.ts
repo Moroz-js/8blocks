@@ -18,10 +18,6 @@ export interface NormalizedBlogPost {
     name: string;
     slug: string;
   } | null;
-  tags: Array<{
-    id: string;
-    name: string;
-  }>;
   views: number;
   readTime?: number;
   author: string;
@@ -36,11 +32,6 @@ export interface NormalizedCategory {
   description: string | null;
   parentId: string | null;
   children?: NormalizedCategory[];
-}
-
-export interface NormalizedTag {
-  id: string;
-  name: string;
 }
 
 export interface PaginationMeta {

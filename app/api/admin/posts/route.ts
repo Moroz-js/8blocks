@@ -10,7 +10,6 @@ export async function GET() {
     const posts = await prisma.blogPost.findMany({
       include: {
         category: true,
-        tags: true,
       },
       orderBy: {
         createdAt: 'desc',
@@ -45,7 +44,6 @@ export async function POST(request: NextRequest) {
       published,
       noindex,
       categoryId,
-      tagIds,
     } = body;
 
     const post = await prisma.blogPost.create({
@@ -62,15 +60,9 @@ export async function POST(request: NextRequest) {
         noindex: noindex || false,
         publishedAt: published ? new Date() : null,
         categoryId: categoryId || null,
-        tags: tagIds
-          ? {
-              connect: tagIds.map((id: string) => ({ id })),
-            }
-          : undefined,
       },
       include: {
         category: true,
-        tags: true,
       },
     });
 
