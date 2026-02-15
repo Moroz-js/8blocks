@@ -294,8 +294,8 @@ export function Footer({ locale }: FooterProps) {
             </div>
 
             {/* Map - Desktop */}
-            <div className="mb-[2rem] justify-self-end">
-              <div className="h-[230px] w-[387px] overflow-hidden rounded-[0.5rem]" style={{boxShadow: '0px 0px 0px 1.592px rgba(0,0,0,0.2), 0px 0px 3.185px 0px rgba(0,0,0,0.08), 0px 3.185px 9.554px 0px rgba(0,0,0,0.1)'}}>
+            <div className="mb-[2rem] justify-self-end w-full max-w-[387px]">
+              <div className="h-[230px] overflow-hidden rounded-[0.5rem]" style={{boxShadow: '0px 0px 0px 1.592px rgba(0,0,0,0.2), 0px 0px 3.185px 0px rgba(0,0,0,0.08), 0px 3.185px 9.554px 0px rgba(0,0,0,0.1)'}}>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d231347.00243468955!2d55.05892653780744!3d25.04096525226673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6cade01aaaab%3A0x8d1c1334c0a3883d!2sDMCC%20I5%20Premium%20Business%20Centre!5e0!3m2!1sru!2sru!4v1770648759278!5m2!1sru!2sru"
                   width="100%"

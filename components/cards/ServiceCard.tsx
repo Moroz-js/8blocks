@@ -142,7 +142,7 @@ export default function ServiceCard({
             alt=""
             width={400}
             height={400}
-            className="w-[87%] h-auto object-contain"
+            className="w-[75%] h-auto object-contain"
             style={{ marginBottom: '10px' }}
             unoptimized
           />

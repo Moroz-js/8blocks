@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui';
 import { Container } from '@/components/layout';
 
-export default function Hero() {
+export default function Hero({ locale }: { locale: 'en' | 'ru' }) {
   const t = useTranslations('hero');
 
   const services = [
@@ -82,20 +82,24 @@ export default function Hero() {
             {/* Mobile: tag-style buttons */}
             <div className="flex gap-[12px] lg:hidden min-w-min">
               {services.map((name) => (
+                <a href={locale === 'en' ? '/#services' : `/${locale}#services`} key={name}>
                 <button
                   key={name}
                   className="bg-[rgba(233,233,233,0.12)] h-[36px] px-[15px] py-[10px] rounded-[8px] flex items-center justify-center font-berka font-medium text-[13px] leading-[1.5] text-white whitespace-nowrap shrink-0"
                 >
                   {name}
                 </button>
+                </a>
               ))}
             </div>
             {/* Desktop: Button component */}
             <div className="hidden lg:flex gap-[10px] justify-center">
               {services.map((name) => (
+                <a href={locale === 'en' ? '/#services' : `/${locale}#services`} key={name}>
                 <Button key={name} variant="primary" className="whitespace-nowrap flex-shrink-0">
                   {name}
                 </Button>
+                </a>
               ))}
             </div>
           </div>

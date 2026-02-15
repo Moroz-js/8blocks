@@ -256,7 +256,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
             <div className="max-w-[77.5rem] mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-[813px_1fr] gap-[3.125rem] lg:gap-[3.125rem]">
                 {/* Main Content */}
-                <article className="w-full order-1">
+                <article className="w-full min-w-0 order-1">
                   {/* Title */}
                   <h1 className="font-berka font-normal text-[1.875rem] sm:text-[clamp(2.5rem,3.4375rem,3.4375rem)]
  leading-[1.1] text-white mb-[1.875rem]">
@@ -342,7 +342,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
 
                     {/* Excerpt */}
                     {post.excerpt && (
-                      <p className="font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50 overflow-hidden text-ellipsis whitespace-nowrap">
+                      <p className="font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50 line-clamp-2 break-words">
                         {post.excerpt}
                       </p>
                     )}
@@ -350,7 +350,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
 
                   {/* Content */}
                   <div
-                    className="prose prose-invert max-w-none mb-[3.125rem]"
+                    className="prose prose-invert max-w-none mb-[3.125rem] overflow-hidden break-words"
                     style={{
                       fontFamily: 'Manrope',
                       fontSize: '0.9375rem',
@@ -362,7 +362,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                 </article>
 
                 {/* Sidebar */}
-                <aside className="w-full lg:pl-[3.125rem] lg:pt-[6.25rem] order-2 lg:order-2">
+                <aside className="w-full min-w-0 max-w-full lg:pl-[3.125rem] lg:pt-[6.25rem] order-2 lg:order-2">
                   <div className="flex flex-col gap-[1.25rem] lg:sticky lg:top-[6.25rem]">
                     {/* Share Buttons */}
                     <ShareButtons 

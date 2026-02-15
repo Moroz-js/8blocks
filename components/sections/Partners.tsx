@@ -35,8 +35,8 @@ export default function Partners() {
       </Container>
 
       <div className="relative w-full overflow-hidden lg:mb-[3.125rem]">
-        <div className="absolute left-0 top-0 bottom-0 w-[100px] bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-[100px] bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-[40px] lg:w-[100px] bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-[40px] lg:w-[100px] bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
         
         <div className="flex gap-[28px] lg:gap-[clamp(2.5rem,5vw,5rem)] animate-marquee-mobile lg:animate-marquee hover:pause opacity-20 lg:opacity-100">
           {partners.map((partner, index) => (

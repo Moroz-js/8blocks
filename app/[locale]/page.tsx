@@ -84,7 +84,7 @@ export default async function Home({ params }: HomePageProps) {
       />
       
       {/* Sections wrapped by <main> in layout.tsx */}
-      <Hero />
+      <Hero locale={locale as 'en' | 'ru'} />
       <Services locale={locale as 'en' | 'ru'} />
       <About />
       <Partners />

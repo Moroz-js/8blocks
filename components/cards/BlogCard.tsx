@@ -36,7 +36,7 @@ export default function BlogCard({
         <article className="flex flex-col lg:flex-row gap-[1.25rem] lg:gap-[2.5rem]">
           {/* Image - Left side, flex-1 */}
           {post.featuredImage && !imageError && (
-            <div className="relative w-full lg:flex-1 lg:aspect-[8/5] lg:min-h-[250px] bg-black border border-[rgba(255,255,255,0.2)] rounded-[0.5rem] overflow-hidden group-hover:border-[rgba(255,255,255,0.3)] transition-colors">
+            <div className="relative w-full aspect-[8/5] lg:flex-1 lg:min-h-[250px] bg-black border border-[rgba(255,255,255,0.2)] rounded-[0.5rem] overflow-hidden group-hover:border-[rgba(255,255,255,0.3)] transition-colors">
               <img
                 src={post.featuredImage.url}
                 alt={post.featuredImage.alt}
@@ -44,6 +44,8 @@ export default function BlogCard({
                 loading="lazy"
                 onError={() => setImageError(true)}
               />
+              {/* overlay */}
+              <div className="absolute inset-0 bg-black opacity-50" />
               {/* Category Tag Overlay */}
               {post.category && (
                 <div className="absolute top-[0.625rem] left-[0.625rem] lg:top-[0.9375rem] lg:left-[0.9375rem]">
@@ -54,6 +56,7 @@ export default function BlogCard({
                   </div>
                 </div>
               )}
+              
             </div>
           )}
 
@@ -130,7 +133,9 @@ export default function BlogCard({
                 loading="lazy"
                 onError={() => setImageError(true)}
               />
-              {/* Category Tag overlay */}
+              <div className="absolute inset-0 bg-black opacity-50" />
+
+              {/* Category Tag Overlay */}
               {post.category && (
                 <div className="absolute top-[0.625rem] left-[0.625rem] lg:top-[0.9375rem] lg:left-[0.9375rem]">
                   <div className="bg-[rgba(233,233,233,0.12)] px-[0.625rem] py-[0.3125rem] rounded-[0.25rem] lg:h-[2.25rem] lg:px-[0.9375rem] lg:py-[0.625rem] lg:rounded-[0.5rem] flex items-center justify-center">
@@ -140,6 +145,7 @@ export default function BlogCard({
                   </div>
                 </div>
               )}
+
             </div>
           )}
 

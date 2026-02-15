@@ -13,6 +13,7 @@
 
   body {
     @apply bg-background-primary text-text-primary font-berka;
+    overflow-x: hidden;
   }
 
   * {
