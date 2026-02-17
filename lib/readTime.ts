@@ -6,6 +6,7 @@
  */
 export function calculateReadTime(content: string, locale: 'en' | 'ru' = 'en'): number {
   if (!content || content.trim().length === 0) {
+    console.log('⚠️ ReadTime: Empty content');
     return 1;
   }
 
@@ -27,9 +28,19 @@ export function calculateReadTime(content: string, locale: 'en' | 'ru' = 'en'): 
 
   // Calculate reading time
   const minutes = wordCount / wordsPerMinute;
+  const result = Math.max(1, Math.ceil(minutes));
+
+  console.log(`📖 ReadTime [${locale}]:`, {
+    originalLength: content.length,
+    textLength: text.length,
+    wordCount,
+    wordsPerMinute,
+    calculatedMinutes: minutes,
+    roundedResult: result,
+  });
 
   // Round up and ensure minimum of 1 minute
-  return Math.max(1, Math.ceil(minutes));
+  return result;
 }
 
 /**
