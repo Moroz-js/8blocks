@@ -37,7 +37,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           command_timeout: 15m
-          script_stop: true
           envs: PROJECT_NAME,DOMAIN,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASSWORD,SMTP_FROM,ADMIN_EMAIL,ADMIN_USERNAME,ADMIN_PASSWORD,GOOGLE_ANALYTICS_ID,DEPLOY_MODE
           script: |
             set -euo pipefail
@@ -141,8 +140,7 @@ jobs:
 
             echo "🔀 Deployment mode: ${DEPLOY_MODE}"
 
-            case "$DEPLOY_MODE" in
-            hard)
+            if [ "$DEPLOY_MODE" = "hard" ]; then
               echo "🔴 HARD RESET: wiping all containers, volumes, networks"
 
               # Stop and remove everything including volumes
@@ -208,8 +206,8 @@ jobs:
 
               echo "🔄 Starting app container"
               docker compose up -d --force-recreate app
-            ;;
-            *)
+
+            else
               echo "🟢 SOFT DEPLOY: zero-downtime — old app stays up during build"
 
               # Ensure postgres is running (don't touch it)
@@ -259,8 +257,7 @@ jobs:
               # Quick swap: stop old app → start new app (minimal downtime ~2-5s)
               echo "🔄 Swapping app container (brief restart)"
               docker compose up -d --force-recreate --no-deps app
-            ;;
-            esac
+            fi
 
             # ==========================================
             # Wait for app to be healthy
@@ -318,15 +315,12 @@ jobs:
             # ==========================================
             # 9. Database seed (mode-dependent, runs LAST)
             # ==========================================
-            case "$DEPLOY_MODE" in
-            hard)
+            if [ "$DEPLOY_MODE" = "hard" ]; then
               echo "🌱 Running database seed (hard mode — fresh data)"
               docker compose exec -T app npm run db:seed:prod || echo "⚠️  Seed failed"
-            ;;
-            *)
+            else
               echo "⏭️  Skipping seed (soft mode — data preserved)"
-            ;;
-            esac
+            fi
 
             # ==========================================
             # 10. Status & Health Check
