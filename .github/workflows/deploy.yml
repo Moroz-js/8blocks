@@ -135,13 +135,15 @@ jobs:
             # ==========================================
             # 3. Cleanup (mode-dependent)
             # ==========================================
-            echo "🧹 Cleaning old artifacts"
-            rm -rf .next 2>/dev/null || true
-            echo "✓ Cleanup completed"
+echo "🧹 Cleaning old artifacts"
+rm -rf .next 2>/dev/null || true
+echo "✓ Cleanup completed"
 
-            echo "🔀 Deployment mode: ${DEPLOY_MODE}"
-            
-            if [ "$DEPLOY_MODE" = "hard" ]; then
+echo "🔀 Deployment mode: ${DEPLOY_MODE}"
+echo "🔍 DEBUG: DEPLOY_MODE length: ${#DEPLOY_MODE}"
+echo "🔍 DEBUG: DEPLOY_MODE as hex: $(echo -n "$DEPLOY_MODE" | xxd -p)"
+
+if [ "$DEPLOY_MODE" = "hard" ]; then
               echo "🔴 HARD RESET: wiping all containers, volumes, networks"
 
               # Stop and remove everything including volumes
