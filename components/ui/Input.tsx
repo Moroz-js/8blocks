@@ -20,7 +20,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     
     const inputStyles = cn(
       'w-full h-[clamp(3.5rem,3.75rem,3.75rem)] px-[1.5625rem] py-[0.5rem] rounded-lg transition-colors',
-      'text-[0.9375rem] font-normal placeholder:opacity-50',
+      'text-[1rem] font-normal placeholder:opacity-50',
       'focus:outline-none focus:ring-2 focus:ring-offset-2',
       'disabled:cursor-not-allowed disabled:opacity-50',
       isGray

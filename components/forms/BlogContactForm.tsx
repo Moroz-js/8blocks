@@ -59,7 +59,7 @@ export function BlogContactForm({ locale }: BlogContactFormProps) {
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           placeholder={locale === 'ru' ? 'Ваше имя' : 'Your name'}
           disabled={isSubmitting}
-          className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 disabled:opacity-50"
+          className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[1rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 disabled:opacity-50"
         />
         <input
           type="text"
@@ -67,7 +67,7 @@ export function BlogContactForm({ locale }: BlogContactFormProps) {
           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
           placeholder={locale === 'ru' ? 'Название компании' : 'Company name'}
           disabled={isSubmitting}
-          className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 disabled:opacity-50"
+          className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[1rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 disabled:opacity-50"
         />
       </div>
 
@@ -79,7 +79,7 @@ export function BlogContactForm({ locale }: BlogContactFormProps) {
           onChange={(e) => setFormData({ ...formData, messenger: e.target.value })}
           placeholder={locale === 'ru' ? 'Предпочитаемый мессенджер' : 'Preferred messenger number'}
           disabled={isSubmitting}
-          className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 disabled:opacity-50"
+          className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[1rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 disabled:opacity-50"
         />
         <input
           type="email"
@@ -88,7 +88,7 @@ export function BlogContactForm({ locale }: BlogContactFormProps) {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           placeholder="Email"
           disabled={isSubmitting}
-          className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 disabled:opacity-50"
+          className="!bg-[rgba(255,255,255,0.08)] h-[3.75rem] px-[1.5625rem] py-[0.5rem] rounded-[0.5rem] font-berka font-normal text-[1rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 disabled:opacity-50"
         />
       </div>
 
@@ -100,7 +100,7 @@ export function BlogContactForm({ locale }: BlogContactFormProps) {
         placeholder={locale === 'ru' ? 'Кратко опишите ваш проект или вопрос' : 'Briefly describe your project or question'}
         rows={5}
         disabled={isSubmitting}
-        className="!bg-[rgba(255,255,255,0.08)] min-h-[9.375rem] px-[1.5625rem] py-[0.75rem] rounded-[0.5rem] font-berka font-normal text-[0.9375rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 w-full resize-none disabled:opacity-50"
+        className="!bg-[rgba(255,255,255,0.08)] min-h-[9.375rem] px-[1.5625rem] py-[0.75rem] rounded-[0.5rem] font-berka font-normal text-[1rem] leading-[1.7] text-white placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-white/20 w-full resize-none disabled:opacity-50"
       />
 
       {/* Success Message */}

@@ -216,7 +216,7 @@ export function ContactForm({ locale, onSuccess, onError }: ContactFormProps) {
           rows={5}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? 'contact-message-error' : undefined}
-          className={`w-full px-[1.5625rem] py-[0.75rem] rounded-lg transition-colors text-[0.9375rem] font-normal placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none ${
+          className={`w-full px-[1.5625rem] py-[0.75rem] rounded-lg transition-colors text-[1rem] font-normal placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none ${
             errors.message
               ? 'border-2 border-[#ff0300] bg-[#000000] text-white focus:border-[#ff0300] focus:ring-[#ff0300]/50'
               : 'border-2 border-[#141414] bg-[#000000] text-white focus:border-white/20 focus:ring-white/20'
