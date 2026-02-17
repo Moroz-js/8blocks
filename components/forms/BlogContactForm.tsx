@@ -105,8 +105,8 @@ export function BlogContactForm({ locale }: BlogContactFormProps) {
 
       {/* Success Message */}
       {submitSuccess && (
-        <div className="rounded-lg bg-[#75fb63]/10 border border-[#75fb63] p-4">
-          <p className="text-sm text-[#75fb63] font-berka">
+        <div className="rounded-lg bg-[#75fb63]/10 border border-[#75fb63] p-2 w-full max-w-full overflow-hidden">
+          <p className="text-sm text-[#75fb63] font-berka break-words">
             {locale === 'ru' ? '✓ Спасибо! Ваше сообщение успешно отправлено.' : '✓ Thank you! Your message has been sent successfully.'}
           </p>
         </div>
@@ -114,8 +114,8 @@ export function BlogContactForm({ locale }: BlogContactFormProps) {
 
       {/* Error Message */}
       {error && (
-        <div className="rounded-lg bg-[#ff0300]/10 border border-[#ff0300] p-4">
-          <p className="text-sm text-[#ff0300] font-berka">{error}</p>
+        <div className="rounded-lg bg-[#ff0300]/10 border border-[#ff0300] p-2 w-full max-w-full overflow-hidden">
+          <p className="text-sm text-[#ff0300] font-berka break-words">{error}</p>
         </div>
       )}
 

@@ -29,7 +29,7 @@ export function SiteBanner() {
     };
   }, []);
 
-  // body class только для десктоп-версии (когда баннер сверху и влияет на layout)
+  // body class only for desktop version (when banner is at top and affects layout)
   useEffect(() => {
     if (!isVisible) {
       document.body.classList.remove('has-banner');

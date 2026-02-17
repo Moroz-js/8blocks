@@ -17,6 +17,7 @@ import { BlogContactForm } from '@/components/forms/BlogContactForm';
 import { generateBlogPostMetadata, generateBlogPostStructuredData, generatePageMetadata } from '@/lib/seo/metadata';
 import { getUserFriendlyErrorMessage, isApiError } from '@/lib/errors';
 import { parseAndAddIdsToHeadings } from '@/lib/blog-utils';
+import ViewTracker from '@/components/blog/ViewTracker';
 import type { Locale } from '@/i18n/routing';
 
 // Force dynamic rendering - don't generate at build time
@@ -224,6 +225,9 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+
+        {/* View Tracker */}
+        <ViewTracker slug={post.slug} />
 
         <div className="min-h-screen bg-black">
           {/* Breadcrumbs */}

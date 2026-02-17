@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/admin-auth';
+import { calculateBilingualReadTime } from '@/lib/readTime';
 
 // GET single post
 export async function GET(
@@ -65,6 +66,9 @@ export async function PUT(
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
     }
 
+    // Auto-recalculate read time if content has changed
+    const readTime = calculateBilingualReadTime(content, contentRu);
+
     const post = await prisma.blogPost.update({
       where: { id },
       data: {
@@ -80,6 +84,7 @@ export async function PUT(
         noindex,
         publishedAt: published && !existingPost.published ? new Date() : existingPost.publishedAt,
         categoryId: categoryId || null,
+        readTime, // Auto-recalculated reading time
       },
       include: {
         category: true,

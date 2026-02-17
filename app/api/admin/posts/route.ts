@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/admin-auth';
+import { calculateBilingualReadTime } from '@/lib/readTime';
 
 // GET all posts (admin)
 export async function GET() {
@@ -46,6 +47,9 @@ export async function POST(request: NextRequest) {
       categoryId,
     } = body;
 
+    // Auto-calculate read time based on content
+    const readTime = calculateBilingualReadTime(content, contentRu);
+
     const post = await prisma.blogPost.create({
       data: {
         title,
@@ -60,6 +64,8 @@ export async function POST(request: NextRequest) {
         noindex: noindex || false,
         publishedAt: published ? new Date() : null,
         categoryId: categoryId || null,
+        views: Math.floor(Math.random() * 24) + 20, // Random initial views: 20-43
+        readTime, // Auto-calculated reading time
       },
       include: {
         category: true,

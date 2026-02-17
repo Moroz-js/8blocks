@@ -228,14 +228,14 @@ export function ContactForm({ locale, onSuccess, onError }: ContactFormProps) {
       </div>
 
       {errors.submit && (
-        <div className="rounded-lg bg-[#ff0300]/10 border border-[#ff0300] p-4">
-          <p className="text-sm text-[#ff0300]">{errors.submit}</p>
+        <div className="rounded-lg bg-[#ff0300]/10 border border-[#ff0300] p-2 w-full max-w-full overflow-hidden">
+          <p className="text-sm text-[#ff0300] break-words">{errors.submit}</p>
         </div>
       )}
 
       {submitSuccess && (
-        <div className="rounded-lg bg-[#75fb63]/10 border border-[#75fb63] p-4">
-          <p className="text-sm text-[#75fb63]">{t.success}</p>
+        <div className="rounded-lg bg-[#75fb63]/10 border border-[#75fb63] p-2 w-full max-w-full overflow-hidden">
+          <p className="text-sm text-[#75fb63] break-words">{t.success}</p>
         </div>
       )}
 

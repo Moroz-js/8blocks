@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import TiptapEditor from './TiptapEditor';
 import ImageUpload from './ImageUpload';
 import type { BlogPost, Category } from '@prisma/client';
+import { generateSlug } from '@/lib/blog-utils';
 
 interface PostFormProps {
   post?: BlogPost;
@@ -85,11 +86,8 @@ export default function PostForm({ post, categories }: PostFormProps) {
     }
   };
 
-  const generateSlug = () => {
-    const slug = formData.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
+  const handleGenerateSlug = () => {
+    const slug = generateSlug(formData.title);
     setFormData({ ...formData, slug });
   };
 
@@ -136,7 +134,7 @@ export default function PostForm({ post, categories }: PostFormProps) {
           />
           <button
             type="button"
-            onClick={generateSlug}
+            onClick={handleGenerateSlug}
             className="admin-btn-secondary shrink-0"
           >
             Generate

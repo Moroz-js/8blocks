@@ -62,9 +62,6 @@ export default function About() {
                       <Image src={member.image} alt={`Team member ${member.id}`} fill className="object-cover" sizes="63px" />
                     </div>
                   ))}
-                  <div className="relative rounded-full bg-black flex items-center justify-center -ml-[0.5625rem]" style={{ width: 'clamp(3.125rem, 4vw, 3.9375rem)', height: 'clamp(3.125rem, 4vw, 3.9375rem)', zIndex: 0 }}>
-                    <p className="font-berka font-normal text-[clamp(1.25rem,2vw,1.5625rem)] leading-[1.2] text-white">+8</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -100,9 +97,6 @@ export default function About() {
                     <Image src={member.image} alt={`Team member ${member.id}`} fill className="object-cover" sizes="47px" />
                   </div>
                 ))}
-                <div className="relative rounded-full bg-black flex items-center justify-center -mr-[7px]" style={{ width: '46.73px', height: '46.73px', zIndex: 0 }}>
-                  <p className="font-berka font-normal text-[18.5px] leading-[1.2] text-white">+8</p>
-                </div>
               </div>
              
             </div>

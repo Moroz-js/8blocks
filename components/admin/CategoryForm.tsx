@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Category } from '@prisma/client';
+import { generateSlug } from '@/lib/blog-utils';
 
 interface CategoryFormProps {
   category?: Category;
@@ -76,11 +77,8 @@ export default function CategoryForm({ category, categories }: CategoryFormProps
     }
   };
 
-  const generateSlug = () => {
-    const slug = formData.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
+  const handleGenerateSlug = () => {
+    const slug = generateSlug(formData.name);
     setFormData({ ...formData, slug });
   };
 
@@ -133,7 +131,7 @@ export default function CategoryForm({ category, categories }: CategoryFormProps
           />
           <button
             type="button"
-            onClick={generateSlug}
+            onClick={handleGenerateSlug}
             className="admin-btn-secondary shrink-0"
           >
             Generate
