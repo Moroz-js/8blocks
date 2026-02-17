@@ -140,10 +140,9 @@ jobs:
             echo "✓ Cleanup completed"
 
             echo "🔀 Deployment mode: ${DEPLOY_MODE}"
-            echo "🔍 DEBUG: DEPLOY_MODE value: '${DEPLOY_MODE}'"
-            echo "🔍 DEBUG: DEPLOY_MODE length: ${#DEPLOY_MODE}"
 
-            if [ "$DEPLOY_MODE" = "hard" ]; then
+            case "$DEPLOY_MODE" in
+            hard)
               echo "🔴 HARD RESET: wiping all containers, volumes, networks"
 
               # Stop and remove everything including volumes
@@ -209,8 +208,8 @@ jobs:
 
               echo "🔄 Starting app container"
               docker compose up -d --force-recreate app
-
-            else
+            ;;
+            *)
               echo "🟢 SOFT DEPLOY: zero-downtime — old app stays up during build"
 
               # Ensure postgres is running (don't touch it)
@@ -260,7 +259,8 @@ jobs:
               # Quick swap: stop old app → start new app (minimal downtime ~2-5s)
               echo "🔄 Swapping app container (brief restart)"
               docker compose up -d --force-recreate --no-deps app
-            fi
+            ;;
+            esac
 
             # ==========================================
             # Wait for app to be healthy
@@ -318,12 +318,15 @@ jobs:
             # ==========================================
             # 9. Database seed (mode-dependent, runs LAST)
             # ==========================================
-            if [ "$DEPLOY_MODE" = "hard" ]; then
+            case "$DEPLOY_MODE" in
+            hard)
               echo "🌱 Running database seed (hard mode — fresh data)"
               docker compose exec -T app npm run db:seed:prod || echo "⚠️  Seed failed"
-            else
+            ;;
+            *)
               echo "⏭️  Skipping seed (soft mode — data preserved)"
-            fi
+            ;;
+            esac
 
             # ==========================================
             # 10. Status & Health Check
