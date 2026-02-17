@@ -344,12 +344,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                       </div>
                     )}
 
-                    {/* Excerpt */}
-                    {post.excerpt && (
-                      <p className="font-berka font-normal text-[0.9375rem] leading-[1.7] text-white opacity-50 line-clamp-2 break-words">
-                        {post.excerpt}
-                      </p>
-                    )}
+                    
                   </div>
 
                   {/* Content */}
