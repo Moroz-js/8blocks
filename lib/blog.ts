@@ -304,6 +304,7 @@ function normalizeBlogPost(post: any, locale: string): NormalizedBlogPost {
     slug: post.slug,
     excerpt: locale === 'ru' ? (post.excerptRu || post.excerpt) : post.excerpt,
     content: locale === 'ru' ? (post.contentRu || post.content) : post.content,
+    contentRu: post.contentRu, // For debug info and bilingual support
     featuredImage: post.featuredImage ? {
       url: post.featuredImage,
       alt: locale === 'ru' ? (post.titleRu || post.title) : post.title,
@@ -316,6 +317,7 @@ function normalizeBlogPost(post: any, locale: string): NormalizedBlogPost {
       slug: post.category.slug,
     } : null,
     views: post.views || 0,
+    readTime: post.readTime, // Include readTime from database
     author: post.author || '8 Blocks',
     createdAt: post.createdAt,
     updatedAt: post.updatedAt,

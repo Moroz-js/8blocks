@@ -214,7 +214,7 @@ const config: Config = {
         },
       });
 
-      // Scrollbar hide utilities
+      // Scrollbar utilities
       addUtilities({
         '.scrollbar-hide': {
           /* IE and Edge */
@@ -224,6 +224,30 @@ const config: Config = {
           /* Safari and Chrome */
           '&::-webkit-scrollbar': {
             display: 'none',
+          },
+        },
+        '.scrollbar-thin': {
+          /* Firefox */
+          'scrollbar-width': 'thin',
+          /* Safari and Chrome */
+          '&::-webkit-scrollbar': {
+            width: '6px',
+          },
+        },
+        '.scrollbar-thumb-white\\/20': {
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            borderRadius: '3px',
+          },
+        },
+        '.scrollbar-track-transparent': {
+          '&::-webkit-scrollbar-track': {
+            backgroundColor: 'transparent',
+          },
+        },
+        '.hover\\:scrollbar-thumb-white\\/30:hover': {
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
           },
         },
       });

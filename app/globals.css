@@ -69,6 +69,16 @@
     display: none;
   }
 
+  /* Custom scrollbar for TOC */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+
+  .scrollbar-thin:hover {
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
   /* Marquee animation pause on hover */
   .hover\:pause:hover {
     animation-play-state: paused;
@@ -149,14 +159,3 @@
   @apply border-t border-[rgba(255,255,255,0.2)] my-[2.5rem];
 }
 
-/* Hide scrollbar but keep functionality */
-@layer utilities {
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-}

@@ -343,9 +343,21 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                         )}
                       </div>
                     )}
-
-                    
                   </div>
+
+                  {/* Table of Contents - Mobile Only (after featured image) */}
+                  {post.category && headings.length > 0 && (
+                    <div className="lg:hidden mb-[3.125rem]">
+                      <h3 className="font-berka font-normal text-[1.25rem] leading-[1.2] text-white mb-[1.25rem]">
+                        {locale === 'ru' ? 'Содержание' : 'Table of Contents'}
+                      </h3>
+                      <TableOfContents 
+                        category={post.category}
+                        headings={headings}
+                        variant="inline"
+                      />
+                    </div>
+                  )}
 
                   {/* Content */}
                   <div
@@ -358,10 +370,18 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                     }}
                     dangerouslySetInnerHTML={{ __html: processedContent }}
                   />
+
+                  {/* Share Buttons - Mobile Only (end of article) */}
+                  <div className="lg:hidden mb-[3.125rem]">
+                    <ShareButtons 
+                      title={post.title}
+                      url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://8blocks.io/new'}${locale === 'en' ? '' : `/${locale}`}/blog/${post.category?.slug || 'blog'}/${post.slug}`}
+                    />
+                  </div>
                 </article>
 
-                {/* Sidebar */}
-                <aside className="w-full min-w-0 max-w-full lg:pl-[3.125rem] lg:pt-[6.25rem] order-2 lg:order-2">
+                {/* Sidebar - Desktop Only */}
+                <aside className="hidden lg:block w-full min-w-0 max-w-full lg:pl-[3.125rem] lg:pt-[6.25rem] order-2 lg:order-2">
                   <div className="flex flex-col gap-[1.25rem] lg:sticky lg:top-[6.25rem]">
                     {/* Share Buttons */}
                     <ShareButtons 
@@ -369,11 +389,12 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                       url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://8blocks.io/new'}${locale === 'en' ? '' : `/${locale}`}/blog/${post.category?.slug || 'blog'}/${post.slug}`}
                     />
 
-                    {/* Table of Contents */}
+                    {/* Table of Contents - Desktop Only */}
                     {post.category && (
                       <TableOfContents 
                         category={post.category}
                         headings={headings}
+                        variant="sidebar"
                       />
                     )}
                   </div>

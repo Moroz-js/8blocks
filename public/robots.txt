@@ -2,5 +2,5 @@
 User-agent: *
 Allow: /
 
-# Sitemap (when ready)
-# Sitemap: https://8blocks.io/sitemap.xml
+# Sitemap
+Sitemap: https://8blocks.io/sitemap.xml

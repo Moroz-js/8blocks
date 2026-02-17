@@ -6,6 +6,7 @@ export interface NormalizedBlogPost {
   slug: string;
   excerpt: string | null;
   content: string;
+  contentRu?: string | null; // For bilingual support and debug info
   featuredImage: {
     url: string;
     alt: string;
