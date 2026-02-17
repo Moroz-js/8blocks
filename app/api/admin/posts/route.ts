@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/admin-auth';
 import { calculateBilingualReadTime } from '@/lib/readTime';
@@ -72,14 +71,6 @@ export async function POST(request: NextRequest) {
         category: true,
       },
     });
-
-    // Revalidate cached pages
-    revalidatePath('/blog');
-    revalidatePath('/ru/blog');
-    if (post.category) {
-      revalidatePath(`/blog/${post.category.slug}`);
-      revalidatePath(`/ru/blog/${post.category.slug}`);
-    }
 
     return NextResponse.json(post, { status: 201 });
   } catch (error) {

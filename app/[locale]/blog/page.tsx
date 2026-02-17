@@ -11,7 +11,7 @@ import type { Locale } from '@/i18n/routing';
 
 // Force dynamic rendering - don't generate at build time
 export const dynamic = 'force-dynamic';
-export const revalidate = 60;
+export const revalidate = 0; // No caching - always fresh data
 
 interface BlogPageProps {
   params: Promise<{ locale: string }>;

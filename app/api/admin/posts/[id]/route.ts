@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/admin-auth';
 import { calculateBilingualReadTime } from '@/lib/readTime';
@@ -69,14 +68,6 @@ export async function PUT(
 
     // Auto-recalculate read time if content has changed
     const readTime = calculateBilingualReadTime(content, contentRu);
-    
-    // Debug logging
-    console.log('📊 ReadTime calculation:', {
-      contentLength: content?.length || 0,
-      contentRuLength: contentRu?.length || 0,
-      calculatedReadTime: readTime,
-      title: title.substring(0, 50),
-    });
 
     const post = await prisma.blogPost.update({
       where: { id },
@@ -100,16 +91,6 @@ export async function PUT(
       },
     });
 
-    // Revalidate cached pages
-    revalidatePath('/blog');
-    revalidatePath('/ru/blog');
-    if (post.category) {
-      revalidatePath(`/blog/${post.category.slug}`);
-      revalidatePath(`/ru/blog/${post.category.slug}`);
-    }
-    revalidatePath(`/blog/${post.category?.slug}/${post.slug}`);
-    revalidatePath(`/ru/blog/${post.category?.slug}/${post.slug}`);
-
     return NextResponse.json(post);
   } catch (error) {
     console.error('Error updating post:', error);
@@ -129,23 +110,9 @@ export async function DELETE(
     await requireAdmin();
     const { id } = await params;
 
-    // Get post before deletion to revalidate its pages
-    const post = await prisma.blogPost.findUnique({
-      where: { id },
-      include: { category: true },
-    });
-
     await prisma.blogPost.delete({
       where: { id },
     });
-
-    // Revalidate cached pages
-    revalidatePath('/blog');
-    revalidatePath('/ru/blog');
-    if (post?.category) {
-      revalidatePath(`/blog/${post.category.slug}`);
-      revalidatePath(`/ru/blog/${post.category.slug}`);
-    }
 
     return NextResponse.json({ success: true, message: 'Post deleted' });
   } catch (error) {
