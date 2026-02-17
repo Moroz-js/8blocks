@@ -300,7 +300,7 @@ export default async function BlogSlugPage({ params, searchParams }: BlogSlugPag
                             <path d="M10.625 5.9375H9.375V10.625L13.4375 13.0625L14.0625 12.0375L10.625 10.0625V5.9375Z" fill="currentColor"/>
                           </svg>
                           <span className="font-berka font-medium text-[0.8125rem] leading-[1.5] text-white">
-                            {post.readTime || 10} min
+                            {post.readTime || 1} min
                           </span>
                         </div>
 

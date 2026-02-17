@@ -95,7 +95,7 @@ export default function BlogCard({
                   <path d="M10 1.875C5.5125 1.875 1.875 5.5125 1.875 10C1.875 14.4875 5.5125 18.125 10 18.125C14.4875 18.125 18.125 14.4875 18.125 10C18.125 5.5125 14.4875 1.875 10 1.875ZM10 16.5625C6.375 16.5625 3.4375 13.625 3.4375 10C3.4375 6.375 6.375 3.4375 10 3.4375C13.625 3.4375 16.5625 6.375 16.5625 10C16.5625 13.625 13.625 16.5625 10 16.5625Z" fill="currentColor"/>
                   <path d="M10.625 5.9375H9.375V10.625L13.4375 13.0625L14.0625 12.0375L10.625 10.0625V5.9375Z" fill="currentColor"/>
                 </svg>
-                <span className="font-medium">{post.readTime || 10} min</span>
+                <span className="font-medium">{post.readTime || 1} min</span>
               </div>
               <div className="flex items-center gap-[0.4375rem]">
                 <img
@@ -180,7 +180,7 @@ export default function BlogCard({
               <path d="M8 1.5C4.41 1.5 1.5 4.41 1.5 8s2.91 6.5 6.5 6.5 6.5-2.91 6.5-6.5S11.59 1.5 8 1.5zm0 11.75c-2.9 0-5.25-2.35-5.25-5.25S5.1 2.75 8 2.75s5.25 2.35 5.25 5.25-2.35 5.25-5.25 5.25z" fill="currentColor"/>
               <path d="M8.5 4.75h-1v4l3.5 2.1.5-.82-3-1.78V4.75z" fill="currentColor"/>
             </svg>
-            <span>{post.readTime || 10} min</span>
+            <span>{post.readTime || 1} min</span>
           </div>
           <div className="flex items-center gap-[0.375rem]">
             <img
