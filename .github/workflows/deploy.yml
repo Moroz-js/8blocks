@@ -140,8 +140,8 @@ jobs:
             echo "✓ Cleanup completed"
 
             echo "🔀 Deployment mode: ${DEPLOY_MODE}"
+            echo "🔍 DEBUG: DEPLOY_MODE value: '${DEPLOY_MODE}'"
             echo "🔍 DEBUG: DEPLOY_MODE length: ${#DEPLOY_MODE}"
-            echo "🔍 DEBUG: DEPLOY_MODE as hex: $(echo -n "$DEPLOY_MODE" | xxd -p)"
 
             if [ "$DEPLOY_MODE" = "hard" ]; then
               echo "🔴 HARD RESET: wiping all containers, volumes, networks"
