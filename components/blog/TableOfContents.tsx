@@ -19,7 +19,7 @@ export function TableOfContents({ category: _category, headings = [] }: TableOfC
   const [activeId, setActiveId] = useState<string>('');
 
   // If no headings provided, don't render the TOC items
-  const displayHeadings = headings.slice(0, 3);
+  const displayHeadings = headings;
 
   useEffect(() => {
     const observer = new IntersectionObserver(

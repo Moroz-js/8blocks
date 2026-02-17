@@ -11,7 +11,7 @@ export function parseAndAddIdsToHeadings(html: string): {
     let modifiedHtml = html;
 
     // Match h2 and h3 tags
-    const headingRegex = /<(h[2-3])(?:\s+[^>]*)?>([^<]+)<\/\1>/gi;
+    const headingRegex = /<(h[2])(?:\s+[^>]*)?>([^<]+)<\/\1>/gi;
     let match;
     let index = 0;
 

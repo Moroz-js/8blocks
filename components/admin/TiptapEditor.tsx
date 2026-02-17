@@ -386,7 +386,9 @@ export default function TiptapEditor({ content, onChange, placeholder: _placehol
         </button>
       </div>
 
-      <EditorContent editor={editor} />
+      <div className="editor-content max-h-[600px] overflow-y-auto">
+        <EditorContent editor={editor} />
+      </div>
 
       {/* Embed modal */}
       {showEmbedModal && (
