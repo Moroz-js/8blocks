@@ -29,7 +29,7 @@ export function Header({ locale }: HeaderProps) {
   const navigationLinks = [
     { href: locale === 'en' ? '/#services' : `/${locale}#services`, label: t('services') },
     { href: locale === 'en' ? '/#benefits' : `/${locale}#benefits`, label: t('benefits') },
-    // { href: locale === 'en' ? '/blog' : `/${locale}/blog`, label: t('blog') },
+    { href: locale === 'en' ? '/blog' : `/${locale}/blog`, label: t('blog') },
   ];
 
   const servicesLinks = [
