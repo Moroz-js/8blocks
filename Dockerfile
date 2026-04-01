@@ -1,7 +1,7 @@
 # Multi-stage build for Next.js application
 
 # Stage 1: Dependencies
-FROM node:20-alpine AS deps
+FROM node:25-alpine AS deps
 WORKDIR /app
 
 # Install OpenSSL for Prisma
@@ -12,7 +12,7 @@ COPY package.json package-lock.json* ./
 RUN npm ci
 
 # Stage 2: Builder
-FROM node:20-alpine AS builder
+FROM node:25-alpine AS builder
 WORKDIR /app
 
 # Install OpenSSL for Prisma
@@ -30,7 +30,7 @@ RUN npm run build
 RUN npx tsc prisma/seed.ts --outDir prisma --esModuleInterop --module commonjs --skipLibCheck || true
 
 # Stage 3: Runner (production)
-FROM node:20-alpine AS runner
+FROM node:25-alpine AS runner
 WORKDIR /app
 
 # Install OpenSSL for Prisma and wget for healthcheck
